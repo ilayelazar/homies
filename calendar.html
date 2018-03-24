@@ -12,7 +12,8 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-		<link rel="stylesheet" type="text/css" href="css/homepage.css">
+		<link rel="stylesheet" type="text/css" href="css/calendar.css">
+		<script src="script/script.js"></script>
 	</head>
 	
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -90,29 +91,60 @@
 </nav>
 		</header>	
 	<main>
-			<div class="box" id="top-nav">s</div>
 		<div class="box" style="width:75%">
-		<h1>What would you like to do?</h1>	
-			<br><br>
-			<div class="container-fluid sqr">
-				<div class="row">
-					<div class="circ-btn col-lg-3"> <p><img src="https://cdn2.iconfinder.com/data/icons/picons-essentials/71/gift-512.png" alt="" width="80%"></p> </div>
-					<a href="chores.html"><div class="circ-btn col-lg-3"> <p><img src="img/house-clean.png" alt="" width="60%"></p> </div></a>
-					<a href="calendar.html"><div class="circ-btn col-lg-3"> <p><img src="img/calendar-logo.png" alt="Family Calendar" width="70%"></p> </div></a>
-				</div>
-				<div class="row">
-					<div class="circ-btn col-lg-3"> <p><img src="img/shopping-logo.png" alt="Shopping" width="60%"></p> </div>
-					<div class="circ-btn col-lg-3"> <p><img src="img/admin-logo.png" alt="Admin" width="60%"></p> </div>
-					<div class="circ-btn col-lg-3"> <p><img src="img/billing-logo.png" alt="Billing" width="60%"></p> </div>
-				</div>
-
-			</div>
-			
-
-
+		<div class="box">
+			my calendar
+			<iframe src="https://calendar.google.com/calendar/embed?src=ilayelazar%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 		</div>
 
+		<div class="form box" style="width:45%;">
+			<img src="https://www.shareicon.net/data/512x512/2016/08/18/809873_add_512x512.png" alt="" id="newEventBtn">
+			<div class="addEvent">
+				<form action="#" method="POST">
+					<p><label for="">Date: <input type="date" name="date"></label></p>
+					<p><label for="">Title: <input type="text" name="summary"></label></p>
+					<p><label for="">Location: <input type="text" name="location"></label></p>
+					<p><label for="">Start time: <input type="time" name="start-time"></label></p>
+					<p><label for="">End Time: <input type="time" name="end-time"></label></p>
+					<p><label for="">Description: <input type="text" name="description"></label></p>
+					<input type="reset">
+				</form>
+			<button id="addEventBtn" onclick="addEventAPI();"> Add Event</button>
+			</div>
+		</div>
+		<script>
+			function addEventAPI(){
+				var date =document.getElementsByName("date")[0].value;
+				var title =document.getElementsByName("summary")[0].value;
+				var location =document.getElementsByName("location")[0].value;
+				var startTime =document.getElementsByName("start-time")[0].value;
+				var endTime =document.getElementsByName("end-time")[0].value;
+				var description =document.getElementsByName("description")[0].value;
+			
+			$.ajax({
+				method:"POST",
+				url:"newEvent.php",
+				data:{
+					date:date,
+					title:title,
+					location:location,
+					startTime:startTime,
+					endTime:endTime,
+					description:description
+				},
+				success: function(result){
+        			$("#result").html("worked");
+
+			}})
+		}
+
+		</script>
+		<div class="result"></div>
 	</main>
+		
+	
+
+
 
 	<footer>
 	<span style="color:white;font-size: 18px">© 2018 </span>	
