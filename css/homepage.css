@@ -1,1 +1,34 @@
-homepage.css
+
+main #top-nav{
+    width:80%;
+    height: 6%;
+    background-color: coral;
+}
+main h1{
+    text-align: center;
+    font-weight: bold;
+    font-family: cursive;
+    font-size: 48px;
+    color:black;
+}
+main .sqr{
+    width:80%;
+    margin: 0 auto;
+}
+main .circ-btn{
+    margin: 10px 30px;
+    background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
+    border-radius: 50%;
+    border:4px double gold;
+    transition: all .2s ease-in-out;
+}
+main .circ-btn:hover{
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #fb955e 0%,#ea5507 49%,#f17432 51%,#feccb1 100%); 
+}
+main .circ-btn p{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 200px;
+}
