@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homie - Homepage</title>
+  <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript"  src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../css/Homepage.css">
+  <link rel="stylesheet" type="text/css" href="../css/bills.css">
+
+
+</head>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+<body onload="hidefield()">
+	<header>
+        <img src="..//img/family-logo.png" width=140px>
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Homie</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <ul id="login-dp" class="dropdown-menu">
+            <li>
+              <div class="row">
+                 <div class="col-md-12">
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                        <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> keep me logged-in
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="bottom text-center">
+                New here ? <a href="#"><b>Join Us</b></a>
+            </div>
+        </div>
+    </li>
+</ul>
+</li>
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+
+</header>
+
+<main>
+
+</main>
+   <div class="payments" align=center> 
+        <h3>Enter your payments here</h3><br><br><br><br>
+        <table id="pay_bills"  class="cell-border row-border hover order-column">
+           <thead>
+            <tr>
+                <th>Date Added </th>
+                <th>Type</th>
+                <th>Sum</th>
+                <th>Pay till</th>
+                <th>Comments</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="date" name="date"></td>
+                <td>
+                    <select name="type_payments" id="types" onchange="showfield(this.options[this.selectedIndex].value)">>
+                      <option value=""  selected="selected">Select your option</option>
+                      <option value="Gas">Gas</option>
+                      <option value="Electricity">Electricity</option>
+                      <option value="Water Charges">Water Charges</option>
+                      <option value="Municipal Taxes">Municipal Taxes</option>
+                     <option value="Other">Other</option><br>
+                    </select>
+                    <div id="div1">If Other: <input type="text" name="additional_option" /></div>
+                </td>
+                <td> <input type="number" name="Sum" > </td>
+                <td>
+                <input type="date" name="date"></td>
+                <td><textarea rows="2" cols="14"></textarea></td>
+                <td> <button id="addRow">Add new row</button> </td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div> 
+
+
+<footer>
+	<span style="color:white;font-size: 18px">© 2018 </span>	
+	<ul>
+		<li><a href="#">link</a></li>
+		<li><a href="#">link</a></li>
+		<li><a href="#">link</a></li>
+		<li style="border-right:0"><a href="#">link</a></li>
+	</ul>
+
+</footer>
+  
+
+
+</body>
+
+
+<script>
+
+    $(document).ready( function () {
+       var t=$('#pay_bills').DataTable();
+    } );
+
+    $('#pay_bills').DataTable( {
+    "autoFill": true,
+    "autoWidth": false
+
+} );
+
+  function showfield(name){
+    if(name=='Other')document.getElementById('div1').style.display="block";
+    else document.getElementById('div1').style.display="none";
+  }
+ 
+ function hidefield() {
+ document.getElementById('div1').style.display='none';
+ }
+
+</script>
+
+</html>
+
+
+ 
+ 
+ 

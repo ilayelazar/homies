@@ -1,0 +1,29 @@
+
+main{
+opacity: 0.6;
+}
+.payments {
+    top: 20%;
+    width: 85%;
+    left:7.5%;
+    position: absolute;
+}
+
+#pay_bills{
+ 
+}
+
+
+.h3{
+
+	font-color:#c83349;
+}
+
+td.highlight {
+    background-color: whitesmoke !important;
+}
+
+tr{
+width: 30%;
+
+}
