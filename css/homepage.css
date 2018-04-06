@@ -1,34 +1,141 @@
-
-main #top-nav{
-    width:80%;
-    height: 6%;
-    background-color: coral;
+main{
+    padding-top: 25px;
 }
 main h1{
     text-align: center;
     font-weight: bold;
-    font-family: cursive;
+    font-family: calibri;
     font-size: 48px;
     color:black;
 }
-main .sqr{
-    width:80%;
-    margin: 0 auto;
+.nav-buttons{
+padding-left: 10%}
+   main .container {
+        width:200px;
+        height:200px;
+        margin:0 2%;
+        display:inline-block;
+        background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
+        border:4px double gold;
+        transition: all .2s ease-in-out;
+    }
+
+main .btn-link,
+main .btn-link:hover{
+    text-decoration: none;
+    color:black !important;
+    font-size: 34px;
+    font-weight: bold;
 }
-main .circ-btn{
-    margin: 10px 30px;
-    background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
-    border-radius: 50%;
-    border:4px double gold;
-    transition: all .2s ease-in-out;
-}
-main .circ-btn:hover{
-    transform: scale(1.1);
+main .container:hover{
+     transform: scale(1.1);
     background: linear-gradient(45deg, #fb955e 0%,#ea5507 49%,#f17432 51%,#feccb1 100%); 
 }
-main .circ-btn p{
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 200px;
+
+main .container p{
+  text-align: center;
+  line-height: 100%;
+}
+
+main .image {
+    margin:auto;
+    opacity: 1;
+    transition: .5s ease;
+}
+
+main .middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+main .container:hover .image {
+  opacity: 0.3;
+}
+
+main .container:hover .middle {
+  opacity: 1;
+}
+
+main .text {
+    display: none;
+  font-weight:bolder;
+  font-size: 24px;  
+  font-family: Arial;
+}
+main .row{
+    margin-bottom: 10%;
+}
+
+/* Responsive*/
+/*------------------------------------------
+  Responsive Grid Media Queries - 1280, 1024, 768, 480
+   1280-1024   - desktop (default grid)
+   1024-768    - tablet landscape
+   768-480     - tablet 
+   480-less    - phone landscape & smaller
+--------------------------------------------*/
+@media screen and (min-width: 1024px){ 
+    main .container {
+        height:300px;
+        width: 25%;
+        margin:0 2%;
+        border-radius: 50%;
+        display:inline-block;
+        background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
+        border:4px double gold;
+        transition: all .2s ease-in-out;
+    }
+  main .container p{
+      text-align: center;
+      line-height: 300px;
+  }
+main .box{
+  width:65%;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) { 
+main{
+  padding:0;
+}
+.box{
+  width:100%;
+}
+}
+
+
+@media screen and (max-width: 480px) {   /* smartphone */
+    main{
+      padding:0;
+    }
+    .box{
+      width:100%;
+    }
+    main .btn-link{
+        text-decoration: none;
+        color:black !important;
+        font-size: 34px;
+        font-weight: bold;
+    }
+    main .container {
+        width: 20%;
+        height:10vh;
+        margin:0 2%;
+        display:inline-block;
+        background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
+        border:4px double gold;
+        transition: all .2s ease-in-out;
+    }
+      main .container p{
+      text-align: center;
+      line-height: 10vh;
+  }
+    footer{
+      display:none;
+    }
 }

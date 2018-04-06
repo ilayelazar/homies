@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Homie - Homepage</title>
+		<link rel="icon" href="img/family-logo.png">
+		<title>Homies - Chores</title>
 		<link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,103 +12,101 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
+		<!--CSS-->
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 		<link rel="stylesheet" type="text/css" href="css/chores.css">
-	</head>
+		<!--Data Table-->
+		<script type="text/javascript"  src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>  
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+		<!--JS-->
+		<script src="script/chores.js"></script>
+		<script src="script/paging.js"></script>
+		<script src="script/multi_pagination.js"></script>
+  </head>
 	
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 	<body>
-	<header>
-<img src="img/family-logo.png" width=140px>
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Homie</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					 <div class="row">
-							<div class="col-md-12">
-								<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> keep me logged-in
-											 </label>
-										</div>
-								 </form>
-							</div>
-							<div class="bottom text-center">
-								New here ? <a href="#"><b>Join Us</b></a>
-							</div>
-					 </div>
-				</li>
-			</ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-		</header>	
+	 <header>
+    <div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">   
+               <img src="img/family-logo.png" width="50px" style="padding-top:0;float:left;margin-left:50px"> 
+               <a class="navbar-brand" href="homepage.html">Homies</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="http://www.jquery2dotnet.com">Sign Up</a></li>
+                  <li class="dropdown">
+                     <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                           <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </nav>
+      </div>
+   </div>
+</div>
+  </header>	
 <main>
-    <div class="box" id="top-nav">s</div>
+    <div class="box" style="height:50px">
+      <nav><ul>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="chores.html">Chores</a></li>
+          <li><a href="groceries.html">Groceries</a></li>
+          <li><a href="bills.html">Bills</a></li>          
+      </ul></nav>
+    </div>
 
     <div class="box" style="width:75%">
         <div class="row">
             <div class="hidden-xs voffset6"></div>
 
-            <div class="col-md-12   col-lg-12 panel panel-danger">
+            <div class="col-md-12 col-lg-12" panel>
 
                 <br>
                 <div class="panel-heading" id="syllabus">
                  	<div class="tabbable">
                         <ul class="nav nav-tabs" id="myTabs">
-                            <li class="active"><a href="#p1" data-toggle="tab"><strong>Page 1</strong></a></li>
-                            <li><a href="#p2" data-toggle="tab"><strong>Page 2</strong></a></li>
-                            <li><a href="#p3" data-toggle="tab"><strong>Page 3</strong></a></li>
-                            <li><a href="#p4" data-toggle="tab"><strong>Page 4</strong></a></li>
-                            <li><a href="#p5" data-toggle="tab"><strong><i class="fa fa-file-pdf-o"></i> PDF</strong></a></li>
-
+                            <li class="active"><a href="#p1" data-toggle="tab"><strong>TO DO</strong></a></li>
+                            <li><a href="#p2" data-toggle="tab"><strong>Scoreboard</strong></a></li>
+                            <li><a href="#p3" data-toggle="tab"><strong>Wish List</strong></a></li>
+                            <li><a href="#p4" data-toggle="tab"><strong>Gifts History</strong></a></li>
                         </ul>
 
                     </div>
@@ -116,17 +115,52 @@
                     <div class="tab-content">
 
                         <!--  ------- tab 1 ------- -->
-                        <div class="tab-pane fade  in active " id="p1">
-                     		<div class="circ-btn col-lg-3"> 
-                     			<h2>Chore Name</h2>
-                     			<h4>description:</h6>
-                     			<p>
-                     			Clean your messy room!	
-                     			</p><br><br><br><br>
-                     			<center><button onclick="assignChore();">Assign</button></center>
+                         <div class="tab-pane fade  in active " id="p1">         
+                     		<div class="task-box col-lg-3"> 
+                     			<center>
+	                     			<h2>Chore Name</h2>
+	                     			<h4>description:</h4>
+		                     			<p>
+		                     				Clean your messy room!	
+		                     			</p>
+									<h4>Score:</h4>
+		                     			<p class="score_for_chore">
+		                     				150	
+		                     			</p>
+										
+										<br><br>
+	                     			<button onclick="assignChore();">Assign</button>
+	                     		</center>
                      		</div>
+							 <div id="newChores"></div>
+							<!--add chorn button-->
+							<div class="col-lg-3 newChore">
+								<img src="img/green-plus.png" alt="" width="80px" height="80px" id="newChoreBtn">
+								<div class="addChore" style="display:none">
+									<hr>
+									<form action="#" method="POST">
+										<table>
+											<tr>
+												<td>Chore name:</td><td> 
+													<div >
+														<input type="text" name="chore_name" class="form-control">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>Description:</td><td><input type="text" name="chore_description"></td>
+											</tr>
+											<tr>
+												<td>Score:</td><td><input type="number" name="chore_score"></td>
+											</tr>
+											<tr><td><input type="button" id="addChoreBtn" onclick="addChore();" value="Add Chore">
+											</td><td><input type="button" value="CLOSE"></td></tr>
+										</table>
 
-
+									</form>
+								</div>
+							</div>
+							
 
                         </div>
                         <!--  end tab 1-->
@@ -134,7 +168,7 @@
                         <!--  ------- tab 2 ------- -->
                         <div class="tab-pane fade " id="p2">
                             <div id="pg2"> 
-                            	<H1>נוי תראי איך הטאב <br>לא זז הצידה!</H1>
+							   <div id="barchart"></div>
 
                             </div>
                             <br>
@@ -145,7 +179,59 @@
 
                         <!--  ------- tab 3 ------- -->
                         <div class="tab-pane fade " id="p3">
-                            PAGE 3
+							 <div class="task-box presentBox col-lg-3"> 
+                     			<center>
+	                     			<h2>Present name</h2>
+								
+	                     			<h4>description:</h4><br>
+		                     			<p>
+		                     				I want X-box
+		                     			</p>
+									<br><h4>Price:</h4>
+										<input id="present_price" type="number" name="present_price" class="form-control score_for_chore" readonly placeholder="none" style="width:60%">
+									<h4>Asked by:</h4>
+										<p>User123 </p>
+								
+									<br><br>
+									<button onclick="buyPresent();">BUY!</button>
+									</center>
+										
+	                     		
+							</div>
+						
+							 <div id="newPresents"></div>		
+						<!--add present button-->
+							<div class="col-lg-3 newPresent">
+								<img src="img/green-plus.png" alt="Add new present" width="70px" height="70px" id="newPresentBtn">
+								<div class="addPresent" style="display:none">
+									<hr>
+									<form id="add_new_present" action="#" method="POST">
+										<table>
+											<tr>
+												<td>Present name:</td><td> 
+													<div id="sandbox-container" style="width:40%">
+														<input type="text" name="present_name" class="form-control">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>Description:</td><td><input type="texterea" name="present_description"></td>
+											</tr>
+											<tr>
+												<div id="sandbox-container" style="width:40%">
+													<td>Price:</td><td><input type="number" name="present_price"></td> <!--// Price can be added only by a parent-->
+												</div>
+											</tr>
+											<tr><td><input type="button" id="addPresentBtn" onclick="addPresent();" value="Add" alt="Add Present">
+											</td><td><input type="reset" value="Reset" alt="Reset form"></td></tr>
+										</table>
+									</form>
+								</div>
+							</div>
+							
+								
+                     	
+
                             <br>
                             <br>
 
@@ -154,11 +240,35 @@
 
                         <!--  ------- tab 4 ------- -->
                         <div class="tab-pane fade" id="p4">
-                            PAGE 4
-                            <br>
-                            <br>
+						 <table id="gifts_history"  class="cell-border row-border hover order-column">
+						   <thead>
+							<tr id="tableHeaders">
+								<th>User name </th>
+								<th>Present</th>
+								<th>Price</th>
+								<th>Date of purchase</th>
 
 
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="userName"> Shahr</td>
+								<td id="giftName"> Freedom </td>
+								<td id="giftPrice"> 700M </td>
+								<td id="giftDateOfPurchase"> Null </td>								
+							</tr>
+							<tr>
+								<td id="userName"> Noy</td>
+								<td id="giftName"> Car </td>
+								<td id="giftPrice"> 1000 </td>
+								<td id="giftDateOfPurchase"> 14/4/2018 </td>								
+							</tr>
+						</tbody>
+						</table>
+                            <br>
+                            <br>
                         </div>
                         <!--  end tab 4-->
 
@@ -186,7 +296,117 @@
 
 	</footer>
 
+	
+	<!--scripts-->
 
+<!--data table script-->
+  <script>
+  
+      $(document).ready( function () {
+        $('#gifts_history').DataTable();
+    } );
+
+    $('#gifts_history').DataTable( {
+    autoFill: true,
+    responsive: true} );
+	
+  </script>
+  
+<!--draw chart script-->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+function hashCode(str) { // java String#hashCode
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+} 
+
+		function intToRGB(i){
+		    var c = (i & 0x00FFFFFF)
+		        .toString(16)
+		        .toUpperCase();
+
+		    return "00000".substring(0, 6 - c.length) + c;
+		}
+
+	// Load google charts
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+
+	// Draw the chart and set the chart values
+	   function drawChart() {
+		  var data = google.visualization.arrayToDataTable([
+			['User', 'Score', { role: 'style' }, { role: 'annotation' } ],
+			['Noy', 25, 'stroke-color: black; stroke-opacity: 0.2; stroke-width: 0.5; fill-color: #'+intToRGB(hashCode('Noy'))+'; fill-opacity: 1', 'Noy'],
+			['Ilay', 50, 'stroke-color: black; stroke-opacity: 0.2; stroke-width: 0.5; fill-color: #'+intToRGB(hashCode('Ilay'))+'; fill-opacity: 1', 'Ilay'],
+			['Nadia', 30, 'stroke-color: black; stroke-opacity: 0.2; stroke-width: 0.5; fill-color: #'+intToRGB(hashCode('Nadia'))+'; fill-opacity: 1', 'Nadia'],
+			['Shahar', 20, 'stroke-color: black; stroke-opacity: 0.2; stroke-width: 0.5; fill-color: #'+intToRGB(hashCode('Shahar'))+'; fill-opacity: 1', 'Shahar'],
+		  ]);
+	  // Optional; add a title and set the width and height of the chart
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+	  var options = {
+	  	    animation: {
+	        duration: 1000,
+	        easing: 'linear',
+	        startup:true
+	      },
+
+		'backgroundColor': 'transparent',
+	  	'width':1100,
+	  	'height':400,
+	  	'title':'Score',
+	  	'titlePosition':'none',
+	  	'annotations.alwaysOutside': true,
+        legend: { position: "none"},
+        bar: {groupWidth: "75%"},
+
+         annotations: {
+		    textStyle: {
+		      fontName: 'Calibri',
+		      fontSize: 30,
+		      bold: true,
+		      // The color of the text.
+		      color: 'black',
+		      // The color of the text outline.
+		      auraColor: 'white'
+		    }
+		  }
+	  };
+
+	  // Display the chart inside the <div> element with id="barchart"
+	  var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+	  chart.draw(view, options);
+	}
+	</script>
+	
+	
+<!--functions-->
+<script>
+	function assignChore()
+	{
+	//assign the chore to the user
+	}
+	
+	
+
+	
+	
+	
+
+
+
+</script>
+  
 	</body>
 
 	</html>

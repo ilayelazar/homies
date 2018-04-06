@@ -1,14 +1,13 @@
 $(document).ready(function(){
 
-  //calendar
+	$("#calendar-logo").mouseenter(function(){
+		/*
+		$("#calendar-logo img").css("display","none");
+		$("#calendar-logo p").html("Calendar");
+		*/
 
-    //notes
-
-      $("#newNoteImg").click(function(){
-        $("#newNoteContent ,#addNoteBtn").slideToggle("slow");
-      });
-
-
+		
+	});
 
 	$("#newEventBtn").click(function(){
 		$(".addEvent").slideToggle();
