@@ -9,7 +9,8 @@
     text-align:center;
 }
 .panel-heading{
-    background-color: lightblue;
+    background: background-color:rgba(0, 0, 0, 0.5);
+
 }
 .panel-heading ul{
     width:100%;
@@ -17,18 +18,17 @@
 }
 .panel-heading li{
     width:24%;
-    font-size: 24px;
 }
 .nav{
 text-align: center;
 }
 
 main .task-box{
-    margin: 10px 30px;
-    background: linear-gradient(135deg, #ffb76b 0%,#ffa73d 49%,#ff7c00 54%,#ff7f04 100%);
+    margin: 5px 30px;
     border-radius: 5px;
-    height:300px;
-    border:4px double gold;
+    height:270px;
+	background-color:lightblue;
+    border:2px solid black;
     transition: all .2s ease-in-out;
     max-height: 300px;
 }
@@ -58,36 +58,30 @@ a{
     display: inline-block;
     vertical-align: top;
 }
-#newChoreBtn{
-    display: block;
-    cursor: pointer;
-    margin:auto;
-	margin-top:100px;
+
+.descriptionFont
+{
+	font-size:14px;
+	font-weight:bold;
 }
 
-#newPresentBtn{
-    display: block;
-    cursor: pointer;
-    margin:auto;
-	margin-top:100px;
+.formFont
+{
+	font-size:16px;
+	font-weight:bold;
+	color:black;
 }
 
 main input[type="reset"], main input[id="addChoreBtn"]{
-    padding:5px;
-    background-color: gray;
-    border-radius: 5px;
-    border: 0;
+
     display: inline-block;
-    outline:0;
+
 }
 
 main input[type="reset"], main input[id="addPresentBtn"]{
-    padding:5px;
-    background-color: gray;
-    border-radius: 5px;
-    border: 0;
+
     display: inline-block;
-    outline:0;
+
 }
 
 iframe{
@@ -97,7 +91,6 @@ iframe{
 .newChore
 {
 	height:300px;
-	max-height: 300px;
 }
 
 .addChore table *{
@@ -112,6 +105,13 @@ iframe{
 .addChore table{
     margin:auto;
 }
+.addChore table input{
+   width:100%;
+}
+.newPresent table input{
+   width:100%;
+}
+
 .newPresent
 {
 	height:300px;
@@ -129,14 +129,93 @@ iframe{
 .addPresent table{
     margin:auto;
 }
-.presentBox h4,p {
-	display:inline;
-}
-#present_price
-{ display:inline;}
+
 .score_for_chore{
 	font-weight:bold;
 	font-size:25px;
 	color:purple;
+	margin:0px;
+	padding:0px;
 }
 
+.newItemBtn
+{
+	width:80px;
+	height:80px;
+	display: block;
+    cursor: pointer;
+    margin:auto;
+	margin-top:100px;
+}
+
+
+
+/* Responsive*/
+/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+ @media screen and (min-width: 768px){
+	 /* Desktop */
+	main .box{
+	width:75%;	
+	}
+	.panel-heading li{
+		font-size:24px;
+	}
+	main #p1 .task-box{
+		
+	}
+
+	 
+}
+
+ @media screen and (max-width: 480px) {
+    /* smartphone */
+	main{
+		padding:0;
+	}
+	 nav .box{
+		 display:none;
+	 }
+	main .box{
+	width:100%;
+	border-radius:0;
+	}
+	.panel-heading{
+		padding:0;
+	}
+	.panel-heading li{
+	font-size:12px;
+	text-align:left;
+	vertical-align:middle;
+	}
+	main .task-box
+	{
+		width:140px;
+		max-height:270px;
+		margin: 5px;
+		padding:3px;
+		display:inline-block;
+		font-size:12px;
+		
+	}
+ main .task-box h2{
+	 font-size:15px;
+	 font-weight:bold;
+	 margin:0;
+ }
+ .newItemBtn
+ {
+	 width:70px;
+	 height:70px;
+	 display:inline-block;
+ }
+.newPresent
+{
+	display:inline-block;
+}
+
+main #p4 #gifts_history
+{
+	width:150px;
+}
+
+}

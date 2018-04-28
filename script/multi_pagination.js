@@ -13,9 +13,9 @@ function setPagination(pageSelected) {
 
 }
 
-function initPages(count) {
+function initPages(table_name,count) {
 
-    pager1 = new Pager('pay_bills',count);
+    pager1 = new Pager(table_name,count);
     pager1.init();
     pages = pager1.getPages();
 

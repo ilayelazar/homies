@@ -1,195 +1,293 @@
 body{
-    background:url("../img/background.png");
-    background-color: gray;
-    background-size: 100vh cover no-repeat fixed;
+     /*background: url("../img/background.png") ;*/
+     background-size: cover;
 }
-#logo-img{
-    padding-top:0;
-    float:left;
-    margin-left:50px;
+ #logo-img{
+     padding-top:0;
+     margin-left:50px;
 }
-#login-nav input { 
-    width: 95%;
-    margin: auto;
-    }
-header .container{
-    width:100%;
+ #login-nav input {
+     width: 95%;
+     margin: auto;
 }
-#signup{
-    margin-top:-10px;
-    padding:0;
-}
-header .navbar.navbar-default{
-    padding-right:30px;
-    height: 100%;
-    margin: 0;  
-    padding-top: 10px !important;
-    background-color: #3b3b3b;
-    padding: 0 10%;
-    height: 70px;
-    border:0;
-    border-radius: 0;
-}
-
-.navbar-default .navbar-brand{
-    color:white;
-    font-weight: bolder;
-    font-size: 45px;
-    font-family: Mina;
-    letter-spacing: 5px;
-}
-header .col-md-12{
-    padding:0;
-}
-.navbar-default .navbar-nav>li>a {
-    color:white;
-    font-size: 18px;
-}
-
-.box nav ul{
-    width:100%;
-    line-height: 30px;
-}
-.box nav li{
-    display:inline-block;
-    width:24.5%;
+.btn.btn-success.btn-block{
+    width:50%;
     margin:auto;
-    text-align: center;
+    margin-bottom: 0;
 }
-.box li a{
-    font-size: 24px;
-    text-decoration: none;
-    color:white;
-    font-weight: bold;
+ header .container{
+     width:100%;
+}
 
+ #signup img{
+    display: inline-block;
+    width:100px;
+    height:40px;
+    margin-top: 7px;
+    vertical-align: middle;
+ }
+ #burger-btn{
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid white;
+ }
+ #signup{
+    height:100%;
+    display: inline-block;
+    vertical-align: middle;
+     padding:0;
 }
-.box li a:hover{
-    text-decoration: none;
+ header .navbar.navbar-default{
+     padding-right:30px;
+     height: 100%;
+     margin: 0;
+     padding-top: 10px !important;
+     background-color: #3b3b3b;
+     padding: 0 2%;
+     height: 70px;
+     border:0;
+     border-radius: 0;
 }
-.box li:hover{
-    background-color: orange;
-    border-radius: 10px;
-    color:purple;
+ .navbar-default .navbar-brand{
+     color:white;
+     font-weight: bolder;
+     font-size: 45px;
+     font-family: Mina;
+     letter-spacing: 5px;
 }
-main{
-    min-height: 100%;
-    margin: 0 auto -50px;    
-    padding:25px 50px 50px 50px;
+#profile{
+    cursor:pointer;
 }
-main .box{
-    background-color: rgba(106,90,205,.8);
-    border-radius: 15px;
-    margin: auto;
-    padding:5px;
-    margin-bottom:25px;
-    border: 3px double white;
+ header .col-md-12{
+     padding:0;
+}
+ .navbar-default .navbar-nav>li>a {
+     color:white;
+     font-size: 18px;
+}
+ nav .box ul{
+     padding-left:0;
+     height:100%;
+     width:100%;
+     line-height: 30px;
+}
+ nav .box li{
+    cursor: pointer;
+     display:inline-block;
+     text-align: center;
+}
+ nav .box li a{
+    line-height: 40px;
+     vertical-align: middle;
+     display: inline-block;
+     font-size: 24px;
+     text-decoration: none;
+     color:white;
+     font-weight: bold;
+}
+ nav .box a li:hover{
+     text-decoration: none;
+}
+
+ main{
+     min-height: 100%;
+     margin: 0 auto -50px;
+     padding:0 50px 50px 50px;
+}
+ main .box{
+     background-color: rgba(0,0,0, .3);
+     border-radius: 15px;
+     margin: auto;
+     margin-bottom:25px;
+     border: 3px double white;
+     width:75%;
+}
+main nav{
+padding:0;
+height:100%;
+}
+main .box h1{
+    color:white;
 }
 .form.box{
+     margin:0;
+}
+nav .box ul{
+    height:100%;
+    padding:0;
     margin:0;
 }
+nav .box  ul{
+    padding:0;
+}
+nav .box li{
+    height:100%;
+    border-radius: 10px;
 
+}
+nav .box li:hover{
+    background-color: orange;
+}
+nav .box{
+    border-top:0;
+    border-radius: 0 0 15px 15px;
+}
 
-
-
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
+ @media(max-width:768px){
+     #login-dp{
+         background-color: inherit;
+         color: #fff;
     }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
+     #login-dp .bottom{
+         background-color: inherit;
+         border-top:0 none;
     }
 }
-
-
-footer{
-    position:relative;
-    bottom:0;
-    width:100%;
-    display:block;
-    background-color: currentColor;
-    height:50px;
+ footer{
+     position:fixed;
+     bottom:0;
+     width:100%;
+     display:block;
+     background-color: currentColor;
+     height:50px;
 }
-footer ul{
-    display: inline;
-    text-align: center;
-    margin: auto;
-    width: 50%;
+ footer ul{
+     display: inline;
+     text-align: center;
+     margin: auto;
+     width: 50%;
 }
-footer li{
-    width:20%;
-    line-height: 35px;
-    display:inline-block;
-    font-size: 18px;
-    border-right:2px solid black;
+ footer li{
+     width:20%;
+     line-height: 35px;
+     display:inline-block;
+     font-size: 18px;
+     border-right:2px solid black;
 }
-footer li:hover{
-    background-color: gray;
+ footer li:hover{
+     background-color: gray;
 }
-footer li a{
-    text-decoration: none;
-    color:white;
+ footer li a{
+     text-decoration: none;
+     color:white;
 }
-footer li a:hover{
-    text-decoration: none;
-    color:black;
-    font-weight: bolder;
+ footer li a:hover{
+     text-decoration: none;
+     color:black;
+     font-weight: bolder;
 }
-footer li a:visited{
-    color:white;
+ footer li a:visited{
+     color:white;
 }
-
-
-
 /* Responsive*/
-/*------------------------------------------
-  Responsive Grid Media Queries - 1280, 1024, 768, 480
-   1280-1024   - desktop (default grid)
-   1024-768    - tablet landscape
-   768-480     - tablet 
-   480-less    - phone landscape & smaller
---------------------------------------------*/
-@media screen and (min-width: 1024px){ 
-
+/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+ @media screen and (min-width: 1024px){
+    #welcome-user{
+}
+#welcome-user h1{
+    width:25%;
+    float:right;
+    font-size: 26px !important;
+    color:white;
+    vertical-align: middle;
+    font-style: italic;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+#welcome-user form{
+    display: inline-block;
+}
+#welcome-user input[type='submit']{
+    padding:2px;
+    color:black;
+    outline:0;
+    border:0;
+    width: 100px;
+    font-size: 20px;
+    margin-left:25px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) { 
-
+}
+ @media screen and (min-width: 768px) and (max-width: 1024px) {
+}
+ @media screen and (max-width: 480px) {
+    /* smartphone */
+     main nav{
+         display:none;
+     }
+     main{
+         padding:0;
+    }
+     .box{
+         width:100%;
+         border-radius: 0;
+    }
+     footer{
+         display:none;
+    }
+     #top-nav{
+         display:none;
+    }
+     .navbar-default .navbar-brand{
+         font-size: 28px;
+         display: none;
+    }
+     #logo-img{
+         margin-left: 0;
+    }
+     header .navbar.navbar-default{
+         padding:0;
+         width:100%;
+    }
+     .nav.navbar-nav{
+         display:inline-block !important;
+         float: left;
+         margin: 0;
+    }
 }
 
-@media screen and (max-width: 480px) {   /* smartphone */
-    
 
-    main{
-      padding:0;
-    }
-    .box{
-      width:100%;
-    }
 
-    footer{
-      display:none;
-    }
-    #top-nav{
-        display:none;
-    }
-    .navbar-default .navbar-brand{
-        font-size: 28px;
-        display: none;
-    }
-    #logo-img{
-    float: left;
-    margin-left: 0;
-    }
-    header .navbar.navbar-default{
-        padding:0;
-        width:100%;
-    }
-    .nav.navbar-nav{
-    display:inline-block !important;
-    float: left;
-    margin: 0;
-    }
 
+.sidenav {
+    display:none;
+    width:50%;
+    height: 110%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
 }
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: white;
+}
+
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;width:40%;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+
+
+

@@ -1,11 +1,28 @@
 $(document).ready(function(){
 
+
+    $("#mySidenav").hide();
+    $(".burger-btn").show();
+
+    $('.burger-btn').click(function () {
+        $("#mySidenav").slideToggle(800,"linear");
+    });
+
+
+  //homepage
+    $(".btn-link").hover(function(){
+      $(".text").show();
+
+
+    });
+
+
   //calendar
 
     //notes
 
       $("#newNoteImg").click(function(){
-        $("#newNoteContent ,#addNoteBtn").slideToggle("slow");
+        $("#newNoteContent label,#newNoteContent textarea,#addNoteBtn").slideToggle("slow");
       });
 
 

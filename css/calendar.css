@@ -2,35 +2,26 @@
     display: none;
     margin-top: 15px;
 }
-.searchEvent{
-    display: none;
-    margin-top: 15px;
-}
 a{
     color:inherit;
 }
-.form.box{
-    width:49%;
-    margin:0;
-    display: inline-block;
-    vertical-align: top;
-}
 .form.box input{
-    max-width: 60%;
-    min-width:50%;
+    max-width: 80%;
 }
 #newEventBtn,#searchEventBtn{
     display: block;
     cursor: pointer;
     margin:auto;
 }
-main input[type="reset"], main input[id="addEventBtn"]{
-    padding:5px;
-    background-color: gray;
+main input[type="reset"], #addEventBtn{
+    background-color: lightgreen;
+    width:40%;
     border-radius: 5px;
     border: 0;
     display: inline-block;
     outline:0;
+    margin-left:5%;
+    margin-bottom: 15px;
 }
 iframe{
     border-radius: 5px;
@@ -39,12 +30,11 @@ iframe{
     margin-top:5px !important;
     font-weight: bold;
 }
-.addEvent table td{
+.addEvent table:nth-child(odd){
     font-size: 18px;
     padding-right: 5px;
     color: black;
-}
-.addEvent input{
+    width:70%;
 }
 .addEvent table{
     margin:auto;
@@ -100,6 +90,9 @@ div.note{
     font-size: 18px;
 }
 #newNoteContent{
+    display: inline-block;
+}
+#newNoteContent textarea{
     width:75%;
     display: none;
     background-color: #ffffcc;
@@ -109,6 +102,9 @@ div.note{
     resize: none;
     border:1px dotted gray;
     height:100%;   
+}
+#newNoteContent label{
+    display: none;
 }
 
 #notes-area .box{
@@ -129,11 +125,26 @@ div.note{
    768-480     - tablet 
    480-less    - phone landscape & smaller
 --------------------------------------------*/
-@media screen and (min-width: 1024px) and (max-width: 1280px) { 
+@media screen and (min-width: 1024px) {}
 .newNote.box{
     vertical-align: middle;
     margin-left:5%; 
     background-color: white;
+}
+.form.box{
+    display: inline-block;
+    width:75%;
+    margin: auto;
+    vertical-align: top;
+}
+.nav.box{
+  width:75%;
+}
+.box{
+  width:65%;
+}
+.box.cal,.box#notes-area{
+  width:100%;
 }
 
 
@@ -151,7 +162,7 @@ div.note{
     iframe{
         height:60vh;
     }
-    .newNote.box{
+    .box.newNote{
     margin-left:1%; 
     }
     .addEvent table td{
@@ -160,5 +171,9 @@ div.note{
     padding-right: 5px;
     color: black;
 }
+main > .box{
+  width:100%;
+}
+
 
 }

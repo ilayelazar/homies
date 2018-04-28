@@ -1,73 +1,151 @@
-.userMange{
-	border-width:3px;
-	border-color:#D2B4DE;
-	margin: 0 auto;
-	background-color: #F0F3F4;
-	width: 70%;
-	border-radius: 20px;
-	padding:30px;
-	font-size:18px;
+.user-manage{
+     border-width:3px;
+     border-color:#D2B4DE;
 
+     margin: auto;
+     width: 70%;
+     border-radius: 2%;
+     padding:30px;
 }
-
-#username
-{
-	margin-left:20px;
-	font-weight:bold;
-	
+ #add_member_form form{
+background-color: rgba(255, 255, 255, 0.75);;
+border-radius: 15px;
+padding:5%;
+ }
+ #username {
+     margin-left:20px;
+     font-weight:bold;
 }
-#check_btn
-{
-	margin-left:5px;
-	background-color:pink;
-
+ #check_btn {
+     margin-left:5px;
+     background-color:pink;
 }
-#check_res{
-	background-color:#CCD1D1;
+ #check_res{
+     background-color:#CCD1D1;
 }
 
-input { margin-left:10px;}
-
-#add_member
-{
-	border: 2px solid black;
-	background-color:orange;
-	margin-left:2px;
-	width:20%;
-	border-radius:2px;
-	font-weight: bold; 
-	
+ #add_member{
+     border: 2px solid black;
+     background-color:orange;
+     margin-left:2px;
+     width:20%;
+     border-radius:2px;
+     font-weight: bold;
 }
-#tableHeaders>th
-{
-	font-size: 20px;
-	color:white;
-	background-color: lightblue;
+ #tableHeaders>th{
+     font-size: 20px;
+     color:white;
+     background-color: lightblue;
 }
-
-#removeUser{
-	width:50px;
-	height:50px;
-	margin-left:50px;
+ #removeUser{
+     width:50px;
+     height:50px;
+     margin-left:50px;
 }
-#editScore{
-	width:50px;
-	height:50px;
-	margin-left:50px;
+ #editScore{
+     width:50px;
+     height:50px;
+     margin-left:50px;
 }
-
-.change_permission{
-	padding: 30px;
-	position:block;
-	font-size:20px;
-
+ .change_permission{
+     padding: 30px;
+     position:block;
+     font-size:20px;
 }
 
-main form label{
-	padding:5px;
-	border-radius: 10px;
-	border: 1px solid purple;
+ #pg1 main form label{
+     padding:5px;
+     border-radius: 10px;
+     border: 1px solid purple;
 }
-#removeUser{
-	cursor: pointer;
+
+
+ #pg3 #removeUser{
+     cursor: pointer;
 }
+#pg2{
+	background-color: rgba(255, 255, 255, 0.75);
+}
+#pg2 table{
+	text-align: center;
+	padding: 25px;
+	border: 2px solid white;
+	margin: 5% 0;
+}
+#pg2 table th{
+	text-align: right;
+}
+
+#pg2 .container{
+	width:100%;
+}
+#pg2 input[type="radio"]{
+margin:0 15px;	
+transform: scale(1.5);
+}
+.box h1{
+	font-weight: bolder;
+	text-align: center;
+	font-style: italic;
+	text-decoration: underline;	
+}
+main .box table tr{
+	text-align: center;	
+	font-size: 	22px;
+}
+input[value="Save"]{
+padding:5px 15px;
+border-radius: 3px;
+background-color: green;
+color:white;
+outline:0;
+font-weight: bold;
+transition: all .2s ease-in-out;
+ }
+
+ input[value="Save"]:hover{
+ 	background-color: #004200;
+ 	scale(1.1);
+ 	border: 2px double green;
+ }
+ 
+ 
+
+/* Responsive*/
+/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+ @media screen and (min-width: 768px){
+	 /* Desktop */
+	main .box{
+	width:75%;	
+	}
+	.panel-heading li{
+		font-size:24px;
+	}
+	main #p1 .task-box{
+		
+	}
+
+	 
+}
+
+ @media screen and (max-width: 480px) {
+    /* smartphone */
+	main{
+		padding:0;
+	}
+	 nav .box{
+		 display:none;
+	 }
+	main .box{
+	width:100%;
+	border-radius:0;
+	}
+	.panel-heading{
+		padding:0;
+	}
+	.panel-heading li{
+	font-size:12px;
+	text-align:left;
+	vertical-align:middle;
+	}
+ }
