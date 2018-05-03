@@ -193,8 +193,8 @@ session_start();
          <div class="panel-heading" id="syllabus">
             <div class="tabbable">
                <ul class="nav nav-tabs" id="myTabs">
-                  <li class="active"><a href="#p1" data-toggle="tab"><strong>Add bill</strong></a></li>
-                  <li><a href="#p2" data-toggle="tab"><strong>Bills Report</strong></a></li>
+                  <li class="active"><a href="#p1" data-toggle="tab"><strong>Bills</strong></a></li>
+                  <li><a href="#p2" data-toggle="tab"><strong>Bills History</strong></a></li>
                </ul>
             </div>
          </div>
@@ -204,7 +204,7 @@ session_start();
             <div class="tab-pane fade in active" id="p1">
                <div id="pg1">
                   <div class="payments" align=center>
-                     <h3>Add your payments here</h3>
+                     <h3>Add your bill here</h3>
                      <br>
                      <div id="wrraper">
                         <div class="row">
