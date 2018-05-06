@@ -3,14 +3,11 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Homie - Bills</title>
-      <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+      <title>Homie - Homepage</title>
       <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-      <link rel="icon" href="img/family-logo.png">
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <!-- Latest compiled JavaScript -->
@@ -24,12 +21,9 @@
 
       <!-- Excel Plugin-->
       <script type="text/javascript" src="script/jquery.table2excel.js"></script>
-      <!-- datepicker Plugin-->
+      <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
       <link rel="stylesheet" type="text/css" href="css/bills.css">
-
-      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css">
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
    </head>
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
    <body>
@@ -41,8 +35,8 @@
              <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
                  <!-- Brand and toggle get grouped for better mobile display -->
                  <div class="navbar-header">   
-                      
-                    <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
+                    <img src="img/family-logo.png" width="50px" id="logo-img">  
+                    <a class="navbar-brand" href="homepage.php">Homies</a>
                  </div>
                  <!-- Collect the nav links, forms, and other content for toggling -->
                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -167,23 +161,34 @@ session_start();
          </div>
       </header>
       <div id="mySidenav" class="sidenav">
-         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
+         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">&#9776;
          </span>
          <a href="homepage.php">Homepage</a>
          <a href="chores.php">Chores</a>
          <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
-         <a href="calendar.php">Calendar</a> 
-		<a href="bills.php">Bills</a> 		 
+         <a href="calendar.php">Calendar</a>
+         <a href="bills.php">Bills</a>      
+      
       </div>
       <main>
-        
+         <nav>
+            <div class="box" style="height:50px">
+                  <ul>
+                  <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
+                  <li class="col-lg-3"><a href="chores.php">Chores</a></li>
+                  <li class="col-lg-2"><a href="shoppinglist.php">Groceries</a></li>
+                  <li class="col-lg-3"><a href="gifts.php">Gifts</a></li>
+                  <li class="col-lg-2"><a href="bills.php">Bills</a></li>
+               </ul>
+            </div>
+         </nav>
          <div class="box" style="width:75%">
          <div class="panel-heading" id="syllabus">
             <div class="tabbable">
                <ul class="nav nav-tabs" id="myTabs">
                   <li class="active"><a href="#p1" data-toggle="tab"><strong>Add bill</strong></a></li>
-                  <li><a href="#p2" data-toggle="tab"><strong>Bills History</strong></a></li>
+                  <li><a href="#p2" data-toggle="tab"><strong>Bills Report</strong></a></li>
                </ul>
             </div>
          </div>
@@ -193,8 +198,7 @@ session_start();
             <div class="tab-pane fade in active" id="p1">
                <div id="pg1">
                   <div class="payments" align=center>
-                     <h3>Unpaid Payments</h3>
-                     <h4> you can add here your new payments </h4>
+                     <h3>Add your payments here</h3>
                      <br>
                      <div id="wrraper">
                         <div class="row">
@@ -212,52 +216,6 @@ session_start();
                                     </tr>
                                  </thead>
                                  <tbody>
-<?php
-//                session_start();
-//             //--------dblogin---------
-//         $servername = "zebra.mtacloud.co.il";
-//         $username = "ilayel";
-//         $password = "homies123";
-//         $dbname = "ilayel_homies";
-
-//         // Create connection
-//         $conn = new mysqli($servername, $username, $password, $dbname);
-//         // Check connection
-//         if ($conn->connect_error) {
-//              die("Connection failed: " . $conn->connect_error);
-//           echo "<script>console.log('DB Connection failed');</script>";
-            
-//         } 
-//         else{
-//           echo "<script>console.log('DB Connection succeded');</script>";
-//         }
-        
-
-// $select_sql="SELECT familyid FROM `users` WHERE `username`='".$_SESSION["user"]."'";   
-// //  $familyid=$mysqli->executeSQL($conn,$select_sql);
-// $result = $conn->query($select_sql);
-// $row = $result->fetch_assoc();
-// $familyid= $row['familyid'];
-
-// $q_bills = "SELECT * from bills where b_status='0' AND group_id='".$familyid."'";
-// $result = $conn->query($q_bills);
-// $msg = '';
-
-// if ($result->num_rows > 0) {
-//     while($row = $result->fetch_assoc()){
-//     $msg= $msg . "<tr rolw='row'>";
-//       $msg = $msg. "<td> ".$row['date_added']."</td>";
-//       $msg = $msg. "<td> ".$row['type']."</td>";
-//       $msg = $msg. "<td> ".$row['amount']."</td>";
-//       $msg = $msg. "<td> ".$row['due_date']."</td>";
-//       $msg = $msg. "<td> ".$row['comments']."</td>";
-//     $msg = $msg. "</tr>";
-//     echo $msg;
-//     }
-// }
-
-// echo "<tr> <td> test</td> </tr>";
-?>
                                  </tbody>
                               </table>
                            </div>
@@ -337,6 +295,14 @@ session_start();
                            <td>Noy</td>
                         </tr>
                      </tbody>
+                     <tfoot>
+                        <tr>
+                           <th>Date Paid</th>
+                           <th>Type</th>
+                           <th>Total</th>
+                           <th>Paid By</th>
+                        </tr>
+                     </tfoot>
                   </table>
                   <button id="export">Export</button>
                </div>
@@ -345,7 +311,13 @@ session_start();
          </div>
       </main>
       <footer>
-
+         <span style="color:white;font-size: 18px">© 2018 </span>
+         <ul>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+            <li style="border-right:0"><a href="#">link</a></li>
+         </ul>
       </footer>
    </body>
 </html>

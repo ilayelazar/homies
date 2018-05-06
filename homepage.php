@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <meta http-equiv="Cache-Control" content="no-store" />
+      <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="img/family-logo.png">
       <title>Homies - Homepage</title>
+      <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,161 +17,102 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="script/script.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
       <link rel="stylesheet" type="text/css" href="css/homepage.css">
    </head>
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
    <body>
+    <script>
+      
+      
+    </script>
+       
+  <!-- DIV for users that arn't logged in! hide everything - show msg -->
     <?php
-    include 'required.php';
-    ?>
-       
+                    session_start();
+                      //  dblogin 
+                    $servername = "zebra.mtacloud.co.il";
+                    $username = "ilayel";
+                    $password = "homies123";
+                    $dbname = "ilayel_homies";
 
-       
-  <header>
-     <div class="container">
-        <div class="row">              
-           <div class="col-md-12">
-              <nav class="navbar navbar-default" role="navigation">
-             <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
-                 <!-- Brand and toggle get grouped for better mobile display -->
-                 <div class="navbar-header">   
-                    <img src="img/family-logo.png" width="50px" id="logo-img">  
-                    <a class="navbar-brand" href="homepage.php">Homies</a>
-                 </div>
-                 <!-- Collect the nav links, forms, and other content for toggling -->
-                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav" id="nav-ul">
-                       <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
-                          <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                                 
-                                  
-<?php
-session_start();
-	if(isset($_POST['username'])){             
-          //--------dblogin---------
-        $servername = "zebra.mtacloud.co.il";
-        $username = "ilayel";
-        $password = "homies123";
-        $dbname = "ilayel_homies";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-             die("Connection failed: " . $conn->connect_error);
-          echo "<script>console.log('DB Connection failed');</script>";
-            
-        } 
-        else{
-          echo "<script>console.log('DB Connection succeded');</script>";
-        }
-          //--------end-dblogin---------
-    //check login credentials in db   
-        $user=$_POST['username'];
-        $q ="SELECT password FROM users where username ='" . $user . "'";
-        
-        $result = $conn->query($q);
-            if ($result->num_rows > 0) {
-                        // output data of each row
-                $row = $result->fetch_assoc();
-                $dbPass = $row["password"];
-                $userpass = $_POST["userpass"];
-                    if($dbPass == $userpass){
-                        //input pw match db pw  
-                        $_SESSION['user'] = $_POST['username'];
-                    }
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    } 
                     else{
-                            echo "
-                            <script>
-                            console.log('password dont match'); 
-                                    $(document).ready(function() {
-                                        $('header .dropdown').addClass('open');
-                                    });
-                            </script>
-                            Invalid login, try again <br>
-                            ";                            
+                      echo "<script>console.log('DB Connection succeded');</script>";
                     }
-            }
-            else{
-                echo "
-                <script>
-                console.log('password dont match'); 
-                        $(document).ready(function() {
-                            $('header .dropdown').addClass('open');
-                        });
-                </script>
-                Invalid login, try again <br>
-                ";                     	
-            }
-    }
+                    //get permission for user
+                    $q_familyid = "SELECT familyid FROM users where username ='".$_SESSION['user']."'";
+                    $result = $conn->query($q_familyid);
+                    $row = $result->fetch_assoc();
+                    $familyid = $row["familyid"];
 
-  if(isset($_SESSION['user'])){
-  	 echo 
-        "
-        <script> console.log('password match'); 
-		$('.nav.navbar-nav').css('display','none');
-		$(document).ready(function(){
-        document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
-        });
-        </script>
-        ";       
-  }
-    
+
+
+
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else if($familyid == '0'){
+          header("Location:creategroup.php");
+        }
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            $('.nav.navbar-nav').css('display','none');
+            document.getElementById('welcome-user').innerHTML ='Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form>';
+            });
+            </script>
+        ";
 ?>
-                                  
-                                  
-                                  
-                                  
-                                  <li>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <form class="form" role="form" method="post" action="homepage.php" accept-charset="UTF-8" id="login-nav">
-                                             <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                                             </div>
-                                             <div class="form-group">
-                                                <label class="sr-only" for="password">Password</label>
-                                                <input type="password" class="form-control" name="userpass" id="password" placeholder="Password" required>
-                                             </div>
-                                             <center>
-                                                <label>
-                                                <input style="width:initial" type="checkbox">Remember me
-                                                </label>
-                                                <div class="form-group">
-                                                   <button type="submit" class="btn btn-success btn-block">Sign in</button>
-                                                </div>
-                                             </center>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </li>
-                           <li><a href="signup.php" id="signup"><img src="img/signup.png"></a></li>
-                        </ul>
-                        <div id="welcome-user">
+<!-- /DIV for users that arn't logged in! hide everything - show msg -->       
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            
+                            <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
                         </div>
-                        
-                     </div>
-                     <!-- /.navbar-collapse -->
-                  </nav>
-               </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav" id="nav-ul">
+                                <li>
+                                    <a href="signup.php" id="signup"><img src="img/signup.png"></a>
+                                </li>
+                            </ul>
+							        <div class="box" style="height:40px">
+          <div id="welcome-user"></div>          
+        </div>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                </div>
             </div>
-         </div>
-      </header>
+        </div>	
+    </header>
       <div id="mySidenav" class="sidenav">
-         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">&#9776;
+         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
          </span>
          <a href="homepage.php">Homepage</a>
          <a href="chores.php">Chores</a>
-         <a href="#">Gifts</a>
+         <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
-         <a href="calendar.php">Calendar</a>      
+         <a href="calendar.php">Calendar</a> 
+		<a href="bills.php">Bills</a> 		 
       </div>
       <main>
+
          <div class="box">
             <h1 style="color:white;">Welcome Homie</h1>
             <center>
@@ -176,7 +120,9 @@ session_start();
                <div class="row">
                   <a href="gifts.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
-                        <p><img src="https://freeiconshop.com/wp-content/uploads/edd/shopping-bag-flat.png" alt="Avatar" class="image"></p>
+                        <p><img src="https://freeiconshop.com/wp-content/uploads/edd/shopping-bag-flat.png" alt="Avatar" class="image">
+                          <span class="nav-button-label">Gifts</span>
+                        </p>
                         <div class="middle">
                            <div class="text">Gifts</div>
                         </div>
@@ -185,7 +131,7 @@ session_start();
                   <a href="calendar.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
                         <p><img src="img/calendar-logo.png" alt="Avatar" class="image">
-                        </p>
+                        <span class="nav-button-label">Calendar</span></p>
                         <div class="middle">
                            <div class="text">Calendar
                            </div>
@@ -195,7 +141,7 @@ session_start();
                   <a href="shoppinglist.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
                         <p><img src="img/shopping-logo.png" alt="Avatar" class="image">
-                        </p>
+                        <span class="nav-button-label">Shopping</span></p>
                         <div class="middle">
                            <div class="text">Shopping</div>
                         </div>
@@ -206,7 +152,7 @@ session_start();
                   <a href="chores.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
                         <p><img src="img/house-clean.png" alt="Avatar" class="image">
-                        </p>
+                        <span class="nav-button-label">Chores</span></p>
                         <div class="middle">
                            <div class="text">Chores</div>
                         </div>
@@ -215,7 +161,7 @@ session_start();
                   <a href="bills.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
                         <p><img src="img/billing-logo.png" alt="Avatar" class="image">
-                        </p>
+                        <span class="nav-button-label">Bills</span></p>
                         <div class="middle">
                            <div class="text">Bills</div>
                         </div>
@@ -224,26 +170,86 @@ session_start();
                   <a href="adminpanel.php" class="btn-link">
                      <div class="container col-lg-4 col-sm-4">
                         <p><img src="img/admin-logo.png" alt="Avatar" class="image">
-                        </p>
+                        <span class="nav-button-label">Admin Panel</span></p>
                         <div class="middle">
-                           <div class="text">Admin Panel</div>
+                           <div class="text">Panel</div>
                         </div>
                      </div>
                   </a>
                </div>
             </div>
         </center>
-
          </div>
+         <!-- @@@@@@@@  BOTTOM DASHBOARD @@@@@@@@@ -->
+          <div class="box" style="width:90%;min-height:150px" id="dashboard">
+              <center>
+              <div class="col-lg-4">
+               <table>
+                <tr><th colspan="2">Upcoming Events</th></tr>
+                  <tr>
+                    <td>1/1/18</td>
+                    <td>Event Title</td>
+                  </tr>
+                  <tr>
+                    <td>1/1/18</td>
+                    <td>Event Title</td>
+                  </tr>
+                  <tr>
+                    <td>1/1/18</td>
+                    <td>Event Title</td>
+                  </tr>                  <tr>
+                    <td>1/1/18</td>
+                    <td>Event Title</td>
+                  </tr>
+              </table>
+            </div>
+              <div class="col-lg-4">
+               <table>
+                <tr><th colspan="2">My Family</th></tr>
+                  <tr><td style="width:100%">
+                    <div class="col-lg-4 col-sm-6" class="family-member">
+                   <img src="https://www.powerschool.com/wp-content/uploads/2017/09/icon-student-parent.png" alt="">Parent
+                  </div>
+                  <div class="col-lg-4 col-sm-6" class="family-member">
+                   <img src="https://www.powerschool.com/wp-content/uploads/2017/09/icon-student-parent.png" alt="">Parent
+                  </div>
+                  <div class="col-lg-4 col-sm-6" class="family-member">
+                   <img src="https://www.powerschool.com/wp-content/uploads/2017/09/icon-student-parent.png" alt="">Parent
+                  </div>
+                  <div class="col-lg-4 col-sm-6" class="family-member">
+                   <img src="https://www.powerschool.com/wp-content/uploads/2017/09/icon-student-parent.png" alt="">Parent
+                  </div>                  
+                </td></tr>
+              </table>
+            </div>
+              <div class="col-lg-4">
+               <table>
+                <tr><th colspan="2">Recent Chores</th></tr>
+                  <tr>
+                    <td>Chore Title</td>
+                    <td>150 Points</td>
+                  </tr>
+                  <tr>
+                    <td>Chore Title</td>
+                    <td>150 Points</td>
+                  </tr>
+                  <tr>
+                    <td>Chore Title</td>
+                    <td>150 Points</td>
+                  </tr>
+                  <tr>
+                    <td>Chore Title</td>
+                    <td>150 Points</td>
+                  </tr>
+                  <tr>
+                    <td>Chore Title</td>
+                    <td>150 Points</td>
+                  </tr>
+              </table>
+            </div>                        
+          </center>
+          </div>
       </main>
-      <footer>
-         <span style="color:white;font-size: 18px">© 2018 </span>	
-         <ul>
-            <li><a href="#">Homepage</a></li>
-            <li><a href="#">Chores</a></li>
-            <li><a href="#">Gifts</a></li>
-            <li style="border-right:0"><a href="#">link</a></li>
-         </ul>
-      </footer>
+
    </body>
 </html>
