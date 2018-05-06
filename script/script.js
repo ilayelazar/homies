@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+$("login-btn").click(function(){
+  $("li.dropdown").addClass("open");
+});
 
     $("#mySidenav").hide();
     $(".burger-btn").show();
@@ -18,6 +20,10 @@ $(document).ready(function(){
 
 
   //calendar
+      $("#authorize-button").click(function(){
+        $("authorize-button table").show();
+      });
+
 
     //notes
 
@@ -31,9 +37,6 @@ $(document).ready(function(){
 		$(".addEvent").slideToggle();
 	});
 
-	$("#searchEventBtn").click(function(){
-		$(".searchEvent").slideToggle();
-	});
 
 	 function switchTab(id){
 	    $('#myTabs a[href='+id+']').tab('show');// Select tab by name

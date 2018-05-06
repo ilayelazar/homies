@@ -1,7 +1,47 @@
 body{
-     /*background: url("../img/background.png") ;*/
-     background-size: cover;
+     background:#efefef;
 }
+
+*
+{
+	font-family: 'Rubik', sans-serif !important;
+}
+
+.links
+{
+	color:blue;
+}
+
+.moduleHeader
+{
+	color: white;
+	left:0px;
+	font-size:30px;
+	font-weight:bold;
+	
+}
+.homiesTables
+{
+	width:90%;
+	background-color:#efefef;
+	border: solid white;
+	
+}
+ #tableHeaders>th{	
+     font-size: 25px;
+     color:white;
+     background-color: #f05768;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #f05768;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
  #logo-img{
      padding-top:0;
      margin-left:50px;
@@ -42,7 +82,7 @@ body{
      height: 100%;
      margin: 0;
      padding-top: 10px !important;
-     background-color: #3b3b3b;
+    background-color:#00c5b9;
      padding: 0 2%;
      height: 70px;
      border:0;
@@ -65,11 +105,13 @@ body{
      color:white;
      font-size: 18px;
 }
+
  nav .box ul{
      padding-left:0;
      height:100%;
      width:100%;
      line-height: 30px;
+	 /*background-color:#f05768;*/
 }
  nav .box li{
     cursor: pointer;
@@ -84,6 +126,7 @@ body{
      text-decoration: none;
      color:white;
      font-weight: bold;
+	 
 }
  nav .box a li:hover{
      text-decoration: none;
@@ -95,11 +138,12 @@ body{
      padding:0 50px 50px 50px;
 }
  main .box{
-     background-color: rgba(0,0,0, .3);
+     /*background-color: rgba(0,0,0, .3);*/
      border-radius: 15px;
      margin: auto;
      margin-bottom:25px;
-     border: 3px double white;
+     /*border: 3px double white;*/
+	 border: 3px;
      width:75%;
 }
 main nav{
@@ -107,7 +151,7 @@ padding:0;
 height:100%;
 }
 main .box h1{
-    color:white;
+    color:#bbb;
 }
 .form.box{
      margin:0;
@@ -133,6 +177,135 @@ nav .box{
     border-radius: 0 0 15px 15px;
 }
 
+/*testing login */
+.panel-login {
+    border-color: #ccc; 
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-heading{
+    background: #f05768;
+
+}
+.panel-login>.panel-heading {
+	margin-top:40px;
+    color: #00415d;
+    background-color:#f05768;
+    border-color: #fff;
+	
+    text-align:center;
+}
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+    color: #029f5b;
+    font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
+}
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
+}
+#top-box{
+    font-weight: bold;
+    background-color: rgba(16,13,43,0.55);
+}
+#welcome-user form{
+    display: inline-block;
+}
+
+#welcome-user input[value='Logout']{
+    border-radius: 20px;
+    margin:0 10px;
+}
+#welcome-user h1{
+   text-align: right;
+    width: 70%;
+    float: right;
+    font-size: 26px !important;
+    color: white;
+    vertical-align: middle;
+    font-style: italic;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+/*end test login */
+
  @media(max-width:768px){
      #login-dp{
          background-color: inherit;
@@ -143,57 +316,11 @@ nav .box{
          border-top:0 none;
     }
 }
- footer{
-     position:fixed;
-     bottom:0;
-     width:100%;
-     display:block;
-     background-color: currentColor;
-     height:50px;
-}
- footer ul{
-     display: inline;
-     text-align: center;
-     margin: auto;
-     width: 50%;
-}
- footer li{
-     width:20%;
-     line-height: 35px;
-     display:inline-block;
-     font-size: 18px;
-     border-right:2px solid black;
-}
- footer li:hover{
-     background-color: gray;
-}
- footer li a{
-     text-decoration: none;
-     color:white;
-}
- footer li a:hover{
-     text-decoration: none;
-     color:black;
-     font-weight: bolder;
-}
- footer li a:visited{
-     color:white;
-}
+
 /* Responsive*/
-/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+/*-------- Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
  @media screen and (min-width: 1024px){
     #welcome-user{
-}
-#welcome-user h1{
-    width:25%;
-    float:right;
-    font-size: 26px !important;
-    color:white;
-    vertical-align: middle;
-    font-style: italic;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 10px;
 }
 #welcome-user form{
     display: inline-block;
@@ -220,11 +347,9 @@ nav .box{
          padding:0;
     }
      .box{
+     background: url("https://www.thehealingtrilogy.com/wp-content/uploads/2016/05/blue-orange-bg.jpg");
          width:100%;
          border-radius: 0;
-    }
-     footer{
-         display:none;
     }
      #top-nav{
          display:none;
@@ -245,34 +370,46 @@ nav .box{
          float: left;
          margin: 0;
     }
+    header{
+        position: fixed;
+        top:0;
+        width:100%;
+        z-index: 5;
+        height:50px;
+    }
+    main{
+        margin-top:70px;
+    }
 }
 
 
 
 
 .sidenav {
+    z-index:6;
     display:none;
-    width:50%;
-    height: 110%;
+    width:15.4%;
+    height: 40%;
     position: fixed;
-    z-index: 1;
-    top: 0;
+    top: 70px;
     left: 0;
-    background-color: #111;
+    background-color: #808080;
     overflow-x: hidden;
 }
 
 .sidenav a {
     padding: 8px 8px 8px 32px;
+	margin:5px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: white;
     display: block;
     transition: 0.3s;
+	
 }
 
 .sidenav a:hover {
-    color: white;
+    color: #f05768;
 }
 
 

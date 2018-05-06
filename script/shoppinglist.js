@@ -41,7 +41,7 @@ function renderData(data){
                     var img_url=recipe_info["image"];
                     var ingredients_arr=JSON.stringify(recipe_info["ingredients"]);  //ingredientLines
                     // generate row html 
-                    var temp_row=createRecipeRow(name,calories,tags,ingredients_arr,i);
+                    var temp_row=createRecipeRow(name,calories,tags,ingredients_arr,recipe_url,i);
                     $( ".result_container" ).append(temp_row );
                     $("#img_"+i )
                         .on( "error",function() { $( this ).attr( "src", default_url );})
@@ -62,11 +62,10 @@ function renderData(data){
       $(".glyphicon-plus").on( 'click', function(){
       console.log('click event');
       var json=$(this).parent().parent().parent().find('[id^=json_data_]')[0]['innerText'];
-      var user_name="1";
-      saveRecipeIngredient(json,user_name);
+      saveRecipeIngredient(json);
       //need to check if sent all data correctly
 
-      var ok_msg='<div class="alert alert-success alert-dismissable my_alert">';
+      var ok_msg='<div class="alert alert-success alert-dismissable">';
       ok_msg+='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
       ok_msg+='Success! Ingrediants Added Successfuly to grocery list!';
       ok_msg+='</div>';
@@ -79,6 +78,7 @@ function renderData(data){
      });
    return true;
 };
+
 
   function appendImage(image_url){
 
@@ -109,7 +109,7 @@ function renderData(data){
 
 
 
-  function createRecipeRow(name,calories,tags,ingredients_arr,id){
+  function createRecipeRow(name,calories,tags,ingredients_arr,recipe_url,id){ //create html
 
     /* get data of row and create new html row*/
 
@@ -133,7 +133,7 @@ function renderData(data){
 
     var col_2='<div class="col-md-4">';
 
-    col_2=col_2+'<img id="img_'+id+'" src="" class="img-responsive img-rounded" alt="" style="width:75%;height:auto;">';
+    col_2=col_2+'<a href="'+recipe_url+'" target="_blank"> <img id="img_'+id+'" src=""   class="img-responsive img-rounded" alt="" style="width:75%;height:auto;"></a>';
 
     col_2=col_2+'</div>';
 
@@ -143,11 +143,11 @@ function renderData(data){
 
      var col_3='<div class=" col-md-6">';
 
-     col_3=col_3+'<span> Name: </span><span> '+name+' </span><br><br>';
+     col_3=col_3+'<span> <b>Name:</b> </span><span> '+name+' </span><br><br>';
 
-     col_3=col_3+'<span> Calories: </span> <span> '+calories+' </span><br><br>';
+     col_3=col_3+'<span> <b> Calories: </b> </span> <span> '+calories+' </span><br><br>';
 
-     col_3=col_3+'<span> Tags: </span><span> '+tags+' </span> <br>';
+     col_3=col_3+'<span> <b> Tags: </b> </span><span> '+tags+' </span> <br>';
 
      col_3=col_3+'</div>';
 
@@ -200,7 +200,7 @@ function renderData(data){
               "<tr data-type='new' class='row"+rows+"'>" +
                   '<td class="sorting_'+countNew+'"> <input id="sorting_'+countNew+'" type="text" name="item" value="'+rowData['ingrediantname']+'"> </td>'+
                   '<td class="amount_'+countNew+'"> <input id="amount_'+countNew+'" type="number" name="amount" value="'+rowData['amount']+'" min="1"> </td>'+
-                  '<td class="unit_'+countNew+'"> <input id="unit_'+countNew+'" type="text" name="amount" value="'+rowData['unit']+'"></td>'+
+                  '<td class="unit_'+countNew+'"> <select id="unit_'+countNew+'" name="amount"> <option value="Unit"</option><option value="Gram"</option></select></td>'+
                   '<td id="delete" class="delete_'+countNew+'" onClick="deleteMe(\'delete_'+countNew+' \')">  <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button> </td>'+
               '</tr>';
       $('#grocery_list').prepend(rowTB1);
@@ -211,7 +211,7 @@ function renderData(data){
       var groceryList= loadGroceryListFromDb(groupId);
     }
 
-   function validateAllRows(){
+   function validateAllRows(){ // validations if data in table is empty.
       var input_array= $("#grocery_list_wrapper tbody input");
 
       var valid=true;
@@ -254,6 +254,7 @@ function renderData(data){
           
             var groupId="1"; 
             saveGroceryListToDb(data_to_save_encoded,groupId);
+
     }
     else{
       return false;
@@ -282,19 +283,21 @@ $(document).ready(function() {
 
   /****************************************************************/
 
-   $('#grocery_list').DataTable(
+  $('#grocery_list').DataTable(
     {
 
     "order": [],
-        "fnDrawCallback": function( oSettings ) { renderDataFromDb();},
-        
+    "fnDrawCallback": function( oSettings ) { renderDataFromDb();},
+    "paging": false,
+     "searching": false,
+     "cell-border":false,
     "columnDefs": [{
-      "targets": 'no-sort',
-      "orderable": false,
-      
+    "targets": 'no-sort',
+    "orderable": false,
+
     }]
   });
-   
+  
 
    //debugger;
 
@@ -310,7 +313,7 @@ $(document).ready(function() {
          var emptyrow=[];
          emptyrow['ingrediantname']="";
          emptyrow['amount']="";
-         emptyrow['unit']="";
+       //  emptyrow['unit']="";
          createGroceryListRow(emptyrow);
             pages = pager1.getPages();
             refreshPapers(1);
@@ -319,6 +322,13 @@ $(document).ready(function() {
 
    $('#saveAllRows').on('click', function (e) {
       saveAllRows();
+      var save_msg='<div class="alert alert-success alert-dismissable ">';
+      save_msg+='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+      save_msg+='Success! your shopping list is saved';
+      save_msg+='</div>';
+      
+      $('.saved_alert').html(save_msg);
+     $('.saved_alert').css("display","block");
    });
 
 

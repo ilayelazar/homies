@@ -8,16 +8,13 @@
 .nav-tabs, .nav-pills {
     text-align:center;
 }
-.panel-heading{
-    background: background-color:rgba(0, 0, 0, 0.5);
 
-}
 .panel-heading ul{
     width:100%;
     margin: auto;
 }
 .panel-heading li{
-    width:24%;
+    width:15%;
 }
 .nav{
 text-align: center;
@@ -36,12 +33,6 @@ main .task-box button{
     padding:5px 20px 5px 20px;
 }
 
-#tableHeaders>th
-{
-	font-size: 20px;
-	color:white;
-	background-color: lightblue;
-}
 
 <!--Add chore -->
 .addChore{

@@ -82,6 +82,10 @@ padding-top: 2%;
 .customized_alert{
 	display: none;
 }
+.saved_alert{
+    display: none;
+
+}
 .input-group[class*=col-]{
   margin:auto;
   width: 40%;
@@ -92,10 +96,43 @@ padding-top: 2%;
     max-height: 103px
 }
 
-#my_alert{
-    margin-top: 10PX;
-}
 
 .hidden {
   display:none;
+}
+
+
+td[class^="unit"] {
+      width: 20%;
+
+}
+
+td[class^="unit"] {
+      width: 20%;
+
+}
+
+td[class^="amount"] {
+      width: 20%;
+
+}
+
+td[class^="sorting"] {
+      width: 40%;
+
+}
+
+input[id^="sorting"] {
+      width: 100%;
+
+}
+table.dataTable thead th {
+  border-bottom: 0;
+}
+table.dataTable tfoot th {
+  border-top: 0;
+}
+.buttons_table {
+    margin-top: 2%;
+    margin-left: 89%;
 }

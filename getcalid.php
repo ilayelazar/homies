@@ -1,5 +1,7 @@
 <?php
-	//  dblogin 
+
+	$calid = "SELECT calendarid from family where familyid = (SELECT familyid from users where username = '".$_POST['user']."')";
+//  dblogin 
       $servername = "zebra.mtacloud.co.il";
       $username = "ilayel";
       $password = "homies123";
@@ -11,7 +13,10 @@
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       } 
-      else{
-        echo "<script>console.log('DB Connection succeded');</script>";
-      }
+	
+	$res = $conn->query($calid);
+	$row = $res->fetch_assoc();
+	$calendarid = $row['calendarid'];
+	
+	echo $calendarid;
 ?>

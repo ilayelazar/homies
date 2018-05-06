@@ -1,5 +1,7 @@
 <?php
-	//  dblogin 
+  $q_remove_note = "DELETE FROM `notes` WHERE noteid='".$_POST['noteid']."'";	
+	
+//  dblogin 
       $servername = "zebra.mtacloud.co.il";
       $username = "ilayel";
       $password = "homies123";
@@ -14,4 +16,6 @@
       else{
         echo "<script>console.log('DB Connection succeded');</script>";
       }
+
+$conn->query($q_remove_note); 
 ?>

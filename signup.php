@@ -33,7 +33,7 @@
                <nav class="navbar navbar-default" role="navigation">
                   <!-- Brand and toggle get grouped for better mobile display -->
                   <div class="navbar-header">
-                     <img id="logo-img" src="img/family-logo.png" width="50px"> <a class="navbar-brand" href="homepage.html">Homies</a>
+                     <img id="logo-img" src="img/family-logo.png" width="50px"> <a class="navbar-brand" href="homepage.php">Homies</a>
                   </div><!-- Collect the nav links, forms, and other content for toggling -->
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <ul class="nav navbar-nav">
@@ -243,6 +243,5 @@
 
 
    </main>
-   <footer></footer>
 </body>
 </html>

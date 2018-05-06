@@ -16,8 +16,7 @@ $(document).ready(function(){
 	
 //add chore
 $("#addChoreBtn").click(function(){
-if(confirm("Do you really want to add a chore to TO DO list??")){document.getElementById("newChores").innerHTML+="<div class='task-box col-lg-3'><center><h2>"+document.getElementsByName('chore_name')[0].value+"</h2><h4>description:</h4>  <p class='descriptionFont'>"+document.getElementsByName('chore_description')[0].value+"</p> <h4>Score:</h4>  <p class='score_for_chore'>"+ document.getElementsByName('chore_score')[0].value +"</p> <br><br> <button onclick='assignChore();'>Assign</button></center></div>";  
-}
+document.getElementById("newChores").innerHTML+="<div class='task-box col-lg-3'><center><h2>"+document.getElementsByName('chore_name')[0].value+"</h2><h4>description:</h4>  <p class='descriptionFont'>"+document.getElementsByName('chore_description')[0].value+"</p> <h4>Score:</h4>  <p class='score_for_chore'>"+ document.getElementsByName('chore_score')[0].value +"</p> <br><br> <button onclick='assignChore();'>Assign</button></center></div>";  
 document.getElementsByName('chore_name')[0].value = '';
 document.getElementsByName('chore_description')[0].value = '';
 document.getElementsByName('chore_score')[0].value = '';
@@ -46,8 +45,7 @@ $("input[value='CLOSE']").click(function(){
   
 
 $("#addPresentBtn").click(function(){
-if(confirm("Do you really want to add a present to wish list??")){document.getElementById("newPresents").innerHTML+=" <div class='task-box presentBox col-lg-3'><center><h2>"+document.getElementsByName('present_name')[0].value+"</h2>  <h4>description:</h4><p class='descriptionFont'>"+document.getElementsByName('present_description')[0].value+"</p><h4>Price:</h4><p class='score_for_chore'>"+ document.getElementsByName('present_price')[0].value +"</p><h4>Asked by:</h4><p>"+document.getElementsByName('present_name')[0].value + "</p></center></div>";  
-}
+document.getElementById("newPresents").innerHTML+=" <div class='task-box presentBox col-lg-3'><center><h2>"+document.getElementsByName('present_name')[0].value+"</h2>  <h4>description:</h4><p class='descriptionFont'>"+document.getElementsByName('present_description')[0].value+"</p><h4>Price:</h4><p class='score_for_chore'>"+ document.getElementsByName('present_price')[0].value +"</p><h4>Asked by:</h4><p>"+document.getElementsByName('present_name')[0].value + "</p></center></div>";  
 document.getElementsByName('present_name')[0].value = '';
 document.getElementsByName('present_description')[0].value = '';
 document.getElementsByName('present_price')[0].value ='';
@@ -67,24 +65,7 @@ $("input[value='CLOSE']").click(function(){
 	$("#newPresentBtn").click(function(){
 	$(".addPresent").css('display','block');
 	});	
-	
 
-
-
-
-
-	/*
-<div class="task-box col-lg-3"> 
-                          <center>
-                            <h2>Chore Name</h2>
-                            <h4>description:</h6>
-                              <p>
-                                Clean your messy room!  
-                              </p><br><br><br><br>
-                            <button onclick="assignChore();">Assign</button>
-                          </center>
-                        </div>
-  */
 	
 
 	 function switchTab(id){

@@ -48,8 +48,12 @@ $dob = $_POST["birth-year"] . "-" .
       echo "<script>console.log('registered successfuly')</script>";  
       $conn->close();
 
-         // header("Location: homepage.php");
-
+          if($permission == '1'){
+         header("Location: creategroup.php");
+          }
+          else{
+           header("Location: creategroup.php"); 
+          }
 
           $_SESSION["user"] = $username;
     ob_end_flush();

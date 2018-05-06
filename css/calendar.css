@@ -8,11 +8,26 @@ a{
 .form.box input{
     max-width: 80%;
 }
-#newEventBtn,#searchEventBtn{
+#newEventBtn{
     display: block;
     cursor: pointer;
     margin:auto;
+    margin:2%; 
+    background-color: navy;
+    padding:10px;
+    border-radius: 10px; 
+    border:2px; 
+    font-size:24px; 
+    outline:0;
+    color:white; 
+    font-family: 'Ubuntu', sans-serif;
+    transition: 0.2s linear;
 }
+#newEventBtn:hover{
+    background-color: lightblue;
+    color:black;
+}
+
 main input[type="reset"], #addEventBtn{
     background-color: lightgreen;
     width:40%;
@@ -170,7 +185,10 @@ div.note{
     display:block;
     padding-right: 5px;
     color: black;
-}
+    }
+    .form.box{
+        width:100%;
+    }
 main > .box{
   width:100%;
 }
