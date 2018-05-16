@@ -1,8 +1,9 @@
 .user-manage{
      border-width:3px;
      border-color:#D2B4DE;
+
      margin: auto;
-     width: 100%;
+     width: 70%;
      border-radius: 2%;
      padding:30px;
 }
@@ -36,15 +37,6 @@ padding:5%;
      margin-left:20px;
      font-weight:bold;
 }
-input[name='currScore']{
-	width:35%;
-	margin:auto;
-	padding:0;
-	text-align: center;
-    background-color: white;
-    border: 1px solid black;	
-}
-
  #check_btn {
      margin-left:5px;
      background-color:pink;
@@ -63,13 +55,13 @@ input[name='currScore']{
 }
 
  #removeUser{
-     width:35px;
-     height:35px;
+     width:50px;
+     height:50px;
      margin-left:50px;
 }
- #editScore, #approveUser{
-     width:45px;
-     height:45px;
+ #editScore{
+     width:50px;
+     height:50px;
      margin-left:50px;
 }
  .change_permission{

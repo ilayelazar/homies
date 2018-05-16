@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -6,12 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="img/family-logo.png">
     <title>Homies - Admin panel</title>
-
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -21,90 +17,178 @@
     <script src="script/admin.js"></script>
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="css/chores.css">
+    <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="css/adminPanel.css">
     <!--Data Table-->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <!--JS-->
-    <script src="script/admin.js"></script>
-    <script src="script/script.js"></script>	  
-    <script src="script/paging.js"></script>
-    <script src="script/multi_pagination.js"></script>
+      <!--JS-->
+      <script src="script/admin.js"></script>
+      <script src="script/script.js"></script>	  
+      <script src="script/paging.js"></script>
+      <script src="script/multi_pagination.js"></script>
 	</head>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 
 <body>
-<!-- DIV for users that arn't logged in! hide everything - show msg -->
-    <?php
-        session_start();
-        if(!isset($_SESSION['user'])){
-          header("Location: index.php");
-          exit;
-        }
-        else{
-            echo 
-            "
-            <script> console.log('password match'); 
-            $(document).ready(function(){
-            $('.nav.navbar-nav').css('display','none');
-            document.getElementById('welcome-user').innerHTML ='<h1>Welcome, <span id=\'currUser\'>".$_SESSION['user']."</span><form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
-            });
-            </script>
-        ";       
-        }  
-?>
-<!-- /DIV for users that arn't logged in! hide everything - show msg -->       
+       
     <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <!--<img src="img/family-logo.png" width="50px" id="logo-img"> -->
-                            <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav" id="nav-ul">
-                                <li>
-                                    <a href="signup.php" id="signup"><img src="img/signup.png"></a>
-                                </li>
-                            </ul>
-                            <div id="welcome-user"></div>
+     <div class="container">
+        <div class="row">              
+           <div class="col-md-12">
+              <nav class="navbar navbar-default" role="navigation">
+             <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
+                 <!-- Brand and toggle get grouped for better mobile display -->
+                 <div class="navbar-header">   
+                    <img src="img/family-logo.png" width="50px" id="logo-img">  
+                    <a class="navbar-brand" href="homepage.php">Homies</a>
+                 </div>
+                 <!-- Collect the nav links, forms, and other content for toggling -->
+                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="nav-ul">
+                       <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
+                          <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                                 
+                                  
+<?php
+session_start();
+  if(isset($_POST['username'])){             
+          //--------dblogin---------
+        $servername = "zebra.mtacloud.co.il";
+        $username = "ilayel";
+        $password = "homies123";
+        $dbname = "ilayel_homies";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+             die("Connection failed: " . $conn->connect_error);
+          echo "<script>console.log('DB Connection failed');</script>";
+            
+        } 
+        else{
+          echo "<script>console.log('DB Connection succeded');</script>";
+        }
+          //--------end-dblogin---------
+    //check login credentials in db   
+        $user=$_POST['username'];
+        $q ="SELECT password FROM users where username ='" . $user . "'";
+        
+        $result = $conn->query($q);
+            if ($result->num_rows > 0) {
+                        // output data of each row
+                $row = $result->fetch_assoc();
+                $dbPass = $row["password"];
+                $userpass = $_POST["userpass"];
+                    if($dbPass == $userpass){
+                        //input pw match db pw  
+                        $_SESSION['user'] = $_POST['username'];
+                    }
+                    else{
+                            echo "
+                            <script>
+                            console.log('password dont match'); 
+                                    $(document).ready(function() {
+                                        $('header .dropdown').addClass('open');
+                                    });
+                            </script>
+                            Invalid login, try again <br>
+                            ";                            
+                    }
+            }
+            else{
+                echo "
+                <script>
+                console.log('password dont match'); 
+                        $(document).ready(function() {
+                            $('header .dropdown').addClass('open');
+                        });
+                </script>
+                Invalid login, try again <br>
+                ";                      
+            }
+    }
+
+  if(isset($_SESSION['user'])){
+     echo 
+        "
+        <script> console.log('password match'); 
+        $('.nav.navbar-nav').css('display','none');
+        $(document).ready(function(){
+        document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+        });
+        </script>
+        ";     
+  }
+    
+	
+?>
+                                 
+                                  
+                                  <li>
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                          <form class="form" role="form" method="post" action="homepage.php" accept-charset="UTF-8" id="login-nav">
+                                             <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                                             </div>
+                                             <div class="form-group">
+                                                <label class="sr-only" for="password">Password</label>
+                                                <input type="password" class="form-control" name="userpass" id="password" placeholder="Password" required>
+                                             </div>
+                                             <center>
+                                                <label>
+                                                <input style="width:initial" type="checkbox">Remember me
+                                                </label>
+                                                <div class="form-group">
+                                                   <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                                </div>
+                                             </center>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li><a href="signup.php" id="signup"><img src="img/signup.png"></a></li>
+                        </ul>
+                        <div id="welcome-user">
 
                         </div>
-                        <!-- /.navbar-collapse -->
-                    </nav>
-                </div>
+                        
+                     </div>
+                     <!-- /.navbar-collapse -->
+                  </nav>
+               </div>
             </div>
-        </div>
-    </header>
+         </div>
+      </header>
       <div id="mySidenav" class="sidenav">
-         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
+         <span style="color:white;float:right;font-size:30px;cursor:pointer" class="burger-btn">&#9776;
          </span>
          <a href="homepage.php">Homepage</a>
          <a href="chores.php">Chores</a>
          <a href="gifts.php">Gifts</a>
-         <a href="shoppinglist.php">Shopping</a>
-         <a href="calendar.php">Calendar</a> 
-		<a href="bills.php">Bills</a> 		 
+         <a href="shopping.php">Shopping</a>
+         <a href="calendar.php">Calendar</a>      
       </div>
-<main>
-  <!--  <nav>
-        <div class="box" style="height:50px">
-            <ul>
-                <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
-                <li class="col-lg-3"><a href="chores.php">Chores</a></li>
-                <li class="col-lg-2"><a href="shoppinglist.php">Groceries</a></li>
-                <li class="col-lg-3"><a href="gifts.php">Gifts</a></li>
-                <li class="col-lg-2"><a href="bills.php">Bills</a></li>
-            </ul>
-        </div>
-    </nav>-->
+    <main>
+        <nav>
+            <div class="box" style="height:50px">
+               <ul>
+                  <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
+                  <li class="col-lg-3"><a href="chores.php">Chores</a></li>
+                  <li class="col-lg-2"><a href="shoppinglist.php">Groceries</a></li>
+                  <li class="col-lg-3"><a href="gifts.php">Gifts</a></li>
+                  <li class="col-lg-2"><a href="bills.php">Bills</a></li>
+               </ul>
+            </div>
+        </nav>
         <div class="box" style="width:75%">
             <div class="row">
                 <div class="hidden-xs voffset6"></div>
@@ -129,9 +213,9 @@
 
 
 
-<!--------------WAITING LIST TABLE----------------------------- -->		
-				<h2>Group warint list:</h2>	
-				<p class="empty_data">Approve or decline users that want to join your family group.</p>				
+<!--------------WAITING LIST TABLE----------------------------- -->
+				<h2>Group warint list:</h2>
+				<p class="empty_data">Approve or decline users that want to join your family group.</p>
 				<?php
                        session_start();
             //--------dblogin---------
@@ -146,12 +230,12 @@
         if ($conn->connect_error) {
              die("Connection failed: " . $conn->connect_error);
           echo "<script>console.log('DB Connection failed');</script>";
-            
-        } 
+
+        }
         else{
           echo "<script>console.log('DB Connection succeded');</script>";
         }
-						
+
 							$waiting_list = "SELECT fname, lname, users.username, users.permission FROM users INNER JOIN GroupWaitlist ON GroupWaitlist.familyid=(select familyid from users where username='".$_SESSION['user']."') AND users.username=GroupWaitlist.username";
 
 							$result = $conn->query($waiting_list);
@@ -177,13 +261,13 @@
                                             <td id='firstName'> " . $row['fname']. "</td>
                                             <td id='lastName'> " . $row['lname']. " </td>
 											 <td id='userName'>" . $row['username']. " </td>	
-                                            <td id='permission'>"; 
-											
+                                            <td id='permission'>";
+
 											if($row['permission']=='1')
 												echo "Parent";
 											else
 												echo "Child";
-											
+
 											echo "</td>
                                             <td><a href='#' onclick=\"edituser('".$row['username']."','".$_SESSION['user']."',1);\"><img id='approveUser' src='img/addUser.png' title='Approve user'></a></td>
 											<td><a href='#' onclick=\"edituser('".$row['username']."','".$_SESSION['user']."',0);\"><img id='removeUser' src='img/removeUser.png' title='Deny user'></a></td>
@@ -212,15 +296,22 @@
 							  </table>";
 							}
 								?>
-							
 								
 								
-							    </div>
+                                    <form action="adminpanel.php" method="get">
+                                        <p id="add_member"> Add member:</p>
+                                        <p id="username">Username: <input type="text" name="uname" id="search_uname">
+										<input id="check_btn" type="submit" value="check" alt="Look for this username"><br><br></p>
+                                        <center>Found: <input id="check_res" type="text" name="user_fnl_name" value="" readonly><br><br> Permission:
+                                            <label><input type="radio" name="Upermission" value="1" checked> Parent</label>
+                                            <label><input type="radio" name="Upermission" value="0">Child </label>
+                                            <input type="submit" value="ADD">
+                                        </center>
+                                    </form>
+                                </div>
                                 <br><br>
 
-
-
-<!--------------GROUP USERS TABLE----------------------------- -->									
+								
 								<?php
                        session_start();
             //--------dblogin---------
@@ -241,7 +332,7 @@
           echo "<script>console.log('DB Connection succeded');</script>";
         }
 								
-							$group_members = "SELECT fname, lname, username, permission, score FROM users WHERE familyid=(SELECT familyid from users WHERE username='".$_SESSION['user']."') ORDER BY score DESC";
+							$group_members = "SELECT fname, lname, username, permission FROM users WHERE familyid=(SELECT familyid from users WHERE username='".$_SESSION['user']."')";
 
 							$result = $conn->query($group_members);
 
@@ -254,18 +345,16 @@
                                             <th>Last name</th>
                                             <th>User name</th>
                                             <th>Permission</th>
-											<th>Score</th>
                                             <th></th>
-											<th></th>
                                         </tr>
                                     </thead>
                                     <tbody>";
 								 // output data of each row
 								 while($row = $result->fetch_assoc()) {
-									 echo "<tr>                                      						 
+									 echo "<tr>
+                                            <td id='userName'>" . $row['username']. " </td>							 
                                             <td id='firstName'> " . $row['fname']. "</td>
                                             <td id='lastName'> " . $row['lname']. " </td>
-											<td id='userName'>" . $row['username']. " </td>	
                                             <td id='permission'>"; 
 											if($row['permission'] == 1){
                                                 echo "
@@ -299,7 +388,7 @@
 											// 	<option value='1' >Parent</option>
 											// 	<option value='0' selected>Child</option>
 											//   </select>";
-										
+
 											echo "</td>
 											
 											<td>";
@@ -311,7 +400,7 @@
 											{
 												echo "<input type='number' pattern='.{1,}'  value='" . $row['score']. "' name='currScore'></form>";
 											}
-											
+
 											
 											echo "</td>
                           <td><button onclick=\"editUserScore('".$row['username']."');\" id='apply_".$row['username']."'>Apply</button</td>
@@ -321,7 +410,7 @@
 								 }
 								 echo "</tbody></table>";
 							} else {
-									 echo "<table id='manage_mambers_table' class='homiesTables'>
+									 echo "<table id='manage_mambers_table' class='user-manage cell-border row-border hover order-column'>
                                     <br>
                                     <thead>
                                          <tr class='tableHeaders'>
@@ -329,9 +418,7 @@
                                             <th>Last name</th>
                                             <th>User name</th>
                                             <th>Permission</th>
-											<th>Score</th>
                                             <th></th>
-											<th></th>
                                         </tr>
                                     </thead>
 							  </table>";
@@ -340,15 +427,15 @@
 								
                             </div>
                             <script>
-                             function editUserScore(user){ 
+                             function editUserScore(user){
                                 //var newP = document.getElementById(id).parentElement.parentElement.children[3].children[0].value;
                                 var id = "input[name='permission_"+user+"']:checked";
                                 var newP = $(id).val();
                                 var pointsId = "apply_"+user;
                                 var newPoints = document.getElementById(pointsId).parentElement.parentElement.children[4].children[0].value;
                              $.post('apply-user-changes.php',   // url
-                             { 
-                              userToChange: user,                          
+                             {
+                              userToChange: user,
                               score:newPoints,
                               permission: newP
                               }, // data to be submit
@@ -356,18 +443,16 @@
                                     //alert(response);
                                     //window.location = window.location.href;
                                     $("body").load("#family-members-table");
-                  
+
                                 }
                               );
-                            
+
                            }
-						   
+
 
                             </script>
                             <!--  end tab 1-->
-							
-							
-                            <!--  ------- tab 2 ------- --
+                            <!--  ------- tab 2 ------- -->
                             <div class="tab-pane fade " id="p2">
                                 <div id="pg2" class="change_permission user-manage">
                                     <center>
@@ -408,14 +493,33 @@
                                 </div>
                             </div>
                             --  end tab 2--
-							
-							
+
+
                             --  ------- tab 3 ------- --
 							
                             <div class="tab-pane fade" id="p3">
+                            <!--<table id="score_board" class="cell-border row-border hover order-column">
+                                    <thead>
+                                        <tr id="tableHeaders">
+                                            <th>User name </th>
+                                            <th>Score</th>
+                                            <th style="width:150px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="userNameScore"> Noy</td>
+                                            <td id="userScore"> 10000 </td>
+                                            <td><a href="#" onclick="edit_score();"><img id="editScore" src="img/edit.png"></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <br>
+                            </div>-->
 							
 							
-								
+								<?php
         session_start();
             //--------dblogin---------
         $servername = "zebra.mtacloud.co.il";
@@ -472,14 +576,14 @@
 							}
 								?>
 								
-								</div> -->
-                            <!--  end tab 3 -->
+								</div>
+                            <!--  end tab 3-->
 							
 						<!--  ------- tab 4 ------- -->
                             <div class="tab-pane fade " id="p2">
-							
+
 														<script>
-							function editPresentPrice(presentid){ 
+							function editPresentPrice(presentid){
                                  var score = document.getElementById("apply_"+presentid).parentElement.parentElement.children[4].children[0].value;
 
                              $.post('apply-price.php',   // url
@@ -489,12 +593,12 @@
 									alert("Presents price updated");
                                 }
                               );
-                            
+
                            }
 							</script>
-							
-							<?php							
-								
+
+							<?php
+
         session_start();
             //--------dblogin---------
         $servername = "zebra.mtacloud.co.il";
@@ -508,13 +612,13 @@
         if ($conn->connect_error) {
              die("Connection failed: " . $conn->connect_error);
           echo "<script>console.log('DB Connection failed');</script>";
-            
-        } 
+
+        }
         else{
           echo "<script>console.log('DB Connection succeded');</script>";
         }
-								
-								
+
+
 							$group_presents = "SELECT presentid, p_name, p_description, p_link, p_username, p_score FROM presents INNER JOIN users ON p_username=username WHERE familyid=(select familyid from users where username='".$_SESSION['user']."') ORDER BY p_score ASC";
 
 							$result = $conn->query($group_presents);
@@ -565,14 +669,14 @@
 							  </table>";
 							}
 								?>
-							
-							
-							
 
-							
-							
+
+
+
+
+
 							       <!---    <table id="gifts_table" class="user-manage cell-border row-border hover order-column homiesTables">
-									   
+
                                     <br>
                                     <thead>
                                         <tr class="tableHeaders">
@@ -593,7 +697,7 @@
                                             <td><button id="editpr" onclick="editPrice()">Edit</button><input type="submit" value="Save"></td>
                                         </tr>
                                     </tbody>
-                                </table>-->
+                                </table>
 
                                 <br>
                                 <br>
@@ -610,9 +714,18 @@
             <!-- end row -->
         </div>
     </main>
+    <footer>
+        <span style="color:white;font-size: 18px">© 2018 </span>
+        <ul>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+            <li><a href="#">link</a></li>
+            <li style="border-right:0"><a href="#">link</a></li>
+        </ul>
+    </footer>
     <!--scripts-->
     <script>
-      /*  $(document).ready(function() {
+        $(document).ready(function() {
             $('#score_board').DataTable();
         });
         $('#score_board').DataTable({
@@ -633,15 +746,20 @@
         }
         $("#removeUser").click(function() {
                     var user = document.getElementById("removeUser").parentElement.parentElement.children[2].innerHTML;
-                    if (confirm('Remove \'' + user + '\' from the family group?') && confirm('are you sure?')) { //remove user from table } });*/
-					
+                    if (confirm('Remove \'' + user + '\' from the family group?') && confirm('are you sure?')) { //remove user from table } });
 
-		function edituser(username,user,addOrRemove){					
+    </script>
+    <!--data table script-->
+    <script>
+	<!--tab 1-->
+        $(document).ready(function() {
+
+		function edituser(username,user,addOrRemove){
 		   var username = username;
 		   var user = user;
 		   var addOrRemove = addOrRemove;
-		
-		
+
+
 		 if(addOrRemove=='1')
 		 {
 			 if(confirm(' Add this user to your group?'))
@@ -650,59 +768,58 @@
 					 { username:username ,user:user ,addOrRemove:addOrRemove}, // data to be submit
 						function(data, status, jqXHR) {// success callback
 						  window.location="adminpanel.php";
-						  
+
 						  if(addOrRemove=='1')
 						  alert("User successfully ADDED to your group");
-						  else 
+						  else
 						  alert("User REMOVED successfully ");
 						}
 				);
 			 }
-		 
-		 
-		 
-		 } 
-		 
+
+
+
+		 }
+
 		 else if(addOrRemove=='0')
 		 {if(confirm(' Delete this user from your group wating list?'))
-			 
-		 
+
+
 		 	  $.post('edituser.php',   // url
 					 { username:username ,user:user ,addOrRemove:addOrRemove}, // data to be submit
 						function(data, status, jqXHR) {// success callback
 						  window.location="adminpanel.php";
-						  
+
 						  if(addOrRemove=='1')
 						  alert("User successfully ADDED to your group");
-						  else 
+						  else
 						  alert("User REMOVED successfully ");
 						}
 				);
-		 
+
 		 }
 		}
-			 
-		 
-		
-		
-		
+
+
+
+
+
 		function editUserSettings(username, currScore, permission){
-		
+
 		 var username = username;
 		   var currScore = currScore;
 		   var permission = permission;
-		   
+
 		   alert(currScore);
 			alert(username);
 			alert(permission);
-		
+
 		};
 
-		   
+
 
 
     </script>
-
 </body>
 
 </html>
