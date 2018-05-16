@@ -19,107 +19,51 @@
       <script src="script/jquery.timepicker.js"></script>
 
       <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
       <!--Date Picker -->
       <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css">
       <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
    </head>
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-   <body>
-          
-  
-       
-   <header>
-     <div class="container">
-        <div class="row">              
-           <div class="col-md-12">
-              <nav class="navbar navbar-default" role="navigation">
-             <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
-                 <!-- Brand and toggle get grouped for better mobile display -->
-                 <div class="navbar-header">  
-                    <img src="img/family-logo.png" width="50px" id="logo-img">  
-                    <a class="navbar-brand" href="homepage.php">Homies</a>
-                 </div>
-                 <!-- Collect the nav links, forms, and other content for toggling -->
-                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav" id="nav-ul">
-                       <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
-                          <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                                 
-                                  
-<?php
-session_start();
-  if(isset($_POST['username'])){             
-          //--------dblogin---------
-        $servername = "zebra.mtacloud.co.il";
-        $username = "ilayel";
-        $password = "homies123";
-        $dbname = "ilayel_homies";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-             die("Connection failed: " . $conn->connect_error);
-          echo "<script>console.log('DB Connection failed');</script>";
-            
-        } 
-        else{
-          echo "<script>console.log('DB Connection succeded');</script>";
+<body>
+  <!-- DIV for users that arn't logged in! hide everything - show msg -->
+    <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
         }
-          //--------end-dblogin---------
-    //check login credentials in db   
-        $user=$_POST['username'];
-        $q ="SELECT password FROM users where username ='" . $user . "'";
-        
-        $result = $conn->query($q);
-            if ($result->num_rows > 0) {
-                        // output data of each row
-                $row = $result->fetch_assoc();
-                $dbPass = $row["password"];
-                $userpass = $_POST["userpass"];
-                    if($dbPass == $userpass){
-                        //input pw match db pw  
-                        $_SESSION['user'] = $_POST['username'];
-                    }
-                    else{
-                            echo "
-                            <script>
-                            console.log('password dont match'); 
-                                    $(document).ready(function() {
-                                        $('header .dropdown').addClass('open');
-                                    });
-                            </script>
-                            Invalid login, try again <br>
-                            ";                            
-                    }
-            }
-            else{
-                echo "
-                <script>
-                console.log('password dont match'); 
-                        $(document).ready(function() {
-                            $('header .dropdown').addClass('open');
-                        });
-                </script>
-                Invalid login, try again <br>
-                ";                      
-            }
-    }
-
-  if(isset($_SESSION['user'])){
-     echo 
-        "
-        <script> console.log('password match'); 
-        $('.nav.navbar-nav').css('display','none');
-        $(document).ready(function(){
-        document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
-        });
-        </script>
-        ";     
-  }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            $('.nav.navbar-nav').css('display','none');
+            document.getElementById('welcome-user').innerHTML ='<h1><span>".$_SESSION['user']."</span><form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+            });
+            </script>
+        ";       
+        }  
 ?>
- 
+<!-- /DIV for users that arn't logged in! hide everything - show msg -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            
+                            <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav" id="nav-ul">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                                   <li>
                                     <div class="row">
                                        <div class="col-md-12">
@@ -148,10 +92,7 @@ session_start();
                            </li>
                            <li><a href="signup.php" id="signup"><img src="img/signup.png"></a></li>
                         </ul>
-                        <div id="welcome-user">
-
-                        </div>
-                        
+                        <div id="welcome-user"></div>                        
                      </div>
                      <!-- /.navbar-collapse -->
                   </nav>
@@ -159,19 +100,60 @@ session_start();
             </div>
          </div>
       </header>
-        <div id="mySidenav" class="sidenav">
-         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">&#9776;
+      <div id="mySidenav" class="sidenav">
+         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
          </span>
          <a href="homepage.php">Homepage</a>
          <a href="chores.php">Chores</a>
          <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
-         <a href="calendar.php">Calendar</a>      
-         <a href="bills.php">Bills</a>      
-
+         <a href="calendar.php">Calendar</a> 
+		<a href="bills.php">Bills</a> 		 
       </div>
+      <script>
+
+      </script>
 <?php
-if(isset($_POST['newNote'])){
+// if(isset($_POST['newNote'])){
+//         $servername = "zebra.mtacloud.co.il";
+//         $username = "ilayel";
+//         $password = "homies123";
+//         $dbname = "ilayel_homies";
+
+//         // Create connection
+//         $conn = new mysqli($servername, $username, $password, $dbname);
+//         // Check connection
+//         if ($conn->connect_error) {
+//              die("Connection failed: " . $conn->connect_error);
+//           echo "<script>console.log('DB Connection failed');</script>";
+            
+//         } 
+//         else{
+//           echo "<script>console.log('DB Connection succeded');</script>";
+//         }
+//                //Generate note id by current max (id+1)
+//                 $max_noteid = "SELECT COALESCE(max(noteid) ,0) as max FROM notes";
+//                 $res = $conn->query($max_noteid);
+//                 $row = $res->fetch_assoc();
+//                 $n_id = $row["max"];
+//                 $n_id = $n_id + 1;
+//                   //insert query
+//           //$q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',1,'".$_POST['note_title']."','2018-04-25')";
+
+//            $q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',(SELECT familyid FROM users WHERE username='".$_SESSION['user']."'),'".$_POST['note_title']."',now())";;
+//           $conn->query($q_insertNote);
+
+//         }
+
+?>
+
+      <main>
+         
+         <div class="box">
+         <div class="box cal" style="padding:1%">
+            
+        <?php 
+        session_start();
         $servername = "zebra.mtacloud.co.il";
         $username = "ilayel";
         $password = "homies123";
@@ -183,51 +165,37 @@ if(isset($_POST['newNote'])){
         if ($conn->connect_error) {
              die("Connection failed: " . $conn->connect_error);
           echo "<script>console.log('DB Connection failed');</script>";
-            
         } 
         else{
           echo "<script>console.log('DB Connection succeded');</script>";
         }
-               //Generate note id by current max (id+1)
-                $max_noteid = "SELECT COALESCE(max(noteid) ,0) as max FROM notes";
-                $res = $conn->query($max_noteid);
+
+          $q_calid = "SELECT calendarid FROM family WHERE familyid =(SELECT familyid FROM users where username = '".$_SESSION['user']."')";
+                $res = $conn->query($q_calid);
                 $row = $res->fetch_assoc();
-                $n_id = $row["max"];
-                $n_id = $n_id + 1;
-                  //insert query
-          //$q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',1,'".$_POST['note_title']."','2018-04-25')";
+                $c_id = $row["calendarid"];
 
-           $q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',(SELECT familyid FROM users WHERE username='".$_SESSION['user']."'),'".$_POST['note_title']."',now())";;
-          $conn->query($q_insertNote);
+          echo "<iframe id='google-cal' src='https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=".$c_id."&amp;color=%23AB8B00&amp;ctz=Asia%2FJerusalem' style='border-width:0' width='100%' height='600' frameborder='1' scrolling='no'>
+          </iframe>";
+         ?>
 
-        }
 
-?>
-
-      <main>
-         <nav>
-            <div class="box" style="height:50px">
-               <ul>
-                  <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
-                  <li class="col-lg-3"><a href="chores.php">Chores</a></li>
-                  <li class="col-lg-2"><a href="shoppinglist.php">Groceries</a></li>
-                  <li class="col-lg-3"><a href="gifts.php">Gifts</a></li>
-                  <li class="col-lg-2"><a href="bills.php">Bills</a></li>
-               </ul>
-            </div>
-         </nav>
-         <div class="box">
-         <div class="box cal">
-            <iframe id="google-cal" src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=ggjruj0qp00c93aceda7v2j72o%40group.calendar.google.com&amp;color=%23AB8B00&amp;ctz=Asia%2FJerusalem" style="border-width:0" width="100%" height="600" frameborder="1" scrolling="no"></iframe>
          </div>
-         <center><div class="form box">
-            <img src="img/green-plus.png" alt="" width="35px" id="newEventBtn">
-            <div class="addEvent">
-               <hr>
+
+         <center>
+          <div id="new-event-msg"></div>         
+
+          <div class="form box">
+            <button id="newEventBtn">Add New Event</button>
+            <div class="addEvent" id="addEventForm">
+               <hr> 
+                <button id="authorize-button" style="display: none;">Sign in to create event! <br><img src="https://i.stack.imgur.com/xAiqi.png" width=200px></button>
                <form action="#" method="POST">
+                                
                   <table>
+                    <tr><th><span style="color:red; margin-left: -50px"><i>* required fields</i></span></th></tr>
                      <tr>
-                        <td>Start Date:</td>
+                        <td>Start Date<span style='color:red'>*</span>:</td>
                         <td>
                            <div id="sandbox-container">
                               <input type="text" name="start_date" class="form-control">
@@ -251,32 +219,35 @@ if(isset($_POST['newNote'])){
                         <td><input type="text" name="location"></td>
                      </tr>
                      <tr>
-                        <td>Start Time:</td>
+                        <td>Start Time<span style='color:red'>*</span>:</td>
                         <td>
                           <input type="text" class="timepicker-e" name="start-time" data-time-format="H:i" data-step="15" data-min-time="06:00" data-max-time="05:00" data-show-2400="true"/>
                         </td>
                      </tr>
                      <tr>
-                        <td>End Time:</td>
+                        <td>End Time<span style='color:red'>*</span>:</td>
                         <td>
-                          <input type="text" class="timepicker-e" name="end-time" data-time-format="H:i" data-step="15" data-min-time="06:00" data-max-time="05:00" data-show-2400="true"/>
+                          <input type="text" class="timepicker-e" name="end-time" data-time-format="H:i" data-step="30" data-min-time="06:00" data-max-time="05:00" data-show-2400="true"/>
                         </td>
                      </tr>
                      <tr>
                         <td>Description:</td>
                         <td> <input type="text" name="description"></td>
                      </tr>
-                         <button id="authorize-button" style="display: none;">Sign in to create event! <br><img src="https://i.stack.imgur.com/xAiqi.png" width=200px></button>
+
                    
 
                     <script> 
                     $(function(){
                        $('.timepicker-e').timepicker(); 
+                       $('.timepicker-e').timepicker({ 'scrollDefault': 'now' });
                     });
+                      
+;
                     </script>
-    <pre id="content"></pre>
 
     <script type="text/javascript">
+     
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '98238606757-gqp64sm8unfdb4v5a46p9ddsgf8cms46.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyDFS0JGmEHNOod0raa53D6d4KEK19cT4VE';
@@ -326,6 +297,10 @@ if(isset($_POST['newNote'])){
         if (!isSignedIn) {
           authorizeButton.style.display = 'block';
         }
+        else{
+         authorizeButton.style.display = 'none'; 
+        }
+        
       }
 
       /**
@@ -355,35 +330,136 @@ if(isset($_POST['newNote'])){
        * appropriate message is printed.
        */
 function insertEvent() {
-
-  var event = 
-  {
-    'summary': document.getElementsByName('summary')[0].value,
-    'location':  document.getElementsByName('location')[0].value,
-    'description':  document.getElementsByName('description')[0].value,
-    'start': {
-      'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('start-time')[0].value + ":00",
-      'timeZone': "Asia/Jerusalem"
-    },
-    'end': {
-      'dateTime': document.getElementsByName('end_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value+ ":00",
-      'timeZone': "Asia/Jerusalem"
+    var user = document.getElementById("welcome-user").children[0].children[0].innerHTML;
+    var event = {};
+if(document.getElementsByName('start_date')[0].value != ""){
+    event['start'] = {
+    'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('start-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
+    };
+    var date = true;
+} 
+if(document.getElementsByName('end_date')[0].value == ""){  //no end date - put end as same day+time
+    event['end']= {
+    'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
     }
-  };
-
-  var request = gapi.client.calendar.events.insert({
-    'calendarId': 'ggjruj0qp00c93aceda7v2j72o@group.calendar.google.com',
-    'resource': event
-  });
-
-  request.execute(function(event) {
-    appendPre('Event created!');
-    alert('New event created on: \n'+ document.getElementsByName('start_date')[0].value +'\n'+ document.getElementsByName('start-time')[0].value)
-  });
-
+}
+    else{  //has end date - set end as end-date+time
+    event['end']= {
+    'dateTime': document.getElementsByName('end_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
+    }
 
 }
+if(document.getElementsByName('summary')[0].value != ""){
+    event['summary']=document.getElementsByName('summary')[0].value;
+}
+  else{
+      event['summary'] = '(no title)';
+  } 
 
+if(document.getElementsByName('location')[0].value != ""){
+    event['location']=document.getElementsByName('location')[0].value;
+} 
+
+if(document.getElementsByName('description')[0].value != ""){
+    event['description']=document.getElementsByName('description')[0].value;
+} 
+
+var startFlag = document.getElementsByName('start-time')[0].value;
+var endFlag = document.getElementsByName('end-time')[0].value;
+if(startFlag && endFlag){
+       $.post(
+       'insertevent.php', //url
+      {
+        title: document.getElementsByName('summary')[0].value,
+        start_date: document.getElementsByName('start_date')[0].value,
+        start_time:document.getElementsByName('start-time')[0].value,
+        location: document.getElementsByName('location')[0].value,
+        description:document.getElementsByName('description')[0].value,
+        end_date: document.getElementsByName('end_date')[0].value      
+      },   //data
+      function(response){//onsuccess function
+          document.getElementById("new-event-msg").innerHTML = "<div class='alert alert-success'><strong>Success!</strong> Event created successfuly!</div>";
+      }          
+      );
+            $.ajax({
+            type: 'post',
+            url: 'getcalid.php',
+            data: { user:user },
+              success: function (response) {
+                //alert(response);//<--  'response' is the reference to the PHP echo
+
+                    //Validetion:
+var event = {};
+if(document.getElementsByName('start_date')[0].value != ""){
+    event['start'] = {
+    'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('start-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
+    }
+} 
+if(document.getElementsByName('end_date')[0].value == ""){  //no end date - put end as same day+time
+    event['end']= {
+    'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
+    }
+}
+    else{  //has end date - set end as end-date+time
+    event['end']= {
+    'dateTime': document.getElementsByName('end_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value + ":00",
+    'timeZone': "Asia/Jerusalem"
+    }
+
+}
+if(document.getElementsByName('summary')[0].value != ""){
+    event['summary']=document.getElementsByName('summary')[0].value;
+}
+  else{
+      event['summary'] = '(no title)';
+  } 
+
+if(document.getElementsByName('location')[0].value != ""){
+    event['location']=document.getElementsByName('location')[0].value;
+} 
+
+if(document.getElementsByName('description')[0].value != ""){
+    event['description']=document.getElementsByName('description')[0].value;
+} 
+
+        // var event = 
+        // {
+        //   'summary': document.getElementsByName('summary')[0].value,
+        //   'location':  document.getElementsByName('location')[0].value,
+        //   'description':  document.getElementsByName('description')[0].value,
+        //   'start': {
+        //     'dateTime': document.getElementsByName('start_date')[0].value +"T"+ document.getElementsByName('start-time')[0].value + ":00",
+        //     'timeZone': "Asia/Jerusalem"
+        //   },
+        //   'end': {
+        //     'dateTime': document.getElementsByName('end_date')[0].value +"T"+ document.getElementsByName('end-time')[0].value+ ":00",
+        //     'timeZone': "Asia/Jerusalem"
+        //   }
+        // };
+
+
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': response,
+          'resource': event
+        });
+      request.execute(function(event) {
+        $("#addEventForm").slideToggle();
+      });
+    
+    document.getElementById('google-cal').src = document.getElementById('google-cal').src;
+
+    }
+   });
+  }
+  else {
+    document.getElementById("new-event-msg").innerHTML = "<div class='alert alert-danger'><strong>CREATE EVENT FAILED!</strong> Please fill all the required fields!</div>";
+  }
+}
     </script>
 
 
@@ -395,8 +471,10 @@ function insertEvent() {
                      </tr>
                   </table>
                </form>
+               <br>
                <button id="addEventBtn" onclick="insertEvent();"> Add Event</button>
-                <input type="reset" style="background-color: pink;font-style: initial;"></td>
+                <input type="reset" value="Reset form" style="background-color: pink;font-style: initial;"><br>            <pre id="content" style="width:75%"></pre>
+</td>
             </div>
          </div>
       </center>
@@ -458,25 +536,16 @@ function insertEvent() {
          <div class="box" id="notes-area">
             <div class="notesHeader">
                <h1 style="display:inline-block;">Group notes</h1>
-               <div class="box newNote" style="width:initial;"><img src="img/new-note.png" alt="" id="newNoteImg" width=50px>
+               <div class="box newNote" style="margin:3% 1 0%;width:initial;"><img src="img/new-note.png" alt="" id="newNoteImg" width=50px>
                   <div id="newNoteContent">
-                    <form action="calendar.php" method="POST">
                     <label style="float:left"><strong>Title:</strong><input name="note_title" style="margin:10px; width:60%"></label>
                     <textarea rows="3" name="newNote"></textarea>
-                    <button id="addNoteBtn">Add</button>
                     </form>
+                    <button id="addNoteBtn" onclick='insertNote();'>Add</button>
                   </div>
                </div>
             </div>
-            <div class="note">
-               <div class="note-data">
-                  <span id="note-name">NAME_NAME</span>
-                  <span id="note-date">DD/MM/YYYY</span>
-               </div>
-               <p>
-
-               </p>
-            </div>
+            
           <?php
         $servername = "zebra.mtacloud.co.il";
         $username = "ilayel";
@@ -502,31 +571,61 @@ function insertEvent() {
                      $newNote="";
                      $newNote= $newNote."
                       <div class='note'>
-                         <div class='note-data'>
-                            <span id='note-name'> <i><u> Created by: ".$row['n_creator']."</u></i>
-                          </span>
-                            <span id='note-date'>".$row['note_date']."</span>
-                         </div>
+                         
                         <strong><u>".$row['note_title']."</u></strong><br>                         
                          <p>
                         ".$row['text']."
-                         </p>
-                      </div>";
+                         </p>";
+                         if($_SESSION['user'] == $row['n_creator']){
+                          $newNote = $newNote . "<button onclick='removeNote(".$row['noteid'].");'> DELETE </button>";
+                         }
+                         $newNote = $newNote. "<div class='note-data'>
+                            <span id='note-name'> <i><u>by: ".$row['n_creator']."</u></i>
+                          </span>
+                            <span id='note-date'>".$row['note_date']."</span>
+                         </div></div>";
                   echo $newNote;
                       } 
+                  }
+                  
+                  else{
+                    echo "<div style='width:50%; text-align:center; background-color:rgb(255,255,255,0.5);margin:auto;margin-bottom:3%;border-radius:20px;border:3px double white;'>0 Notes have been found,<br> Be the firsts to add notes! press the <img src='img/new-note.png' height=20px  >  icon to add new note</div>";
                   }
 
                 ?>
          </div>
+        
       </main>
-      <footer>
-         <span style="color:white;font-size: 18px">© 2018 </span>	
-         <ul>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li style="border-right:0"><a href="#">link</a></li>
-         </ul>
-      </footer>
+<script>
+  function insertNote(){
+    var title = document.getElementsByName('note_title')[0].value;
+    var note = document.getElementsByName('newNote')[0].value;
+    $.post(
+       'insertnote.php', //url
+      {
+        title: title,
+        note: note
+      },   //data
+      function(response){//onsuccess function
+        $("body").load("#notes-area");
+      }    
+      );
+  }
+    function removeNote(noteid){
+      var flag = confirm("Are you sure you want to delete this note?");
+        if (flag) {
+          var noteid= noteid;
+         $.post('removeNote.php',   // url
+                      { noteid:noteid }, // data to be submit
+                      function(data, status, jqXHR) {// success callback
+
+                        $("body").load("#notes-area");
+                        //window.location=window.location.href;
+                        alert("Succefully deleted note");
+                      }
+                  );
+       } 
+    }
+</script>
    </body>
 </html>

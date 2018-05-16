@@ -8,11 +8,27 @@ a{
 .form.box input{
     max-width: 80%;
 }
-#newEventBtn,#searchEventBtn{
+#newEventBtn{
     display: block;
     cursor: pointer;
     margin:auto;
+    margin:2%; 
+    background-color: navy;
+    padding:10px;
+    border-radius: 10px; 
+    border:2px; 
+    font-size:24px; 
+    outline:0;
+    color:white; 
+    font-family: 'Ubuntu', sans-serif;
+    transition: 0.2s linear;
+    width:100%;
 }
+#newEventBtn:hover{
+    background-color: lightblue;
+    color:black;
+}
+
 main input[type="reset"], #addEventBtn{
     background-color: lightgreen;
     width:40%;
@@ -50,22 +66,14 @@ iframe{
     font-family: calibri;
     font-weight: bold;
 }
-div.note{
-    vertical-align: top;
-    margin:1%;
-    padding: 25px 15px;
-    font-style: oblique;
-    width:27%;
-    min-height:100px;
-    display:inline-block;
-    background-color: #ffffcc;
-    border-left:6px solid #ffeb3b;
-}
+
 .note-data{
+    position: relative;
+    bottom:0;
     font-weight: bold;
     font-style: normal;
     float:right;
-    margin:-25px -15px;
+    margin:0px;
     font-size: 12px;
     max-height: 20px;
 }
@@ -81,7 +89,6 @@ div.note{
     cursor: pointer;
     float:right;
     margin-right: 3%;
-    
     background-color: green;
     color:white;
     font-weight: bolder;
@@ -115,7 +122,15 @@ div.note{
     vertical-align: middle;
     background-color: white;
 }
-
+.note button{
+    font-size: 8px;
+    padding:5px;
+    float: right;
+    border:0;
+    margin-left:5px;
+    background-color: pink;
+    display: inline-block;
+}
 
 /* Responsive*/
 /*------------------------------------------
@@ -146,7 +161,21 @@ div.note{
 .box.cal,.box#notes-area{
   width:100%;
 }
-
+div.note{
+    background-image: url('http://www.pngmart.com/files/3/Pushpin-Transparent-PNG.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 50% 3px; 
+    vertical-align: top;
+    margin:1%;
+    padding: 15px 10px 0 15px;
+    font-style: oblique;
+    width:22%;
+    min-height:100px;
+    display:inline-block;
+    background-color: rgba(255,255,204);
+    border-left:6px solid #ffeb3b;
+}
 
 }
 
@@ -155,9 +184,13 @@ div.note{
 }
 @media screen and (max-width: 480px) { 
     div.note{
-        width:90%;
-        margin:auto;
-        margin-bottom:15px;
+    background-image: url('http://www.pngmart.com/files/3/Pushpin-Transparent-PNG.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 50% 15px; 
+    width:90%;
+    margin:auto;
+    margin-bottom:15px;
     }
     iframe{
         height:60vh;
@@ -170,7 +203,10 @@ div.note{
     display:block;
     padding-right: 5px;
     color: black;
-}
+    }
+    .form.box{
+        width:100%;
+    }
 main > .box{
   width:100%;
 }

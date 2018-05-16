@@ -47,13 +47,11 @@ $dob = $_POST["birth-year"] . "-" .
       $conn->query($sql);  
       echo "<script>console.log('registered successfuly')</script>";  
       $conn->close();
+         header("Location: creategroup.php");
 
-         // header("Location: homepage.php");
-
-
+          $_SESSION["permission"] = $permission;
           $_SESSION["user"] = $username;
     ob_end_flush();
-
 
 ?>
   </body>

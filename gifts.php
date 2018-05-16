@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-   <head>
+   
+      <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="img/family-logo.png">
@@ -16,20 +17,21 @@
       <!--CSS-->
       <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
       <link rel="stylesheet" type="text/css" href="css/chores.css">
-      <!--Data Table-->
-      <script type="text/javascript"  src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>  
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
       <!--JS-->
       <script src="script/chores.js"></script>
-      <script src="script/script.js"></script>	  
+      <script src="script/script.js"></script>
       <script src="script/paging.js"></script>
       <script src="script/multi_pagination.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
    </head>
+   
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
    <body>
+   <main>
    
 
-<?php		
+<?php   //Controller for new present
    session_start(); 
     //  dblogin 
       $servername = "zebra.mtacloud.co.il";
@@ -46,193 +48,67 @@
       else{
         echo "<script>console.log('DB Connection succeded');</script>";
       }
-   	
-
-   if(isset($_POST["presentName"])){
-   	//add present vars
-   	$presentName=$_POST["presentName"];
-   	$presentDescription=$_POST["presentDescription"];
-   	$presentPrice="null";//$_POST["presentPrice"];
-	$presentLink=$_POST["presentLink"];
-   	$requested_by=$_SESSION['user'];					
-   	$pStatus= "0";
-   	
-   	$max_query = "SELECT COALESCE(max(`presentid`) ,0) as max FROM `presents`";
-   	$result = $conn->query($max_query);
-   	$row = $result->fetch_assoc();
-   	$pid = $row["max"];
-   	$pid = $pid + 1;
     
-
-   	//add present query
-   	$addPresent="INSERT INTO presents (presentid,p_name,p_description,p_username,p_score,p_link ,p_status)
-   	VALUES ('".$pid."','".$presentName."','".$presentDescription."','".$requested_by."','".$presentPrice."','".$presentLink."','".$pStatus."');";//what we got from the user
-   	
-   	$conn->query($addPresent);//operates the chore query 
-
-   	$result = $conn->query($addPresent);
-   	
-   	}
-	
-
 ?>
-
-<script>
-
-/////// Update present
-         
-		 function buyGift(pid){
-			 alert ("hiiii");
-			 <?php
-				$update_p = "UPDATE presents
-				SET p_status = '1'
-				WHERE presentid = pid";
-				$result = $conn->query($update_p);
-			 
-			 ?>
-			 
-		 }
-</script>
-
-
-
-      <header>
-         <div class="container">
-            <div class="row">              
-               <div class="col-md-12">
-                  <nav class="navbar navbar-default" role="navigation">
-                 <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
-                     <!-- Brand and toggle get grouped for better mobile display -->
-                     <div class="navbar-header">   
-                        <img src="img/family-logo.png" width="50px" id="logo-img">  
-                        <a class="navbar-brand" href="homepage.php">Homies</a>
-                     </div>
-                     <!-- Collect the nav links, forms, and other content for toggling -->
-                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav" id="nav-ul">
-                           <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
-                              <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                                 
-                                  
-<?php
-  session_start();
-   if(isset($_POST['username'])){             
-            //--------dblogin---------
-          $servername = "zebra.mtacloud.co.il";
-          $username = "ilayel";
-          $password = "homies123";
-          $dbname = "ilayel_homies";
-
-          // Create connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          // Check connection
-          if ($conn->connect_error) {
-               die("Connection failed: " . $conn->connect_error);
-            echo "<script>console.log('DB Connection failed');</script>";
-              
-          } 
-          else{
-            echo "<script>console.log('DB Connection succeded');</script>";
-          }
-            //--------end-dblogin---------
-      //check login credentials in db   
-          $user=$_POST['username'];
-          $q ="SELECT password FROM users where username ='" . $user . "'";
-          
-          $result = $conn->query($q);
-             if ($result->num_rows > 0) {
-                         // output data of each row
-                 $row = $result->fetch_assoc();
-                 $dbPass = $row["password"];
-                 $userpass = $_POST["userpass"];
-                     if($dbPass == $userpass){
-                         //input pw match db pw  
-                         $_SESSION['user'] = $_POST['username'];
-                     }
-                     else{
-                             echo "
-                             <script>
-                             console.log('password dont match'); 
-                                     $(document).ready(function() {
-                                         $('header .dropdown').addClass('open');
-                                     });
-                             </script>
-                             Invalid login, try again <br>
-                             ";                            
-                     }
-             }
-              else{
-                  echo "
-                  <script>
-                  console.log('password dont match'); 
-                          $(document).ready(function() {
-                              $('header .dropdown').addClass('open');
-                          });
-                  </script>
-                  Invalid login, try again <br>
-                  ";                      
-              }
-       }
-
-     if(isset($_SESSION['user'])){
-     echo 
-        "
-        <script> console.log('password match'); 
-    $('.nav.navbar-nav').css('display','none');
-    $(document).ready(function(){
-        document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
-        });
-        </script>
-        ";     
-     }
-       
+  
+     <!-- DIV for users that arn't logged in! hide everything - show msg -->
+    <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            $('.nav.navbar-nav').css('display','none');
+            document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+            });
+            </script>
+        ";       
+        }  
 ?>
-                                  
-                                  
-                                  
-                                  
-                                  <li>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <form class="form" role="form" method="post" action="homepage.php" accept-charset="UTF-8" id="login-nav">
-                                             <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                                             </div>
-                                             <div class="form-group">
-                                                <label class="sr-only" for="password">Password</label>
-                                                <input type="password" class="form-control" name="userpass" id="password" placeholder="Password" required>
-                                             </div>
-                                             <center>
-                                                <label>
-                                                <input style="width:initial" type="checkbox">Remember me
-                                                </label>
-                                                <div class="form-group">
-                                                   <button type="submit" class="btn btn-success btn-block">Sign in</button>
-                                                </div>
-                                             </center>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </li>
-                           <li><a href="signup.php" id="signup"><img src="img/signup.png"></a></li>
-                        </ul>
-                        <div id="welcome-user">
+<!-- /DIV for users that arn't logged in! hide everything - show msg -->       
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <!-- -->
+                            <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav" id="nav-ul">
+                                <li>
+                                    <a href="signup.php" id="signup"><img src="img/signup.png"></a>
+                                </li>
+                            </ul>
+                            <div id="welcome-user"></div>
 
                         </div>
-                        
-                     </div>
-                     <!-- /.navbar-collapse -->
-                  </nav>
-               </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                </div>
             </div>
-         </div>
-      </header>
-      <main>
-         <nav>
+        </div>
+    </header>
+      <div id="mySidenav" class="sidenav">
+         <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
+         </span>
+         <a href="homepage.php">Homepage</a>
+         <a href="chores.php">Chores</a>
+         <a href="gifts.php">Gifts</a>
+         <a href="shoppinglist.php">Shopping</a>
+         <a href="calendar.php">Calendar</a> 
+    <a href="bills.php">Bills</a>      
+      </div>
+         <!--<nav>
             <div class="box" style="height:50px">
               <ul>
                   <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
@@ -242,18 +118,161 @@
                   <li class="col-lg-2"><a href="bills.php">Bills</a></li>
                </ul>
             </div>
-         </nav>
+         </nav> -->
+     
+       
+     <!----Scoreboard------ -->
+     
+<?php
+                       session_start();
+            //--------dblogin---------
+        $servername = "zebra.mtacloud.co.il";
+        $username = "ilayel";
+        $password = "homies123";
+        $dbname = "ilayel_homies";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+             die("Connection failed: " . $conn->connect_error);
+          echo "<script>console.log('DB Connection failed');</script>";
+            
+        } 
+        else{
+          echo "<script>console.log('DB Connection succeded');</script>";
+        }
+                
+              $scoreboard = "SELECT fname, username, score FROM users WHERE familyid=(SELECT familyid from users WHERE username='".$_SESSION['user']."') AND permission='0' ORDER BY score DESC";
+
+              $result = $conn->query($scoreboard);
+
+              if ($result->num_rows > 0) {
+                 echo "<table class='homiesTables scoreboard' style='width:30%; text-align:center; font-size:17px;' title='Scoreboard'>
+                                    <br>
+                                    <thead>
+                                        <tr class='SB_Headers'>
+                                        
+                                            <th><img src='img/chores/Child.png' title='user name'></th>                                        
+											<th><img src='img/chores/piggy-bank.png' title='user score'></th>
+                                                                  
+                                        </tr>
+                                    </thead>
+                                    <tbody>";
+                 // output data of each row
+                 while($row = $result->fetch_assoc()) {
+                   echo "<tr>                                                  
+                                        
+                      <td id='userName'>" . $row['fname']. " </td> 
+                                          
+                      <td>" . $row['score']. "</td> </tr>";
+                   
+                 }
+                 echo "</tbody></table>";
+              } else {
+                   echo "<table class='homiesTables' style='width:50%; text-align:center; font-size:17px;'>
+                                    <br>
+                                    <thead>
+                                     <tr id='tableHeaders'>
+                                          
+                                            <th>User name</th>
+                                            
+											<th>Score</th>
+                                        </tr>
+                                    </thead>
+                </table>";
+              }
+              $q_permission="SELECT permission FROM users WHERE username='".$_SESSION['user']."'";
+              $result = $conn->query($q_permission);
+              $row = $result->fetch_assoc();
+              if($row['permission']=='1'){
+                echo "
+                <script>
+                $(document).ready(function(){
+                  $(\"input[value='BUY']\").hide();
+                });
+                </script>
+                ";
+              }
+                ?>
+              
+  
+     
+       <script>
+            function buygift(pid, p_score, user, user_score){         
+               var pid = pid;
+              var user = user;
+              var p_score = p_score;
+              var user_score = user_score;
+			  
+			  
+             
+            if(confirm('Buy this gift?')){
+            if(p_score > user_score)
+            {
+              alert('You dont have enough points to buy this gift, do more chores ! :)');
+            }
+            else{
+              $.post('buygift.php',   // url
+                  { pid: pid, p_score:p_score, user:user }, // data to be submit
+                  function(data, status, jqXHR) {// success callback
+                    window.location="gifts.php";
+                    
+                    alert("You have successfully bought this gift! ");
+                  }
+              );
+            }
+            }}
+            
+
+       </script>
+	   
+	   
+		
+		 <script>
+    function addPresent(){
+    var presentName= document.getElementsByName("presentName")[0].value;
+    var presentDescription= document.getElementsByName("presentDescription")[0].value;
+    var presentLink= document.getElementsByName("presentLink")[0].value;         
+    var ptype= $( 'input[name=ptype]:checked' ).val();
+	
+	if(!ptype){
+	alert('Please set an icon to your new present');
+}
+else{
+    if( Boolean(presentName && presentDescription && ptype)){
+        if(confirm("Add new present to wishlist?")){
+        $.post('addpresent.php',   // url
+            { presentName: presentName, presentDescription:presentDescription, presentLink:presentLink,ptype:ptype }, // data to be submit
+            function(response) {// success callback
+              // window.location = window.location.href;
+              alert("Successfully added new present! ");
+              $("body").load("#p1");
+            }
+        );
+      }
+    }
+      else{
+        alert("Please fill all fields. (Set name and description)");
+      }
+  }
+	}
+          </script>
+     
+     
          <div class="box">
             <div class="row">
                <div class="hidden-xs voffset6"></div>
                <div class="col-md-12 col-lg-12" panel>
                   <br>
-                  <div class="panel-heading" id="syllabus">
+                  <div class="panel-heading tabs" id="syllabus">
                      <div class="tabbable">
+					  <span class="moduleHeader">Gifts </span>
                         <ul class="nav nav-tabs" id="myTabs">
-                           <li class="active"><a href="#p1" data-toggle="tab"><strong>Gifts</strong></a></li> <!--gifts with price-->
-                           <li><a href="#p2" data-toggle="tab"><strong>Wishlist </strong></a></li> <!--gifts without price, user can add-->
-                           <li><a href="#p3" data-toggle="tab"><strong>Gifts History</strong></a></li> <!--who bought what-->
+           
+                           <li class="active"><a href="#p1" data-toggle="tab"><strong>shop</strong></a></li> <!--gifts with price-->
+                           <li><a href="#p2" data-toggle="tab"><strong>wishlist </strong></a></li> <!--gifts without price, user can add-->
+                           <li><a href="#p3" data-toggle="tab"><strong>history</strong></a></li> <!--who bought what-->
                         </ul>
                      </div>
                   </div>
@@ -261,128 +280,277 @@
                      <div class="tab-content">
                         <!--  ------- tab 1 ------- -->
                         <div class="tab-pane fade  in active " id="p1">
-                         <h1> Available gifts ! </h1> 
+                         <h1> Your pricing gifts: </h1> 
 
-						<?php
+        	   
+			   
+			   
+			      <?php
+						   
 														   
-								$q_chores = "SELECT presentid, p_name, p_description, p_username, p_score, p_link FROM presents WHERE p_status='0' and p_score >'0'";
-								$result = $conn->query($q_chores);
-									echo "<center>";
+ $q_presents = "SELECT presentid, p_name, p_description, p_username, p_score, 
+ , score, type FROM presents inner join users on p_username=username WHERE p_status='0' and p_score >'0' and p_username='".$_SESSION['user']."' ";
+                
+                $result = $conn->query($q_presents);
+							
+								
 								if ($result->num_rows > 0) {
 									 // output data of each row
 									 while($row = $result->fetch_assoc()) {
 										 $newPresent="";
-										 $newPresent= $newPresent."
-				                            <div class='task-box col-lg-3 col-sm-4'>
-												 <h2>".$row['p_name']."</h2>
-												 <h4>description:</h4>
-												 <p class='descriptionFont'>
-													".$row['p_description']."
-												 </p>
-												 <h4>Link:</h4>
-												 <p>
-												  ".$row['p_link']." </p>
-												 <h4>Price:</h4>
-												 <p class='score_for_chore'>
-												  ".$row['p_score']." </p>
-												 <h4>Requested by:</h4>
-												 <p> ".$_row['p_username']." </p>
-												 <button onclick='buyGift(".$row['presentid'].");'>BUY!</button>" ;
+										 $newPresent= $newPresent.
+                     "<br>
+<div class='newPresentTest'>
+    <div class='chore-icon'>
+      <img src='img/presents/".$row['type'].".png'>
+    </div>
+    <div class='chore-info'>
+      <table>
+        <tr>
+          <td style='color:#f05768'>Title:</td>
+          <td style='width:66.5%'>".$row['p_name']."</td>
+         
+        </tr>
+        <tr>
+          <td style='color:#f05768'>Description:</td>
+          <td style='width:60%'>".$row['p_description']."</td>
+		  <td style='width:20%'><a href='".$row['p_link']."' tytle='".$row['p_link']."' target='_blank' style='display:inline; color:#f05768; background-color:#efefef; padding:8px 30px 8px 30px; font-weight:bold; margin-right:10%'>LINK</a><input type='button' value='BUY' onclick=\"buygift(".$row['presentid'].",".$row['p_score'].",'".$_SESSION['user']."',".$row['score'].");\" ></td>
+		</tr>
+		   <tr>
+          <td style='color:#f05768'>Price:</td>
+          <td style='width:60%'>".$row['p_score']."</td>
+		  
+		  </tr>
+        <tr>";
+         
+        $newPresent= $newPresent."          
+        </tr>
+      </table>
+   </div>
+</div>                 
 
-										 $newPresent= $newPresent."
-										   </div>";
-										 echo $newPresent;
+                     ";
+      echo $newPresent;            
+											}
+										 
+										 
 										 }
-										 echo "</center>";
-								}
-
+										 
+										 else{
+											 echo "<p class='empty_data'>Your gifts have not received a price from your parents yet.</p>";
+										 }
 						   
 						   ?>
-						 
-						 
+						   
+						
+			   
+			   
+               
+               
+             
+             
                            <br>
                            <br>
                         </div>
                         <!--  end tab 1-->
-						
+            
                         <!--  ------- tab 2 ------- -->
                       <div class="tab-pane fade " id="p2">
-                   	   
-						    <?php
+               
+<!--start try-- -->	
+
+	<?php
+														   
+				$permissions = "SELECT distinct permission FROM users WHERE username='".$_SESSION['user']."'";
+                $result = $conn->query($permissions);
+				$row = $result->fetch_assoc();
+				$u_per = $row['permission'];
+				
+	
+			 if($u_per=='1'){
+                echo "
+                <script>			
+                $(document).ready(function(){
+                  $(\"#add_present\").hide();
+                });
+                </script>
+                ";
+              }					
+
+	?>	
+	
+						   
+<div class='newChoreTest new-chore' id="add_present">
+        <form action="gifts.php" method="POST">
+          <div class="add-chore-icon">
+                <div id="chorePicture">
+                  <h4>Choose Icon:</h4>
+                <center>
+                  <div class="row">
+                 <label class='col-sm-4'>
+                 <input type='radio' value='diamond' name='ptype'>
+                <img src="img/presents/diamond.png">
+                 </label>
+                 <label class='col-sm-4'>
+                 <input type='radio' value='dices' name='ptype'>
+                <img src="img/presents/dices.png">
+                 </label>
+                 <label class='col-sm-4'>
+                 <input type='radio' value='gamepad' name='ptype'>
+                <img src="img/presents/gamepad.png">
+                 </label>
+                 </div>
+                 <div class="row">
+                 <label class='col-sm-4'>
+                 <input type='radio' value='hanger' name='ptype'>
+                <img src="img/presents/hanger.png">
+                 </label>
+                 <label class='col-sm-4'>
+                 <input type='radio' value='sword' name='ptype'>
+                <img src="img/presents/sword.png">
+                 </label>
+                 <label class='col-sm-4'>
+                 <input type='radio' value='teddy-bear' name='ptype'>
+                <img src="img/presents/teddy-bear.png">    
+                 </label>
+                 </div>
+               </center>
+               </div>
+
+          </div>
+    <div class='chore-info'>
+      <table>
+        <tr>
+          <td style='color:#f05768;width:20%'>Present name: </td>
+          <td style='width:50%'><input tabindex="1" required type="text" name='presentName'></td>
+          <td style='width:20%'></td>
+        </tr>
+        <tr>
+          <td style='color:#f05768;width:20%'>Description</td>
+          <td style='width:50%'><input tabindex="2" required type="text" name='presentDescription'></td>
+          <td style='width:20%'><button tabindex="4" type="submit" id="addChoreBtn" onclick="addPresent();" value="Add Present">Add Present</button></td>
+        </tr>
+		
+
+		
+		
+		
+        <tr>
+          <td style='color:#f05768;width:20%'>Link (optional):</td>
+          <td style='width:50%'><input tabindex="3" type="text" name='presentLink'></td>
+          <td style='width:20%'></td>
+        </tr>
+      </table>
+   </div>
+      </form>
+	  
+	  <hr>
+</div>
+
+
+
+<h1> Sibilings wishlist: </h1> 
+
+
+						   <?php
 						   
 														   
-								$q_chores = "SELECT p_name, p_description, p_username, p_score,p_link FROM presents WHERE p_status='0' and p_score='0'";
-								$result = $conn->query($q_chores);
-									echo "<center>";
+		$q_chores = "SELECT presentid, p_name, p_description, p_username, p_score,p_link,type,fname FROM presents INNER JOIN users ON p_username=username WHERE p_status='0' and familyid=(select familyid from users where username='".$_SESSION['user']."') order by presentid DESC";
+                $result = $conn->query($q_chores);
+							
 								if ($result->num_rows > 0) {
 									 // output data of each row
 									 while($row = $result->fetch_assoc()) {
 										 $newPresent="";
-										 $newPresent= $newPresent."
-				                            <div class='task-box col-lg-3 col-sm-4'>
-												 <h2>".$row['p_name']."</h2>
-												 <h4>description:</h4>
-												 <p class='descriptionFont'>
-													".$row['p_description']."
-												 </p>
-												 <h4>Link:</h4>
-												 <a href='".$row['p_link']."' target='_blank'>".$row['p_link']."											
-												 </a>
-												 <h4>Requested by:</h4>
-												 <p> ".$_SESSION['user']." </p>
-												 " ;
+										 $newPresent= $newPresent.
+                     "<br>
+<div class='newPresentTest'>
+    <div class='chore-icon'>
+      <img src='img/presents/".$row['type'].".png'>
+    </div>
+    <div class='chore-info'>
+      <table>
+        <tr>
+          <td style='color:#f05768;'>Title:</td>
+          <td style='width:65%'>".$row['p_name']."</td>
+          <td ><span style='color:#f05768'>Requested by: </span>".$row['fname']."</td>
+          
+        </tr>
+        <tr>
+          <td style='color:#f05768'>Description:</td>
+          <td style='width:60%'>".$row['p_description']."</td>
+		  <td style='width:20%'><a href='".$row['p_link']."' title='".$row['p_link']."' target='_blank' style='display:inline; color:#2fa7e0; background-color:#efefef; padding:8px 30px 8px 30px; font-weight:bold; margin-right:10%'>LINK</a></td>
+		</tr>
+		  
+        <tr>
+          <td style='color:#f05768'>Price: </td>";
+		    if($row['p_score']=='0')
+                         { $newPresent= $newPresent."<td> - </td>";}
+                       else{
+                        $newPresent= $newPresent."<td>".$row['p_score']."</td> " ;
+                       }
+		  
+        $newPresent= $newPresent."          
+        </tr>
+      </table>
+   </div>
+</div>                 
 
-										 $newPresent= $newPresent."
-										   </div>";
-										 echo $newPresent;
+                     ";
+      echo $newPresent;            
+											}
+										 
+										 
 										 }
-										 echo "</center>";
-								}
-
 						   
 						   ?>
 						   
-                    <!--add present button-->
-                           <div class="col-lg-3 newPresent">
-                              <img src="img/green-plus.png" alt="Add new present" class="newItemBtn" id="newPresentBtn">
-                              <div class="addPresent" style="display:none">
-                                 <hr>
-                                 <form action="gifts.php" onsubmit="return validateForm()" name="myPresentForm" method="POST">
-                                    <table>
-                                       <tr>
-                                          <td>Present name:</td>
-                                          <td><input type="text" name="presentName" maxlength="11" class="form-control formFont">
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td>Description:</td>
-                                          <td><input type="text" name="presentDescription" maxlength="22" class="formFont"></td>
-                                       </tr>
-                                       <tr>
-                                          <td>Link (optional):</td>
-                                          <td><input type="link" name="presentLink" class="formFont"></td>
-                                       </tr>
-                                       <tr>
-                                          <td>
-										    <button type="submit" id="addPresentBtn" onclick="addPresent();" value="Add Present">Add Present</button>										  
-                                          </td>
-                                          <td><input type="button" value="CLOSE"></td>
-                                       </tr>
-                                    </table>
-                                 </form>
-                              </div>
-                           </div>
+						   
+                    
+    
+						   
+						   
+						   
+						   
+						   
+						   
+					<!-- End try-- -->	   
+						   
+						   
+						   
+						   
                         </div>
                         <!--  end tab 2-->
+						
+						
                         <!--  ------- tab 3 ------- -->
                         <div class="tab-pane fade" id="p3">
-						<?php
-					
-							$g_history = "SELECT p_name, p_description, p_username, p_score FROM presents WHERE p_status='1'";
-							$result = $conn->query($g_history);
+						
+						 <h1>Family memers purchase history:</h1>
+            <?php
+         
+              $g_history = "SELECT p_name, p_description, p_username, p_score,dop FROM presents inner join users on p_username=username WHERE p_status='1' and familyid=(select distinct familyid from users where username='".$_SESSION['user']."' ) order by dop DESC";
+              $result = $conn->query($g_history);
 
-							if ($result->num_rows > 0) {
-								 echo "<table id='gifts_history'  class='cell-border row-border hover order-column'>     <thead>
+              if ($result->num_rows > 0) {
+                 echo "<table class='homiesTables' style='font-size:18px;'>     <thead>
+                                 <tr class='tableHeaders'>
+                                    <th>User name </th>
+                                    <th>Present</th>
+                                    <th>Price</th>
+                                    <th>Date of purchase</th>
+                                 </tr>
+                              </thead>
+                 <tbody>";
+                 // output data of each row
+                 while($row = $result->fetch_assoc()) {
+                   echo "<tr><td id='userName'>" . $row["p_username"]. "</td><td id='giftName'>" . $row["p_name"]. " </td>
+                   <td id='giftPrice'>" . $row["p_score"]. " </td><td id='giftDateOfPurchase'>" . $row["dop"]. " </td></tr>";
+                 }
+                 echo "</tbody></table>";
+              } else {
+                   echo "<table id='gifts_history'  class='homiesTables'>     
+                   <thead>
                                  <tr id='tableHeaders'>
                                     <th>User name </th>
                                     <th>Present</th>
@@ -390,31 +558,14 @@
                                     <th>Date of purchase</th>
                                  </tr>
                               </thead>
-							   <tbody>";
-								 // output data of each row
-								 while($row = $result->fetch_assoc()) {
-									 echo "<tr><td id='userName'>" . $row["p_username"]. "</td><td id='giftName'>" . $row["p_name"]. " </td>
-									 <td id='giftPrice'>" . $row["p_score"]. " </td><td id='giftDateOfPurchase'>" . $row["p_name"]. " </td></tr>";
-								 }
-								 echo "</tbody></table>";
-							} else {
-									 echo "<table id='gifts_history'  class='cell-border row-border hover order-column'>     
-									 <thead>
-                                 <tr id='tableHeaders'>
-                                    <th>User name </th>
-                                    <th>Present</th>
-                                    <th>Price</th>
-                                    <th>Date of purchase</th>
-                                 </tr>
-                              </thead>
-							  </table>";
-							}
-						
-						?>
-						
-						
-						
-						
+                </table>";
+              }
+            
+            ?>
+            
+            
+            
+            
                            <!--<table id="gifts_history"  class="cell-border row-border hover order-column">
                               <thead>
                                  <tr id="tableHeaders">
@@ -454,21 +605,7 @@
             <!-- end row -->
          </div>
       </main>
-      <footer>
-        <!-- <span style="color:white;font-size: 18px">© 2018 </span>	
-         <ul>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li><a href="#">link</a></li>
-            <li style="border-right:0"><a href="#">link</a></li>
-         </ul>-->
-      </footer>
-
-	  
-	  														
-					 
-							
-					
+          
 <!--scripts-->
 <?php
         if(isset($_POST['presentName'])){
@@ -484,67 +621,40 @@
     }
 ?>
 
-<!--data table script-->							
-      <script>
-         $(document).ready( function () {
-         
-           $('#gifts_history').DataTable();
-         
-         } );
-         
-         
-         
-         $('#gifts_history').DataTable( {
-         
-         autoFill: true,
-         
-         responsive: true} );
-         
-         
-         
-      </script>
-         	
-      </script>
       <!--functions-->
       <script>
-         function assignChore()
-         
-         {
-         
-         //assign the chore to the user
-         
-         }
+
          
          
          
          /*function validateForm(){
          var chname = document.forms["myChoreForm"]["chore_name"].value;
-         		if (chname == "") 
-         		{alert("Please insert chore name");
-         		return false;}
-         		
+            if (chname == "") 
+            {alert("Please insert chore name");
+            return false;}
+            
          var chdescription = document.forms["myChoreForm"]["chore_description"].value;
-         		if (chdescription == "") 
-         		{alert("Please insert chore description");
-         		return false;}
+            if (chdescription == "") 
+            {alert("Please insert chore description");
+            return false;}
          
          var chschore = document.forms["myChoreForm"]["chore_score"].value;
-         		if (chschore == "") 
-         		{alert("Please insert chore schore");
-         		return false;}
+            if (chschore == "") 
+            {alert("Please insert chore schore");
+            return false;}
          var prname = document.forms["myPresentForm"]["present_name"].value;
-         		if (prname == "") 
-         		{alert("Please insert present name");
-         		return false;}
+            if (prname == "") 
+            {alert("Please insert present name");
+            return false;}
          var prdescription = document.forms["myPresentForm"]["present_description"].value;
-         	if (prdescription == "") 
-         	{alert("Please insert present description");
-         	return false;}		
-         	
+          if (prdescription == "") 
+          {alert("Please insert present description");
+          return false;}    
+          
          var prprice = document.forms["myPresentForm"]["present_price"].value;
-         	if (prprice == "") 
-         	{alert("Please insert price for present");
-         	return false;}
+          if (prprice == "") 
+          {alert("Please insert price for present");
+          return false;}
          
          }*/
          

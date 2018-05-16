@@ -10,11 +10,8 @@ function getLiveData(searchQuery){
         "requestType": "getRecipe"
     },
     function(data, status){
-
-        console.log("rquest is good");
-        //console.log(data);
+        $('#gif').hide(); 
         renderData(data);
-
 
     });
   }
@@ -29,7 +26,7 @@ function loadGroceryListFromDb(groupId){
     function(data, status){
 
         console.log("loadGroceryListFromDb is good");
-        console.log(data);
+        //console.log(data);
 
         var groceryListArray=JSON.parse(data);
 
@@ -37,8 +34,8 @@ function loadGroceryListFromDb(groupId){
         createGroceryListRow(groceryListArray[i]);
       }
       
-      pages = pager1.getPages();
-      refreshPapers(1);
+    //  pages = pager1.getPages();
+      //refreshPapers(1);
         //console.log(data);
     });
   }
@@ -55,19 +52,19 @@ function loadGroceryListFromDb(groupId){
     },
     function(data, status){
 
-        console.log("rez:"+data);
-    });
-  }
+      //console.log("rez:"+data);
+  
+     });
+    };
+  
 
 
-
-  function saveRecipeIngredient(jsonData,groupId){
+  function saveRecipeIngredient(jsonData){
     var url='http://ilayel.mtacloud.co.il/homies/dev/recipeController.php';
 
     $.post(url,
     {
         "jsonData": jsonData,
-        "groupId":groupId,
         "requestType": "saveRecipeIngredient"
     },
     function(data, status){

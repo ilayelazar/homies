@@ -9,9 +9,8 @@ if (is_ajax()) {
       case "getRecipe": getLiveDataFromApi(); 
       break;
       case "saveRecipeIngredient": {
-        $group_id= $_POST['groupId'];
         $json_data= $_POST['jsonData'];
-        saveRecipeIngredient($group_id,$json_data);
+        saveRecipeIngredient($json_data);
       } 
       break;
       case "loadGroceryList": {
@@ -38,6 +37,21 @@ if (is_ajax()) {
 //Function to check if the request is an AJAX request
 function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+}
+
+function findGroupID(){
+  $mysqli=new customMysqli;
+  $conn=false;
+  $conn=$mysqli->createConnection($conn);
+  
+  $select_sql="SELECT familyid FROM `users` WHERE `username`='"  .  $_SESSION["user"]  .  "';";   
+  $familyid=$mysqli->executeSQL($conn,$select_sql);
+
+
+  $mysqli->closeConnection($conn);
+  $familyid= json_decode($familyid,true)[0]["familyid"];
+  return intval ($familyid);
+
 }
 
 function getLiveDataFromApi(){
@@ -86,8 +100,8 @@ function getLiveDataFromApi(){
   echo $server_output;
 }
 
-function saveRecipeIngredient($group_id,$json_data){
-
+function saveRecipeIngredient($json_data){
+  $familyid=findGroupID();
   $mysqli=new customMysqli;
   $conn=false;
   $conn=$mysqli->createConnection($conn);
@@ -98,7 +112,7 @@ function saveRecipeIngredient($group_id,$json_data){
   $insert_sql.=" VALUES ";
 
   foreach($data_array as $key=>$ing_arr){
-          $insert_sql.="('1','".$ing_arr["text"]."','".$ing_arr["weight"]."','gram')," ;
+          $insert_sql.="('".$familyid."','".$ing_arr["text"]."','".$ing_arr["weight"]."','Gram')," ;
   }
   $insert_sql = rtrim($insert_sql, ',');
 
@@ -108,16 +122,16 @@ function saveRecipeIngredient($group_id,$json_data){
 
   $mysqli->closeConnection($conn);
   
-  echo $rez;
+  echo $insert_sql;
 }
 
 function loadGroceryList($group_id){
-
+  $group_id=findGroupID();
   $mysqli=new customMysqli;
   $conn=false;
   $conn=$mysqli->createConnection($conn);
 
-  $select_sql="SELECT * FROM `shopping_list` WHERE `familyid` ='1' ";   
+  $select_sql="SELECT * FROM `shopping_list` WHERE `familyid` ='".$group_id. "' ";   
 
   $rez=$mysqli->executeSQL($conn,$select_sql);
 
@@ -129,7 +143,7 @@ function loadGroceryList($group_id){
 }
 
 function saveGroceryListToDb($group_id,$json_data){
-  
+  $group_id=findGroupID();
   $mysqli=new customMysqli;
   $conn=false;
   $conn=$mysqli->createConnection($conn);

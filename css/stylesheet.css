@@ -1,7 +1,144 @@
 body{
-     /*background: url("../img/background.png") ;*/
-     background-size: cover;
+     background:#efefef;
 }
+
+*
+{
+	font-family: 'Rubik', sans-serif !important;
+}
+.glyphicon{
+    font-family:'Glyphicons Halflings' !important;
+}
+
+.links
+{
+	color:blue;
+}
+
+
+
+.moduleHeader
+{
+	color: white;
+	margin-left:20px !important;
+	font-size:33px;
+	font-weight:bold;
+	display:inline-block;
+	
+	float:left;
+	
+/* Header */    
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background-color: transparent;
+}
+#nav-ul{
+    float:right;
+}
+.pull-right>.dropdown-menu {
+     right: auto; 
+    left: auto;
+}
+.dropdown-menu .row{
+    margin:0;
+    padding:5px;
+}
+header>.container>.row{
+    margin:0;
+}
+#dropdown-options{
+    background-color: lightgray;
+    color:black;
+    list-style-type: none;
+    height:100%;
+    padding:0;
+
+}
+
+#myTabs li{
+
+}
+
+#dropdown-options li{
+    padding-top:6px;
+    text-align: center;
+    border-bottom:2px dotted black;
+    height:40px;
+    font-size: 18px;
+    width:100%;
+}
+#dropdown-options li:hover{
+    background-color: white;
+}
+input[value='Logout']{
+    padding: 2px;
+    color: black;
+    outline: 0;
+    border: 0;
+    width: 100px;
+    font-size: 20px;
+    margin-left: 20px;
+    background-color: lightgray;
+}
+
+
+button{
+	font-weight: bold;
+	background-color: #efefef;
+	color: #4c4c54;
+	border: solid #efefef 6px;
+}
+
+input[type=button]{
+	font-weight: bold;
+	background-color: #efefef;
+	color: #4c4c54;
+	border: solid #efefef 6px;
+}
+
+
+
+.homiesTables{
+	width:90%;
+	background-color:#efefef;
+	margin:auto;
+	/*border: solid white;*/	
+}
+.homiesTables tr{
+  text-align: center;
+  border-bottom:1px solid black;
+}
+.homiesTables tr:nth-child(even){
+  background-color: lightgray;
+}
+.homiesTables tr:hover{
+background-color: rgba(240, 87, 104, 0.3);
+}
+ .tableHeaders>th{	
+     font-size: 25px;
+     color:white;
+     background-color: #f05768;
+	 text-align:center;
+}
+
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #f05768;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.empty_data{
+	font-size:20px;
+	color: gray;
+	margin-left: 70px;
+	margin-top:30px;
+}
+
+
+
  #logo-img{
      padding-top:0;
      margin-left:50px;
@@ -17,6 +154,10 @@ body{
 }
  header .container{
      width:100%;
+}
+.container{
+    margin:0;
+    padding:0;
 }
 
  #signup img{
@@ -38,12 +179,11 @@ body{
      padding:0;
 }
  header .navbar.navbar-default{
-     padding-right:30px;
      height: 100%;
      margin: 0;
      padding-top: 10px !important;
-     background-color: #3b3b3b;
-     padding: 0 2%;
+     background-color:#00c5b9;
+     padding: 0;
      height: 70px;
      border:0;
      border-radius: 0;
@@ -52,7 +192,7 @@ body{
      color:white;
      font-weight: bolder;
      font-size: 45px;
-     font-family: Mina;
+    
      letter-spacing: 5px;
 }
 #profile{
@@ -65,11 +205,13 @@ body{
      color:white;
      font-size: 18px;
 }
+
  nav .box ul{
      padding-left:0;
      height:100%;
      width:100%;
      line-height: 30px;
+	 /*background-color:#f05768;*/
 }
  nav .box li{
     cursor: pointer;
@@ -84,6 +226,7 @@ body{
      text-decoration: none;
      color:white;
      font-weight: bold;
+	 
 }
  nav .box a li:hover{
      text-decoration: none;
@@ -91,15 +234,16 @@ body{
 
  main{
      min-height: 100%;
-     margin: 0 auto -50px;
-     padding:0 50px 50px 50px;
+     /*margin: 0 auto -50px;*/
+     /*padding:0 50px 50px 50px;*/
 }
  main .box{
-     background-color: rgba(0,0,0, .3);
+     /*background-color: rgba(0,0,0, .3);*/
      border-radius: 15px;
      margin: auto;
      margin-bottom:25px;
-     border: 3px double white;
+     /*border: 3px double white;*/
+	 border: 3px;
      width:75%;
 }
 main nav{
@@ -107,7 +251,7 @@ padding:0;
 height:100%;
 }
 main .box h1{
-    color:white;
+    color:#464646;
 }
 .form.box{
      margin:0;
@@ -132,6 +276,131 @@ nav .box{
     border-top:0;
     border-radius: 0 0 15px 15px;
 }
+hr{
+    margin:0;
+    width:90%;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+/*testing login */
+.panel-login {
+    border-color: #ccc; 
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-heading{
+    background: #f05768;
+
+}
+.panel-login>.panel-heading {
+	margin-top:40px;
+    color: #00415d;
+    background-color:#f05768;
+    border-color: #fff;
+	
+    
+}
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+    
+    font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
+}
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
+}
+#top-box{
+    font-weight: bold;
+    background-color: rgba(16,13,43,0.55);
+}
+
+#welcome-user h1{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+    padding:0;
+    width:100px;
+ }
+ .dropdown  form{
+    display: inline-block;
+ }
+/*end test login */
 
  @media(max-width:768px){
      #login-dp{
@@ -143,57 +412,38 @@ nav .box{
          border-top:0 none;
     }
 }
- footer{
-     position:fixed;
-     bottom:0;
-     width:100%;
-     display:block;
-     background-color: currentColor;
-     height:50px;
-}
- footer ul{
-     display: inline;
-     text-align: center;
-     margin: auto;
-     width: 50%;
-}
- footer li{
-     width:20%;
-     line-height: 35px;
-     display:inline-block;
-     font-size: 18px;
-     border-right:2px solid black;
-}
- footer li:hover{
-     background-color: gray;
-}
- footer li a{
-     text-decoration: none;
-     color:white;
-}
- footer li a:hover{
-     text-decoration: none;
-     color:black;
-     font-weight: bolder;
-}
- footer li a:visited{
-     color:white;
-}
+
 /* Responsive*/
-/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+/*-------- Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
  @media screen and (min-width: 1024px){
-    #welcome-user{
+.sidenav {
+    z-index:6;
+    display:none;
+    height: 100%;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color: darkgray;
+    overflow-x: hidden;
+    /*border-right:3px solid ;
+    border-top:3px solid;*/
 }
-#welcome-user h1{
-    width:25%;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    margin:5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    
+}
+
+.sidenav a:hover {
+    color: #f05768;
+}
+#welcome-user{
     float:right;
-    font-size: 26px !important;
-    color:white;
-    vertical-align: middle;
-    font-style: italic;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 10px;
 }
 #welcome-user form{
     display: inline-block;
@@ -209,70 +459,113 @@ nav .box{
 }
 
 }
- @media screen and (min-width: 768px) and (max-width: 1024px) {
+ @media screen and (min-width: 480px) and (max-width: 1024px) {
+     .navbar-default .navbar-brand{
+        font-size: 32px;
+        letter-spacing: 0px;
+        width:35%;
+    }
+     .nav.navbar-nav{
+         display:inline-block !important;
+         margin: 0;
+    }
+    .dropdown{
+        position: absolute;
+        top:0;
+        left:40%;
+    }
 }
  @media screen and (max-width: 480px) {
     /* smartphone */
-     main nav{
-         display:none;
+     .dropdown{
+        left:70%;
+        margin-top:0;
+        font-size: 10px;
+        padding:0;
+     }
+     .navbar-default .navbar-brand{
+        font-size: 16px;
+     } 
+     .dropdown button{
+        padding:0;
      }
      main{
          padding:0;
     }
-     .box{
-         width:100%;
-         border-radius: 0;
-    }
-     footer{
-         display:none;
-    }
-     #top-nav{
-         display:none;
-    }
      .navbar-default .navbar-brand{
-         font-size: 28px;
-         display: none;
-    }
-     #logo-img{
-         margin-left: 0;
-    }
-     header .navbar.navbar-default{
-         padding:0;
-         width:100%;
+        font-size: 20px;
+        letter-spacing: 0px;
+        display: inline-block;
     }
      .nav.navbar-nav{
          display:inline-block !important;
          float: left;
          margin: 0;
     }
+    header{
+        position: fixed;
+        top:0;
+        width:100%;
+        z-index: 5;
+        height:50px;
+    }
+    main{
+        margin-top:70px;
+    }
+    #welcome-user h1{
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    margin:0;
+    padding:0;
+    width:50px;
+ }
+ input[value='Logout']{
+    margin-right:10px;
+    padding: 2px;
+    color: black;
+    outline: 0;
+    border: 0;
+    width: 60px;
+    margin-left: 15px;
+    font-size: 16px;
+    background-color: lightgray;   
 }
+    .dropdown{
+        position: absolute;
+        top:0;
+        left:50%;
+    }
 
 
 
 
 .sidenav {
+    z-index:6;
     display:none;
-    width:50%;
-    height: 110%;
+    height: 100%;
     position: fixed;
-    z-index: 1;
-    top: 0;
+    top: 70px;
     left: 0;
-    background-color: #111;
+    background-color: darkgray;
     overflow-x: hidden;
+    /*border-right:3px solid ;
+    border-top:3px solid;*/
 }
 
 .sidenav a {
     padding: 8px 8px 8px 32px;
+	margin:5px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: white;
     display: block;
     transition: 0.3s;
+	
 }
 
 .sidenav a:hover {
-    color: white;
+    color: #f05768;
 }
 
 
@@ -282,6 +575,7 @@ nav .box{
 }
 
 @media screen and (max-height: 450px) {
+  #mySidenav{width:60%;}
   .sidenav {padding-top: 15px;width:40%;}
   .sidenav a {font-size: 18px;}
 }
@@ -291,3 +585,39 @@ nav .box{
 
 
 
+
+
+
+@media only screen 
+  and (min-device-width: 560px) 
+  and (max-device-width: 767px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+.sidenav {
+    z-index:6;
+    display:none;
+    height: 100%;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color: darkgray;
+    overflow-x: hidden;
+    /*border-right:3px solid ;
+    border-top:3px solid;*/
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    margin:5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    
+}
+
+.sidenav a:hover {
+    color: #f05768;
+}
+
+}

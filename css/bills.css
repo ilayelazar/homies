@@ -34,7 +34,7 @@ table #addRow img{
 
 #pay_bills thead th{
 
-	font-size: 1vw !important;
+	font-size: 22% !important;
 	text-align: center;	
 
 }
@@ -65,11 +65,7 @@ textarea[name="comments"]{
 
 }
 
-.panel-heading{
 
-    background-color: lightblue;
-
-}
 
 .panel-heading ul{
 
@@ -83,7 +79,7 @@ textarea[name="comments"]{
 
     width:24%;
 
-    font-size: 24px;
+    font-size: 162%;
 
 }
 
@@ -144,8 +140,6 @@ table.dataTable tbody td {
     padding: 2px 2px !important;
 
 }
-
-
 
 
 
@@ -226,21 +220,11 @@ table.dataTable{
 
     }
 
- #addRow{
-     padding-top: 0px;
-    margin-top: 3px;
-    margin-right: -120px;
- }
- #saveAllBills{
-     padding-top: 0px;
-    margin-top: 3px;
-    margin-right: -30px;
- }
 
 
 
 #count-record{
- margin-left: -49px;
+ margin-left: -6%;
 }
 
     table.dataTable tfoot th{
@@ -256,12 +240,11 @@ table.dataTable{
 
 
 table.dataTable tbody tr {
-  font-size: 45%;
+  font-size: 62%;
 }
 
 .pagination-style{
-  left: -204px;
-  top: 29px;
+  left: 78%;
 }
 
 .btn-danger{
@@ -277,10 +260,95 @@ margin-top: 24px;
   font-size: 207%;
 }
 
-#tableHeaders>th
-{
-  font-size: 20px;
-  color:white;
-  background-color: lightblue;
-  text-align:  center;
+
+ .tableHeaders>th{  
+     font-size: 40%;
+     color:white;
+     background-color: #f05768;
+   text-align:center;
+}
+
+tr.tableHeaders {
+    font-size: 583%;
+}
+.functional_buttons {
+    margin-top: -2%;
+    width: 100%;
+    margin-left: 38%;
+  }
+
+
+#report_body td {
+    text-align: center;
+    font-size: 3em;
+}
+
+a{
+  color: black;
+}
+
+
+
+#export_button {
+    margin-top: -6%;
+}
+
+
+
+#export {
+    border: solid 1px;
+    background-color: #5cb85c;
+    height: 39px;
+    color: white;
+    cursor: pointer;
+    margin-left: 551%;
+    margin-top: -38%;
+    width: 129%;
+    border-radius: 4px;
+
+}
+
+#wrapper {
+
+  margin-top: -1%;
+}
+
+
+.datepickerBills {
+    font-size: 205% !important;
+}
+
+
+.date{
+  width: 20%;
+}
+.type{
+  width: 10%;
+}
+
+.sum{
+  width: 10%;
+}
+.due_d{
+  width: 20%;
+}
+.comments{
+  width: 40%;
+}
+
+.tableHeaders1>th{
+     font-size: 144%;
+     color:white;
+     background-color: #f05768;
+     text-align:center;
+}
+
+#addRow {
+    background-color: #2a1f1f9c;
+    color: #f05768;
+    margin-left: -18%;
+}
+
+#initial-display{
+      margin-left: -234%;
 }

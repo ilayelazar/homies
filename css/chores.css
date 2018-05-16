@@ -8,19 +8,20 @@
 .nav-tabs, .nav-pills {
     text-align:center;
 }
-.panel-heading{
-    background: background-color:rgba(0, 0, 0, 0.5);
 
-}
 .panel-heading ul{
     width:100%;
     margin: auto;
 }
-.panel-heading li{
-    width:24%;
-}
+
 .nav{
 text-align: center;
+}
+
+h4
+{
+	color:#f05768;
+	font-weight:bold;
 }
 
 main .task-box{
@@ -36,18 +37,40 @@ main .task-box button{
     padding:5px 20px 5px 20px;
 }
 
-#tableHeaders>th
-{
-	font-size: 20px;
-	color:white;
-	background-color: lightblue;
-}
 
-<!--Add chore -->
+      /*Add chore*/
 .addChore{
     display: none;
     margin-top: 15px;
+	background-color:#c2c2c2;
+
 }
+
+
+#chorePicture{
+  width:100%;
+  height:100%;
+  display: inline-block;
+    padding:3.5px;
+	
+
+}
+#chorePicture label{
+  padding:0;
+}
+#chorePicture .row{
+  margin:0;
+  padding:0;
+}
+#chorePicture label>input{
+visibility:hidden;
+}
+
+#chorePicture label img{
+  max-width: 35px;
+  cursor:pointer;
+}
+
 
 a{
     color:inherit;
@@ -73,25 +96,67 @@ a{
 }
 
 main input[type="reset"], main input[id="addChoreBtn"]{
-
-    display: inline-block;
-
 }
 
 main input[type="reset"], main input[id="addPresentBtn"]{
-
-    display: inline-block;
-
 }
 
+.add-chore-icon img:hover
+{
+	background-color:#efefef;
+	
+}
 iframe{
     border-radius: 5px;
 }
 
 .newChore
 {
-	height:300px;
+display: block;
 }
+
+.scoreboard{
+	
+	color:white;
+	font-size: 20px;
+	 border:solid white;
+	/*overflow:hidden;
+	border-radius: 35px;	*/
+	
+	
+}
+.scoreboard tr>td{
+	padding:5px !important;
+}
+
+.scoreboard tr:nth-child(1){
+	background-color:blue;
+	font-weight:bold;
+}
+.scoreboard tr:nth-child(2){
+	background-color:red;	
+}
+.scoreboard tr:nth-child(3){
+	/*background-color:rgba(224,186,116,0.7);*/
+	background-color:green;
+}
+.scoreboard tr:nth-child(4){
+	background-color:orange;	
+}
+
+.SB_Headers>th
+{
+	
+     color:white;
+     background-color: lightblue;
+	 text-align:center;
+}
+.SB_Headers>th>img{
+	width:55px;
+	height:55px;
+	padding:5px;
+}
+
 
 .addChore table *{
     margin-top:10px !important;
@@ -218,4 +283,78 @@ main #p4 #gifts_history
 	width:150px;
 }
 
+}
+
+
+.newChoreTest{
+  display: block;
+  width:95%;
+  height:150px;
+  margin:2% 5%;
+ 
+}
+.chore-icon{
+  vertical-align: top;
+  height:100%;
+  display: inline-block;
+  background-color: lightgray;
+  	margin-right:10px;
+
+}
+.chore-icon img{
+  display: block;
+  vertical-align: top;
+  height:100%;
+   padding:10px;
+ 
+}
+.chore-info{
+  width:80%;
+  height:100%;
+  display: inline-block;
+  background-color: lightgray;
+   padding:10px;
+  
+}
+.chore-info table{
+  padding-top:;
+  display: inline-block;
+  width:100%;
+  height:100%;
+}
+.chore-info table tbody{
+  display: block;
+  width: 100%;
+  height: 100%
+}
+.chore-info table tr{
+  display:block;
+  width:100%;
+  height:33%;
+}
+.chore-info table td{
+  padding-top:15px;
+  /*padding-left:50px;*/
+  height: 100%;
+  text-align: left;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.add-chore-icon{
+  display: inline-block;
+  height: 100%;  
+  width: 18%;
+  vertical-align: top;
+  background-color: lightgray;
+  padding-bottom: 1.5%; 
+	margin-right:10px; 
+margin-top:0px;	
+border: solid #e894ab 3px;
+}
+.add-chore-icon .row{
+  width:100%;
+}
+.new-chore{
+  
 }

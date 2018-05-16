@@ -1,0 +1,193 @@
+main{
+     padding-top: 25px;
+}
+ main h1{
+     text-align: center;
+     font-weight: bold;
+     font-family: calibri;
+     font-size: 48px;
+     color:black;
+}
+ .nav-buttons{
+     padding-left: 10%;
+}
+ main .container {
+     margin:0 2%;
+     display:inline-block;
+	 
+     width:27%;
+     transition: all .2s ease-in-out;
+}
+ main .btn-link, main .btn-link:hover{
+     text-decoration: none;
+     color:black !important;
+     font-size: 34px;
+     font-weight: bold;
+}
+ main .container p{
+     text-align: center;
+     line-height: 60%;
+}
+ main .image {
+     margin:auto;
+     opacity: 1;
+     transition: .5s ease;
+}
+ main .middle {
+     transition: .5s ease;
+     opacity: 0;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+}
+main .btn-link .container:hover{
+
+}
+main .container:hover .image {
+     opacity: 0.3;
+
+}
+ main .container:hover .middle {
+     opacity: 1;
+}
+ main .text {
+    color:white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+     display: none;
+     font-weight:bolder;
+     font-size: 36px;
+     font-family: Arial;
+}
+ main .row{
+     margin-bottom: 3%;
+     width:100%;
+}
+ main .container img{
+     width:75%;
+     
+ }
+
+
+ /*  DASHBOARD   */
+
+#dashboard{
+display: table
+} 
+#dashboard  table{
+    width:100%;
+
+
+ }
+#dashboard  table tr{
+    letter-spacing: 2px;    
+     border: 0;
+     width: 100%;
+    display: block;
+    margin: 5px; 
+    border: 2px blue solid;
+    border-radius: 10px;
+    background-color: rgba(16,13,43,0.55);
+    color:white;
+    font-family: 'Ubuntu', sans-serif;
+}
+#dashboard th{
+    color:navy;
+    font-weight: bolder;
+    font-size: 22px;
+    background-color: lightblue;
+    display: block;
+    text-align: center;
+    border-radius: 10px; 
+}
+#dashboard  table td{
+    display: inline-block;
+    width:45%;
+    margin:auto;
+    text-align: center;    
+    padding: 5px;
+}
+#dashboard td img{
+max-height: 70px;
+}
+
+
+#welcome-user{
+    text-align: right;
+    float:right;
+    width:70%;
+    display: inline-block;
+}
+
+ /* Responsive*/
+/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+ @media screen and (min-width: 1024px){
+
+     main .container {
+         margin:0 2%;
+         display:inline-block;
+         transition: all .2s ease-in-out;
+    }
+     main .container p{
+         line-height: 120px;
+         text-align: center;
+    }
+     main .box{
+         width:65%;
+    }
+    .nav-button-label{
+    display: none;
+    }
+}
+ @media screen and (min-width: 768px) and (max-width: 1024px) {
+     main{
+         padding:0;
+    }
+     .box{
+         width:100%;
+    }
+    .nav-button-label{
+    display: none;
+    }
+}
+ @media screen and (max-width: 480px) {
+    /* smartphone */
+     main{
+         padding:0;
+    }
+     main .box{
+      display: block;
+         height:50vh;
+         width:100%;
+         border-radius: 0;
+    }
+     .nav-buttons {
+     padding-left: 1%;
+}
+     main .btn-link{
+         text-decoration: none;
+         color:black !important;
+         font-size: 34px;
+         font-weight: bold;
+    }
+     main .container {
+        width:27%;
+         margin:0 2%;
+         display:inline-block;
+         transition: all .2s ease-in-out;
+    }
+
+     main .container p{
+         text-align: center;
+         line-height: 5vh;
+         font-size: 20px;
+    }
+ 
+     footer{
+         display:none;
+    }
+     main .text {
+    font-size: 14px;
+    }
+
