@@ -1,0 +1,88 @@
+main{
+	/*background-color: lightgray;
+	width:70%;
+	border-radius: 50px;
+	margin:auto;
+	border:1px solid gray;
+	margin-top: 4vh;*/
+	
+	height:80%;
+	padding:3%;
+}
+main table{
+	width:100%;
+	height:60vh;
+}
+main table tr{
+	width:80%;
+	height:30%;
+	margin:auto;
+}
+main table td{
+	width:50%;
+}
+
+.personal_info{
+	font-size:18px;
+}
+
+label{
+	width:75%;
+
+	/*margin-top: 5px;*/
+
+	text-align: left;
+}
+td input[type='password']{
+	width:40%;
+	display: inline-block;
+	float:right;
+}
+#myFamily img{
+	width:60px;
+}
+#change-pw-btn{
+	vertical-align: top;
+	background-color: navy;
+	color:white;
+	padding:10px;
+	font-weight: bold;
+	display: block;
+}
+#account-status{
+	font-weight:bold;
+	display:inline-block;
+}
+#change_password{
+	background-color:#f05768;
+	padding:5px;
+	font-size:17px;
+}
+.pass_reset{
+	float:right;
+}
+#userImg{
+	width:60px;
+	height:60px;
+	display:inline-block;
+	padding:7px;
+}
+#my_family{
+	background-color:lightgray;	
+}
+@media screen and (max-width: 768px) {
+/*smartphone*/
+	label input[type='password']{
+		display: block;
+		float:left;
+		width:100%;
+	}
+	.personal_info{
+		margin-left:5px;
+
+	}
+	main table td {
+    width: 100%;
+    display: block;
+	}
+}

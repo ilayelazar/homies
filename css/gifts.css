@@ -1,0 +1,367 @@
+/*center the tabs 
+/*http://stackoverflow.com/questions/9421966/how-do-i-center-the-twitter-bootstrap-tabs-on-the-page*/
+ .nav-tabs > li, .nav-pills > li {
+     float:none;
+     display:inline-block;
+}
+ .nav-tabs, .nav-pills {
+     text-align:center;
+}
+ .panel-heading ul{
+     width:100%;
+     margin: auto;
+}
+ .nav{
+     text-align: center;
+}
+ h4 {
+     color:#f05768;
+     font-weight:bold;
+}
+ main .task-box{
+     margin: 5px 30px;
+     border-radius: 5px;
+     height:270px;
+     background-color:lightblue;
+     border:2px solid black;
+     transition: all .2s ease-in-out;
+     max-height: 300px;
+}
+ main .task-box button{
+     padding:5px 20px 5px 20px;
+}
+/*Add chore*/
+ .addChore{
+     display: none;
+     margin-top: 15px;
+     background-color:#c2c2c2;
+}
+ #chorePicture{
+     width:100%;
+     height:100%;
+     display: inline-block;
+     padding:3.5px;
+}
+ #chorePicture label{
+     padding:0;
+}
+ #chorePicture .row{
+     margin:0;
+     padding:0;
+}
+ #chorePicture label>input{
+     visibility:hidden;
+}
+ #chorePicture label img{
+     max-width: 35px;
+     cursor:pointer;
+}
+ a{
+     color:inherit;
+}
+ .form.box{
+     width:49%;
+     margin:0;
+     display: inline-block;
+     vertical-align: top;
+}
+ .descriptionFont {
+     font-size:14px;
+     font-weight:bold;
+}
+ .formFont {
+     font-size:16px;
+     font-weight:bold;
+     color:black;
+}
+ main input[type="reset"], main input[id="addChoreBtn"]{
+}
+ main input[type="reset"], main input[id="addPresentBtn"]{
+}
+ .add-chore-icon img:hover {
+     background-color:#efefef;
+}
+ iframe{
+     border-radius: 5px;
+}
+ .newChore {
+     display: block;
+}
+ .scoreboard{
+     color:white;
+     font-size: 20px;
+     border:solid white;
+    /*overflow:hidden;
+     border-radius: 35px;
+     */
+}
+ .scoreboard tr>td{
+     padding:5px !important;
+}
+ .SB_Headers>th {
+     color:white;
+     background-color: #0ba89f;
+     text-align:center;
+}
+ .SB_Headers>th>img{
+     width:55px;
+     height:55px;
+     padding:5px;
+}
+.scoreboard tr:nth-child(1){
+     background-color:#1bc1b7;
+     font-weight:bold;
+}
+ .scoreboard tr:nth-child(2){
+     background-color:#50d6cf;
+}
+ .scoreboard tr:nth-child(3){
+    /*background-color:rgba(224,186,116,0.7);
+    */
+     background-color:#76e4db;
+}
+ .scoreboard tr:nth-child(4){
+     background-color:#aaefe6;
+}
+ .scoreboard tr:nth-child(5){
+     background-color:#c3fbf9;
+}
+ .addChore table *{
+     margin-top:10px !important;
+     font-weight: bold;
+}
+ .addChore table td{
+     font-size: 18px;
+     padding-right: 5px;
+     color: black;
+}
+ .addChore table{
+     margin:auto;
+}
+ .addChore table input{
+     width:100%;
+}
+ .newPresent table input{
+     width:100%;
+}
+ .newPresent {
+     height:300px;
+     max-height: 300px;
+}
+ .addPresent table *{
+     margin-top:10px !important;
+     font-weight: bold;
+}
+ .addPresent table td{
+     font-size: 18px;
+     padding-right: 5px;
+     color: black;
+}
+ .addPresent table{
+     margin:auto;
+}
+ .score_for_chore{
+     font-weight:bold;
+     font-size:25px;
+     color:purple;
+     margin:0px;
+     padding:0px;
+}
+
+ .newChoreTest{
+     display: block;
+     width:90%;
+     height:150px;
+     margin:2% 5%;
+}
+ .chore-icon{
+     vertical-align: top;
+     height:100%;
+     display: inline-block;
+     background-color: lightgray;
+     margin-right:10px;
+}
+ .chore-icon img{
+     display: block;
+     width:100%;
+     padding:10px;
+}
+ .chore-info{
+     width:75%;
+     height:100%;
+     display: inline-block;
+     background-color: lightgray;
+     padding:10px;
+}
+ .chore-info table{
+     display: inline-block;
+     width:100%;
+     height:100%;
+}
+ .chore-info table tbody{
+     display: block;
+     width: 100%;
+     height: 100% 
+}
+ .chore-info table tr{
+     display:block;
+     width:100%;
+     height:33%;
+}
+ .chore-info table td{
+     padding-top:10px;
+     height: 100%;
+     text-align: left;
+     font-size: 18px;
+     display: inline-block;
+}
+
+ .add-chore-icon{
+     display: inline-block;
+     height: 100%;
+     width: 18%;
+     vertical-align: top;
+     background-color: lightgray;
+     padding-bottom: 1.5%;
+     margin-right:10px;
+     margin-top:0px;
+     border: solid #e894ab 3px;
+}
+ .add-chore-icon .row{
+     width:100%;
+}
+ .new-chore{
+}
+ .td_description{
+     width:60%;
+}
+
+/* Responsive*/
+/*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
+  @media screen and (min-width: 768px) and (max-width: 1280px){
+    
+  }
+ @media screen and (min-width: 768px){
+    /* Desktop */
+     main .box{
+         width:75%;
+    }
+     .panel-heading li{
+         font-size:24px;
+    }
+     .newChoreTest{
+         display: block;
+         width:90%;
+         height:150px;
+         margin:2% 5%;
+    }
+
+}
+ 
+ @media (max-width: 768px) {
+     .td_description{
+         width:100%;
+    }
+     .chore-info table td {
+         font-size: 13px;
+    }
+
+
+     #addChoreBtn {
+         font-size: 92%;
+    }
+    
+     #chores_from_db {
+         margin-top: 51%;
+    }
+     #new_info {
+         margin-top: 1%;
+         margin-left: 0%;
+         width: 100%;
+         height: auto;
+    }
+     .panel-heading {
+         padding: 0;
+         width: 100%;
+    }
+     .moduleHeader{
+         font-size: 26px;
+    }
+     .add-chore-icon {
+         display: inline-block;
+         height: 100%;
+         width: 100%;
+         vertical-align: top;
+         background-color: lightgray;
+         padding-bottom: 1.5%;
+         margin-right: 10px;
+         margin-top: 0px;
+         border: solid #e894ab 3px;
+    }
+     #chores_from_db .newChoreTest{
+         margin-bottom: 0.5%;
+    }
+    .chore-icon{
+         height: auto;
+         width:20%;
+    }
+    .chore-info{
+         width:60% !important;
+         height:auto;
+         border-bottom:2px solid white;
+    }
+     #chores_table tr{
+         line-height: 0.6em !important;
+    }
+     .newChoreTest{
+     display: block;
+     width:100%;
+     height:150px;
+     margin:2% 0;
+    }
+    #new_info{
+      width:100% !important;
+    }
+    #p2 .chore-info table td,#p3 .chore-info table td{
+    padding-top:0;
+    }
+    .new.chore-info{
+        width:100% !important;
+    }
+    .tab-pane h3{
+        margin-top:155px;
+    }
+    #newPresentButton{
+        width:40%;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    /* smartphone */
+     main{
+         padding:0;
+    }
+     nav .box{
+         display:none;
+    }
+     main .box{
+         width:100%;
+         border-radius:0;
+    }
+     .panel-heading{
+         padding:0;
+    }
+     .panel-heading li{
+         font-size:12px;
+         text-align:left;
+         vertical-align:middle;
+    }
+
+     .newPresent {
+         display:inline-block;
+    }
+     main #p4 #gifts_history {
+         width:150px;
+    }
+}
