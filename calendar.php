@@ -20,10 +20,8 @@
 
       <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
-      <!--Date Picker -->
+ <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
       <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css">
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
    </head>
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <body>
@@ -37,17 +35,17 @@
         else{
             echo 
             "
-            <script> console.log('password match'); 
-            $(document).ready(function(){
+        <script> console.log('password match'); 
+          $(document).ready(function(){
             $('.nav.navbar-nav').css('display','none');
-            document.getElementById('welcome-user').innerHTML ='<h1><span>".$_SESSION['user']."</span><form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
-            });
-            </script>
+            document.getElementById('welcome-user').innerHTML ='<h3><span>".$_SESSION['user']."</span></h3><form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+          });
+        </script>
         ";       
         }  
-?>
+	?>
 <!-- /DIV for users that arn't logged in! hide everything - show msg -->
-    <header>
+<header>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -55,45 +53,20 @@
                         <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
-                            
                             <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav" id="nav-ul">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/login-img.png" width=90px> <b class="caret"></b></a>
-                                    <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                                  <li>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <form class="form" role="form" method="post" action="homepage.php" accept-charset="UTF-8" id="login-nav">
-                                             <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                                             </div>
-                                             <div class="form-group">
-                                                <label class="sr-only" for="password">Password</label>
-                                                <input type="password" class="form-control" name="userpass" id="password" placeholder="Password" required>
-                                             </div>
-                                             <center>
-                                                <label>
-                                                <input style="width:initial" type="checkbox">Remember me
-                                                </label>
-                                                <div class="form-group">
-                                                   <button type="submit" class="btn btn-success btn-block">Login</button>
-                                                </div>
-                                             </center>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </li>
-                           <li><a href="signup.php" id="signup"><img src="img/signup.png"></a></li>
-                        </ul>
-                        <div id="welcome-user"></div>                        
-                     </div>
+<div class="dropdown pull-right" style='margin-top:6px'>
+  <button style="vertical-align: top;display:inline-block" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   <div id="welcome-user"></div> <span style="float:left;" class="caret"></span>
+  </button> <?php echo "<form style='vertical-align: top;display:inline-block' action='logout.php' method='post'><input style='margin-right:10px; border-radius:2px;' type='submit' value='Logout'>
+</button></form>";
+  ?>
+  <ul class="dropdown-menu">
+    <li><a href="myprofile.php"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" style='width:20px'>   My Profile</a></li>
+    <li><a href="adminpanel.php"><img src="https://i1.wp.com/lavaprotocols.com/wp-content/uploads/2014/09/google-apps-admin-panel-icon.png?ssl=1" width=20px alt="">   Admin Panel</a></li>
+  </ul>
+</div>
                      <!-- /.navbar-collapse -->
                   </nav>
                </div>
@@ -103,55 +76,141 @@
       <div id="mySidenav" class="sidenav">
          <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
          </span>
-         <a href="homepage.php">Homepage</a>
+         <a href="homepage.php"><span class="glyphicon glyphicon-home"></span>Homepage</a>
          <a href="chores.php">Chores</a>
          <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
          <a href="calendar.php">Calendar</a> 
-		<a href="bills.php">Bills</a> 		 
+  	 <a id="billsPage" href="bills.php">Bills</a>        
       </div>
-      <script>
 
-      </script>
+
 <?php
-// if(isset($_POST['newNote'])){
-//         $servername = "zebra.mtacloud.co.il";
-//         $username = "ilayel";
-//         $password = "homies123";
-//         $dbname = "ilayel_homies";
+      //--------dblogin---------
 
-//         // Create connection
-//         $conn = new mysqli($servername, $username, $password, $dbname);
-//         // Check connection
-//         if ($conn->connect_error) {
-//              die("Connection failed: " . $conn->connect_error);
-//           echo "<script>console.log('DB Connection failed');</script>";
-            
-//         } 
-//         else{
-//           echo "<script>console.log('DB Connection succeded');</script>";
-//         }
-//                //Generate note id by current max (id+1)
-//                 $max_noteid = "SELECT COALESCE(max(noteid) ,0) as max FROM notes";
-//                 $res = $conn->query($max_noteid);
-//                 $row = $res->fetch_assoc();
-//                 $n_id = $row["max"];
-//                 $n_id = $n_id + 1;
-//                   //insert query
-//           //$q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',1,'".$_POST['note_title']."','2018-04-25')";
 
-//            $q_insertNote = "INSERT INTO notes (`noteid`, `n_creator`, `text`, `familyid`, `note_title`, `note_date`) VALUES (".$n_id.",'".$_SESSION['user']."','".$_POST['newNote']."',(SELECT familyid FROM users WHERE username='".$_SESSION['user']."'),'".$_POST['note_title']."',now())";;
-//           $conn->query($q_insertNote);
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
 
-//         }
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
+	
+	
+	if($row['permission'] == 0){
+      echo "<script>
+      $(document).ready(function(){
+        $('#billsPage').hide();
+      });
+      </script>";
+	}
 
 ?>
 
+<!--  PHP -->
+    <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            document.getElementById('welcome-user').innerHTML ='<h3><span>".$_SESSION['user']."</span></h3>';
+            });
+            </script>
+        ";       
+        }  
+      //  dblogin 
+    $servername = "zebra.mtacloud.co.il";
+    $username = "ilayel";
+    $password = "homies123";
+    $dbname = "ilayel_homies";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    //get permission for user
+    $q_user = "SELECT * FROM users where username ='".$_SESSION['user']."'";
+    $result = $conn->query($q_user);
+    $row = $result->fetch_assoc();
+    $permission = $row["permission"];
+        if($permission == 0){    //if user is child - show points in dropdown
+        $score = $row['score'];
+            echo 
+        "
+        <script>
+        $(document).ready(function(){
+          $('.dropdown-menu li:nth-child(2)').html('<img src=\'img/coin.png\' width=35px>  ".$score."');
+          //alert(".$score.");
+        });
+        </script>
+        ";
+        }
+
+?>
       <main>
-         
          <div class="box">
          <div class="box cal" style="padding:1%">
-            
+           <h2 class="header"> Our Calendar </h2>
+            <br>
+            <br>
+            <div id="public-alert" style="display:none">
+            	<center>
+	<span style='color:red; font-size: 28px'><u>Warning!</u><br>Your calendar is not public to your family!</span>
+                  <ol style='list-style-position: inside; font-size:16px;'>
+                    <li>
+                      <strong>Enter the following link: <a style='font-size:18px; color:blue' target='_blank' href='https://calendar.google.com'>https://calendar.google.com</a></strong>
+                    </li><br>
+                    <li>
+                      Enter 'Settings and sharing' for the new calendar you created.<br>
+                      <img style = 'margin:5px;' src='img/public-calendar/1.png' height=300px>
+                    </li><br>
+                    <li>
+                      Tick 'Make available to public' so you're family members can also see this calendar.<br>
+                      <img style = 'margin:5px;' src='img/public-calendar/2.png' height=200px>
+                    </li>
+                  </ol>
+                  <form action="#">
+                 <label> <input id="declaration" required type="checkbox">
+						By clicking the 'FINISH' button I declare that I have performed the steps above.
+                 </label><br>
+				<button  id='make-public'  style='background-color: lightgray; border:1px solid black'>FINISH</button>
+              </form>
+              </center>
+                 </div>
+        
+<script>
+$("#make-public").click(function(){
+if(document.getElementById("declaration").checked == true){
+		$.post(
+			'toggleCalendar.php',
+			{
+				isPublic:1
+			},
+			function(){
+				window.location='calendar.php';		
+			}
+		);
+	}	
+});
+</script>
         <?php 
         session_start();
         $servername = "zebra.mtacloud.co.il";
@@ -170,13 +229,28 @@
           echo "<script>console.log('DB Connection succeded');</script>";
         }
 
-          $q_calid = "SELECT calendarid FROM family WHERE familyid =(SELECT familyid FROM users where username = '".$_SESSION['user']."')";
+          $q_calid = "SELECT calendarid, isCalPublic FROM family WHERE familyid =(SELECT familyid FROM users where username = '".$_SESSION['user']."')";
                 $res = $conn->query($q_calid);
                 $row = $res->fetch_assoc();
                 $c_id = $row["calendarid"];
 
+                if($row['isCalPublic'] == '1'){
           echo "<iframe id='google-cal' src='https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%239999ff&amp;src=".$c_id."&amp;color=%23AB8B00&amp;ctz=Asia%2FJerusalem' style='border-width:0' width='100%' height='600' frameborder='1' scrolling='no'>
           </iframe>";
+          }
+          else{
+          	echo "
+				<script>
+				$(document).ready(function(){
+					$('#public-alert').show();
+					$('#newEventBtn').hide();
+				});
+
+				</script>
+          	";
+          }
+
+
          ?>
 
 
@@ -193,6 +267,7 @@
                <form action="#" method="POST">
                                 
                   <table>
+				  <br>
                     <tr><th><span style="color:red; margin-left: -50px"><i>* required fields</i></span></th></tr>
                      <tr>
                         <td>Start Date<span style='color:red'>*</span>:</td>
@@ -238,12 +313,12 @@
                    
 
                     <script> 
-                    $(function(){
-                       $('.timepicker-e').timepicker(); 
-                       $('.timepicker-e').timepicker({ 'scrollDefault': 'now' });
+                    $(document).ready(function(){
+                        $(function(){
+                         $('.timepicker-e').timepicker(); 
+                         $('.timepicker-e').timepicker({ 'scrollDefault': 'now' });
+                      });
                     });
-                      
-;
                     </script>
 
     <script type="text/javascript">
@@ -426,7 +501,7 @@ if(document.getElementsByName('location')[0].value != ""){
 if(document.getElementsByName('description')[0].value != ""){
     event['description']=document.getElementsByName('description')[0].value;
 } 
-
+event['attendees'] = [ {'email': response } ];
         // var event = 
         // {
         //   'summary': document.getElementsByName('summary')[0].value,
@@ -444,14 +519,14 @@ if(document.getElementsByName('description')[0].value != ""){
 
 
         var request = gapi.client.calendar.events.insert({
-          'calendarId': response,
+          'calendarId': 'primary',
           'resource': event
         });
       request.execute(function(event) {
         $("#addEventForm").slideToggle();
       });
     
-    document.getElementById('google-cal').src = document.getElementById('google-cal').src;
+    setTimeout(function(){document.getElementById('google-cal').src = document.getElementById('google-cal').src;},1000);
 
     }
    });
@@ -462,7 +537,38 @@ if(document.getElementsByName('description')[0].value != ""){
 }
     </script>
 
+		   
+<?php
+      //--------dblogin---------
 
+
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
+	
+	
+	if($row['permission'] == 0){
+      echo "<script>
+      $(document).ready(function(){
+        $('#newEventBtn').hide();
+      });
+      </script>";
+	}
+
+?>
 
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
@@ -472,17 +578,17 @@ if(document.getElementsByName('description')[0].value != ""){
                   </table>
                </form>
                <br>
-               <button id="addEventBtn" onclick="insertEvent();"> Add Event</button>
-                <input type="reset" value="Reset form" style="background-color: pink;font-style: initial;"><br>            <pre id="content" style="width:75%"></pre>
+	
+			   
+               <button id="addEventBtn" class="calendar_btn" onclick="insertEvent();" style="background-color:#00c5b9;"> Add Event</button>
+                <input type="reset" class="calendar_btn" value="Reset form" style="background-color: #f05768; font-style: initial;"><br> <pre id="content" style="width:75%"></pre>
 </td>
             </div>
          </div>
       </center>
          <script>
             $('#sandbox-container input').datepicker({
-            
             	format:'yyyy-mm-dd',
-            
                 autoclose: true
             
             });
@@ -538,8 +644,8 @@ if(document.getElementsByName('description')[0].value != ""){
                <h1 style="display:inline-block;">Group notes</h1>
                <div class="box newNote" style="margin:3% 1 0%;width:initial;"><img src="img/new-note.png" alt="" id="newNoteImg" width=50px>
                   <div id="newNoteContent">
-                    <label style="float:left"><strong>Title:</strong><input name="note_title" style="margin:10px; width:60%"></label>
-                    <textarea rows="3" name="newNote"></textarea>
+                    <label style="float:left"><strong>Title:</strong><input name="note_title" style="margin:10px; width:60%" id='note-titleid'></label>
+                    <textarea rows="3" name="newNote" id='note_text'></textarea>
                     </form>
                     <button id="addNoteBtn" onclick='insertNote();'>Add</button>
                   </div>
@@ -596,10 +702,25 @@ if(document.getElementsByName('description')[0].value != ""){
          </div>
         
       </main>
+	  
+	  <?php
+	  
+	  	 if($u_per=='1'){
+                echo "
+                <script>			
+                $(document).ready(function(){
+                  $(\"#addEventBtn\").hide();
+                });
+                </script>
+                ";
+              }		
+	  ?>
 <script>
   function insertNote(){
     var title = document.getElementsByName('note_title')[0].value;
     var note = document.getElementsByName('newNote')[0].value;
+    title = title.replace("'", "\'");
+    note = note.replace("'", "''");
     $.post(
        'insertnote.php', //url
       {
@@ -611,6 +732,7 @@ if(document.getElementsByName('description')[0].value != ""){
       }    
       );
   }
+
     function removeNote(noteid){
       var flag = confirm("Are you sure you want to delete this note?");
         if (flag) {
@@ -626,6 +748,19 @@ if(document.getElementsByName('description')[0].value != ""){
                   );
        } 
     }
+
+    document.getElementById('note-titleid').onkeypress = function () {
+    if (event.keyCode === 39) { // apostrophe
+        // prevent the keypress
+        return false;
+    }
+  }
+    document.getElementById('note_text').onkeypress = function () {
+    if (event.keyCode === 39) { // apostrophe
+        // prevent the keypress
+        return false;
+    }
+  }
 </script>
    </body>
 </html>

@@ -39,6 +39,7 @@ if ($conn->connect_error) {
 		$deleteFromWaiting="DELETE from GroupWaitlist where username='" .$_POST['username']. "' ";
 		$conn->query($deleteFromWaiting); 
 	}
+	
 	else if($addOrRemove=='2')
 	{
 		$deleteFromGroup="UPDATE users

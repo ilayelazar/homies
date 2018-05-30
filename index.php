@@ -87,7 +87,7 @@
         <?php
         session_start();
         if(isset($_POST['username'])){
-          echo "<script> alert(1);</script>";
+          echo "<script> </script>";
         $servername = "zebra.mtacloud.co.il";
         $username = "ilayel";
         $password = "homies123";
@@ -122,11 +122,11 @@
                         exit;
                     }
                     else{
-                      echo "Wrong password, try again...";
+                      echo "<p style='color:white'>Wrong password, try again...</p>";
                       echo 
                       " <div class='text-center'>
                          <a href='#' tabindex='5' class='forgot-password'>Forgot Password?</a>
-                                      </div>";  
+                                      </div><br>";  
                     }
             }
             else{
@@ -138,18 +138,37 @@
             </form>
                 <hr>
             <h4 style="color:white;">
+			<br>
               New here? <a href="signup.php">Join Us!</a>
+			  
             </h4>
+			<br>
         </div>
 
     </div>
     </aside>
 	  <main>
-     <center>
-	  <img id="flow_chart" src="img/flowChart.png" alt="homies flow chart">
-	 </center>   
+      <center>
+	  <img id="flow_chart" class='img-responsive' src="img/flowChart.png" alt="homies flow chart">
+  </center>
 	  <!--Welcome--- -->
-	
+	<div class="container" style='display:none'>
+    <div class="row">
+      <div class="flow col-md-4">
+        <h3>Create new family</h3>
+      </div>
+      <div class="flow col-md-4">
+        <h3>Add your family members</h3>
+        <ul>
+          <li>Parents</li>
+          <li>Children</li>
+        </ul>
+      </div>
+      <div class="flow col-md-4">
+        <h3>Start managing your family life with homies</h3>
+      </div>
+    </div> 
+  </div>
 <div id="manage_your_family">
     <h1> Manage your family life <span class="dot"></span></h1>
     <h3>Homies will help you manage your family.</h3>
@@ -159,23 +178,23 @@
 	
     <center>
         <row>
-          <div id="Dchores" class="index-imgs col-md-2 col-sm-6 col-md-offset-1"><img src="img/index_img/index_chores.png">
-            <p><span style="color:#2f3848; font-weight: bold;">Manage house chores.</span><br>do house chores and earn points! </p>
+          <div id="Dchores" class="index-imgs col-lg-2 col-sm-6 col-lg-offset-1"><img src="img/index_img/index_chores.png">
+            <p><h3 style="color:#2f3848; font-weight: bold;">Manage house chores.</h3>do house chores and earn points!</p>
             
         </div>
-        <div id="Dbills" class="index-imgs col-md-2 col-sm-6"><img src="img/index_img/wallet.png">
-            <p><span style="color:#2f3848; font-weight: bold;">Bills management.</span><br>Easy manage your bills and payments history</p>
+        <div id="Dbills" class="index-imgs col-lg-2 col-sm-6"><img src="img/index_img/wallet.png">
+            <p><h3 style="color:#2f3848; font-weight: bold;">Bills management.</h3>Easy manage your bills and payments history</p>
         </div>
-        <div id="Dcalendar" class="index-imgs col-md-2 col-sm-6"><img src="img/index_img/calendar.png">
-            <p><span style="color:#2f3848; font-weight: bold;">Family calendar.</span><br>Shared family calendar and important notes</p>
+        <div id="Dcalendar" class="index-imgs col-lg-2 col-sm-6"><img src="img/index_img/calendar.png">
+            <p><h3 style="color:#2f3848; font-weight: bold;">Family calendar.</h3>Shared family calendar and important notes</p>
         </div>
         <!--<div id="Dadmin"class="index-imgs col-md-2 col-sm-6" ><img src="img/index_img/"><p></p></div> -->
-        <div id="Dgifts" class="index-imgs col-md-2 col-sm-6"><img src="img/index_img/gift.png">
-            <p><span style="color:#2f3848; font-weight: bold;">Gift shop.</span><br>Creat a wishlist and buy your gifts with the points you earned!</p>
+        <div id="Dgifts" class="index-imgs col-lg-2 col-sm-6"><img src="img/index_img/gift.png">
+            <p><h3 style="color:#2f3848; font-weight: bold;">Gift shop.</h3>Create a wishlist and buy your gifts with the points you earned!</p>
           
         </div>
-        <div id="Dshopping" class="index-imgs col-md-2 col-md-offset-right-1 col-sm-6"><img src="img/index_img/shoping.png">
-            <p><span style="color:#2f3848; font-weight: bold;">Family Shopping List.</span> manage an accurate and relevant shopping list</p>
+        <div id="Dshopping" class="index-imgs col-lg-2 col-lg-offset-right-1 col-sm-6"><img src="img/index_img/shoping.png">
+            <p><h3 style="color:#2f3848; font-weight: bold;">Family Shopping List.</h3> manage an accurate and relevant shopping list</p>
         </div>
       </row>
     </center>

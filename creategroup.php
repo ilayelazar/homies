@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="img/family-logo.png">
-      <title>Homies - Homepage</title>
+      <title>Homies - create group</title>
 
           <!-- FONTS -->
       <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
@@ -21,7 +21,16 @@
       <script src="script/newcalendar.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-      <link rel="stylesheet" type="text/css" href="css/homepage.css">   
+      <link rel="stylesheet" type="text/css" href="css/homepage.css">  
+      <link rel="stylesheet" type="text/css" href="css/creategroup.css">  
+     
+	  <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+      <link rel="stylesheet" type="text/css" href="css/myprofile.css">
+	  
+	   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+	  
+	  
+	  
     <style>
       #join-family-form,#create-family-form{
         display:none;
@@ -43,28 +52,90 @@
    </head>
    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
    <body>
-         
-  <header>
-     <div class="container">
-        <div class="row">              
-           <div class="col-md-12">
-              <nav class="navbar navbar-default" role="navigation">
-             <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
-                 <!-- Brand and toggle get grouped for better mobile display -->
-                 <div class="navbar-header">   
-                    <img src="img/family-logo.png" width="50px" id="logo-img">  
-                    <a class="navbar-brand" href="#">Homies</a>
-                 </div>
-                 <!-- Collect the nav links, forms, and other content for toggling -->
-                 <div id="welcome-user"></div>
-              </nav>
+ <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+						
+<div class="dropdown pull-right" style='margin-top:6px'>
+  <button style="vertical-align: top;display:inline-block" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   <div id="welcome-user"></div> <span style="float:left;" class="caret"></span>
+  </button> <?php echo "<form style='vertical-align: top;display:inline-block' action='logout.php' method='post'><input style='margin-right:10px; border-radius:2px;' type='submit' value='Logout'>
+</button></form>";
+  ?>
+  <ul class="dropdown-menu">
+    <li><a href="myprofile.php"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" style='width:20px'> My Profile</a></li>
+    
+  </ul>
+</div>
+
+                     <!-- /.navbar-collapse -->
+                  </nav>
                </div>
             </div>
          </div>
       </header>
+	  
+	  <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            document.getElementById('welcome-user').innerHTML ='<h3><span>".$_SESSION['user']."</span></h3>';
+            });
+            </script>
+        ";       
+        }  
+      //  dblogin 
+    $servername = "zebra.mtacloud.co.il";
+    $username = "ilayel";
+    $password = "homies123";
+    $dbname = "ilayel_homies";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    //get permission for user
+    $q_user = "SELECT * FROM users where username ='".$_SESSION['user']."'";
+    $result = $conn->query($q_user);
+    $row = $result->fetch_assoc();
+    $permission = $row["permission"];
+        if($permission == 0){    //if user is child - show points in dropdown
+        $score = $row['score'];
+            echo 
+        "
+        <script>
+        $(document).ready(function(){
+          $('.dropdown-menu li:nth-child(2)').html('<img src=\'img/coin.png\' width=35px>  ".$score."');
+          //alert(".$score.");
+        });
+        </script>
+        ";
+        }
+
+?>
+
       <main>
          <div class="box">
-            <h1 style="color:white;">Welcome to Homies!</h1>
+		 
+            <h1 style="color:#f05768;">Welcome to Homies!</h1>
+			<br>
               <center>
                    
                    <?php
@@ -89,58 +160,71 @@
           $result = $conn->query($q_permission);
           $row = $result->fetch_assoc();
           $permission = $row["permission"];
-            $msg="<div class='box'>
+            $msg="<div class=''>
                 <button class='grp-buttons' id='join-family-btn'>Join a family</button>  
-                <button class='grp-buttons' id='create-family-btn'>Create new family group!</button>
+                <button class='grp-buttons' id='create-family-btn'>Create new family group</button>
                   <br>
                   <div id='join-family-form'>
                       <form method='GET' action='creategroup.php'>
-                        <label>Search family: <input type='text' placeholder='search for username...' name='search-username'></label>
-                        <input type='submit' value='search'>
+                        <label><h3 style='display:inline-block'> Search your family: </h3> <input style='display:inline-block; margin-right:10px; font-weight:normal;' type='text' placeholder='search for username...' title='enter name or username of someone in the family you want to join to' name='search-username'></label>
+                        <input style='font-size:15px;' type='submit' value='search'>
                       </form>                         
                   </div>
-                          <div id='create-family-form'>
-                      <h3>New Family Calendar:</h3>
-                       <button id='authorize-button'>1. Log in with Google to create new family group</button><br><br>
-                         <label style='display:none'>Choose a nickname for your family:<br>
-                            <input type='text' id='familyname'></label>
-                         <br>
-                         <a href='#instructions'>
-                         <button onclick='newCalendar();'>
-                          2.Create new family calendar
-                         </button></a>  
-							
-							                <div id='instructions' style='width:80%;display:none'>
-                  	<span style='color:red; font-size: 28px'><u>important!</u></span>
-                  <h1>Make your new calendar public for your family!</h1>
+				  
+				  
+                  <div id='create-family-form'>
+				  <ol style='text-align:left;'>
+                      <li style = 'font-size:20px;'><h3 style='display:inline-block'>Choose a unique nickname for your family: </h3><input style='width:33%; font-size:16px;' type='text' placeholder='For example: the coolest Levys' id='familyname'></label></li>
+					  
+                      <li style = 'font-size:20px;'><h3>Create a new family calendar:</h3>
+					  <p class='empty_data' style='margin:3px; padding:1px; color:gray;'> to start use Homies, first create your family calendar. A detailed instructions will appear after you press the button:</p>
+					  <a href='#instructions'>
+					  <br><br>
+					  <center>
+                         <button style = 'font-size:20px; border:3px solid #32bad4; border-radius:5px;' onclick='newCalendar();'>
+                          Create a family and get instructions 
+                         </button></a> <br>
+                       <img src='img/loader.gif' id='gif'  style='display:none'>
 
-                  <ol>
+						 </center>
+					  
+					  </li>
+					         
+					  
+                       <button id='authorize-button'>1. Log in with Google to create new family group</button><br><br>
+                         <label style='display:none'>
+                         
+                           
+					</ol>
+
+				
+							
+				  <div id='instructions' style='width:90%;display:none;'>
+				   <h3>Make your new calendar public for your family</h3>	
+                  	<span style='color:red; font-size: 28px'><u>important!</u></span>
+                  <ol style='text-align:left; font-size:16px;'>
                     <li>
-                      <strong>Enter the following link: <a style='font-size:18px' href='https://calendar.google.com'>https://calendar.google.com</a></strong>
-                    </li>
+                      <strong>Enter the following link: <a style='font-size:18px' target='_blank' href='https://calendar.google.com'>https://calendar.google.com</a></strong>
+                    </li><br>
                     <li>
                       Enter 'Settings and sharing' for the new calendar you created.
-                      <img src='img/public-calendar/1.png' height=300px>
-                    </li>
+                      <img style = 'margin:5px;' src='img/public-calendar/1.png' height=300px>
+                    </li><br>
                     <li>
                       Tick 'Make available to public' so you're family members can also see this calendar.
-                      <img src='img/public-calendar/2.png' height=200px>
+                      <img style = 'margin:5px;' src='img/public-calendar/2.png' height=200px>
                     </li>
                   </ol>
+                     <h2 style = 'font-size:27px; text-align:center; color:#f05768'>Homies team wish you a pleasant family life ! <h2>
+                  <label style='text-align:center;margin:auto'> <input style='zoom: 1.5;' type='checkbox' id='finish-instructions'>I have finished the process</label><br><br>
+                  <button style='display:none; padding:10px' id='goto-hp'>GO TO HOMEPAGE <span class='dot'></span></button>
                 </div>
                            </div>
 
                         </div>
                         ";
                           echo $msg;
-                          echo "
-                          <script> console.log('password match'); 
-                          $(document).ready(function(){
-                          $('.navbar-nav').css('display','none');
-                          document.getElementById('welcome-user').innerHTML ='Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form>';
-                          });
-                          </script>
-                      ";     
+                          
             $_SESSION['familyid'] = $row['familyid'];      
                           if($permission == '0'){
                             echo "
@@ -155,20 +239,28 @@
                                         FROM users INNER JOIN family using(familyid)
                                         WHERE username LIKE '%" . $_GET['search-username'] ."%' ";
                                         $result = $conn->query($q_family);
-                echo '<strong>Search results for \''.$_GET['search-username'].'\'... </strong><br>';
 
               if ($result->num_rows > 0){
+				   echo "<strong id='search-res'>Search results for '".$_GET['search-username']."'... </strong><br>";
+                  
                  // output data of each row
                  while($row = $result->fetch_assoc()) {
                    $s_result=$s_result. "
-                    <div style='border:1px solid black;width:32%; padding:1%;margin:1%;display:inline-block; background-color:white;' class='family-circle'>
-                      <h4> #". $row['familyid'] ."<br>Full name: ".$row['fname']." ".$row['lname']."<br>user: ".$row['username']." <br>Family name:".$row['name'] . " </h4>
+                    <div class='family-circle col-lg-3 col-sm-6'>
+                      <h4> <span style=''>#". $row['familyid'] ."</span><br><span class='family_res'>Full name:</span> ".$row['fname']." ".$row['lname']."<br> 
+					  <span class='family_res'>user:</span> ".$row['username']." <br><span class='family_res'>Family name:</span>".$row['name'] . " </h4>
                       <button onclick='joinFamily(".$row['familyid'].");'> JOIN Group </button>
                     </div>
                    ";
                  }
+                  echo "<center>";
+                     echo $s_result; 
+                  echo "</center>";
               }
-            echo $s_result;   
+			  else{
+				  echo "<strong id='search-res'>No results for '".$_GET['search-username']."'... </strong><br>";
+			  }
+          
            }
 ?>
 
@@ -250,26 +342,44 @@
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
+
+
 function newCalendar() {
+
     var familyname = document.getElementById("familyname").value;
+	
+	if(familyname=="")
+
+	{document.getElementById("familyname").style.border = '2px solid red';
+    alert('Please choose a family nickname');}
+else{
+    $("a[href='#instructions'] button, #familyname").hide();
+      $('#gif').show();
     var request = gapi.client.calendar.calendars.insert({
       "resource" :
             {"summary": familyname}
     });
     request.execute(function(calendar){
-    	alert(calendar.id); //
+    	/*alert(calendar.id);*/ //
       var name = calendar.summary;
     	var calid = calendar.id;
     	 
        $.post('createcalendar.php',   // url
-            { calendarid:calid ,
-              name: name}, // data to be submit
+            { 
+              calendarid:calid ,
+              name: name
+              }, // data to be submit
             function(response) {// success callback
-              alert(response);
-              	$("#instructions").slideDown();
-            }
-        );          
-    });
+              setTimeout(function(){
+                $('#gif').hide();},1000);
+          			alert('Successfully created a new group! ');
+                       	$("#instructions").slideDown();
+                      }
+              );          
+          });
+    }
+
+
 }
 
 </script>
@@ -282,6 +392,7 @@ function newCalendar() {
 
             </center>
          </div>
+		 <br><br><br><br><br>
       </main>
       <script>
           function joinFamily(familyid){
@@ -290,6 +401,7 @@ function newCalendar() {
                           function(data, status, jqXHR) {// success callback
                             window.location='creategroup.php';
                             alert("Your join request has been sent, Please wait until your parent approves your request.");
+                            window.location = 'myprofile.php';
                           }
                       );          
               }

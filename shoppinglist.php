@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Homie - Shopping list</title>
+      <title>Homies - Shopping list</title>
       <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -51,13 +51,13 @@
             <script> console.log('password match'); 
             $(document).ready(function(){
             $('.nav.navbar-nav').css('display','none');
-            document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+            document.getElementById('welcome-user').innerHTML ='<h3>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h3>';
             });
             </script>
         ";       
         }  
 ?>
-<!-- /DIV for users that arn't logged in! hide everything - show msg -->       
+<!-- /DIV for users that arn't logged in! hide everything - show msg -->
     <header>
         <div class="container">
             <div class="row">
@@ -66,25 +66,27 @@
                         <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
-                            
                             <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav" id="nav-ul">
-                                <li>
-                                    <a href="signup.php" id="signup"><img src="img/signup.png"></a>
-                                </li>
-                            </ul>
-                            <div id="welcome-user"></div>
+<div class="dropdown pull-right" style='margin-top:6px'>
+  <button style="vertical-align: top;display:inline-block" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   <div id="welcome-user"></div> <span style="float:left;" class="caret"></span>
+  </button> <?php echo "<form style='vertical-align: top;display:inline-block' action='logout.php' method='post'><input style='margin-right:10px; border-radius:2px;' type='submit' value='Logout'>
+</button></form>";
+  ?>
+  <ul class="dropdown-menu">
+    <li><a href="myprofile.php"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" style='width:20px'>   My Profile</a></li>
+    <li><a href="adminpanel.php"><img src="https://i1.wp.com/lavaprotocols.com/wp-content/uploads/2014/09/google-apps-admin-panel-icon.png?ssl=1" width=20px alt="">   Admin Panel</a></li>
+  </ul>
+</div>
 
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </nav>
-                </div>
+                     <!-- /.navbar-collapse -->
+                  </nav>
+               </div>
             </div>
-        </div>
-    </header>
+         </div>
+      </header>
       <div id="mySidenav" class="sidenav">
          <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
          </span>
@@ -92,19 +94,100 @@
          <a href="chores.php">Chores</a>
          <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
-         <a href="calendar.php">Calendar</a>  
-         <a href="bills.php">Bills</a>      
+         <a href="calendar.php">Calendar</a> 
+   	 <a id="billsPage" href="bills.php">Bills</a>        
       </div>
 
+
+<?php
+      //--------dblogin---------
+
+
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
+	
+	
+	if($row['permission'] == 0){
+      echo "<script>
+      $(document).ready(function(){
+        $('#billsPage').hide();
+      });
+      </script>";
+	}
+
+?>
+
+<!--  PHP -->
+    <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            document.getElementById('welcome-user').innerHTML ='<h3><span>".$_SESSION['user']."</span></h3>';
+            });
+            </script>
+        ";       
+        }  
+      //  dblogin 
+    $servername = "zebra.mtacloud.co.il";
+    $username = "ilayel";
+    $password = "homies123";
+    $dbname = "ilayel_homies";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    //get permission for user
+    $q_user = "SELECT * FROM users where username ='".$_SESSION['user']."'";
+    $result = $conn->query($q_user);
+    $row = $result->fetch_assoc();
+    $permission = $row["permission"];
+        if($permission == 0){    //if user is child - show points in dropdown
+        $score = $row['score'];
+            echo 
+        "
+        <script>
+        $(document).ready(function(){
+          $('.dropdown-menu li:nth-child(2)').html('<img src=\'img/coin.png\' width=35px>  ".$score."');
+          //alert(".$score.");
+        });
+        </script>
+        ";
+        }
+
+?>
       <main>
-        
-         <div class="box" style="width:75%">
+        <br><br>
+         <div class="box">
          <div class="panel-heading tabs" id="syllabus">
             <div class="tabbable">
                <ul class="nav nav-tabs" id="myTabs">
                 <span class="moduleHeader">Shopping </span>
-                  <li class="active"><a class="font_heading" href="#p1" data-toggle="tab"><strong>Grocery List</strong></a></li>
-                  <li><a class="font_heading" href="#p2" data-toggle="tab"><strong>Recipe Search</strong></a></li>
+                  <li class="active"><a class="font_heading" id="first_nav" href="#p1" data-toggle="tab"><strong>grocery list</strong></a></li>
+                  <li><a class="font_heading" id="second_nav" href="#p2" data-toggle="tab"><strong>recipe search</strong></a></li>
                </ul>
             </div>
          </div>
@@ -113,32 +196,41 @@
             <!--  ------- tab 1 ------- -->
             <div class="tab-pane fade in active" id="p1">
                <div id="pg1">
+			   
+			    <h3>Manage your current house grocery list</h3>
                   <div class="grocery_list" align=center>
                      <div id="wrraper">
+
                         <div class="row">
-                           <div class="col-md-12">
-                          <div class="input-group col-md-9">
-                           <div class="saved_alert" id="alert">
-                           </div>
-                            </div>
-                              <table id="grocery_list" class="hover order-column">
-                                    <div class="buttons_table">
-                                      <button  id="addRow"  class="btn btn-info">Add</button>
-                                      <button id="saveAllRows" class="btn btn-info"><b>Save</b></button>
-                                    </div>
-                                 <thead>
-                                    <tr class="tableHeaders">
-                                          <th id="item">item</th>
-                                          <th id= "amount">amount</th>
-                                          <th id="unit">unit</th>
-                                          <th class="no-sort"></th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                 </tbody>
-                              </table>
+                              <div class="col-md-9">
+                                   <div class="saved_alert" id="alert">
+                                   </div>
                               </div>
+                              <div id="buttons" class="col-md-3">
+                                        <div class="buttons_table functional_buttons">
+                                          <button  id="addRow"  class="btn btn-info">Add</button>
+                                          <button id="saveAllRows" class="btn btn-info"><b>Save</b></button>
+                                        </div>
+
+                               </div>
                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12 grocery_list">
+                                  <table id="grocery_list" class="hover order-column homiesTables">
+                                         <thead>
+                                            <tr class="tableHeaders">
+                                                  <th id="item">item</th>
+                                                  <th id= "amount">amount</th>
+                                                  <th id="unit">unit</th>
+                                                 <th class="no-sort"></th>
+                                            </tr>
+                                         </thead>
+                                         <tbody>
+                                         </tbody>
+                                    </table>
+                              </div>
+                            </div>
                            <div class="col-md-10 dataTables_wrapper not print">
                               <div id="main-pagination" class="dataTables_paginate paging_simple_numbers">
                               </div>
@@ -160,8 +252,9 @@
                <!--  ------- tab 2 ------- -->
                <div class="tab-pane fade " id="p2">
                   <div id="pg2">
-                     <div  class="row navbar-left">
-                        <div class="input-group col-md-3">
+				   <h3 class="search_title">Search a recipe, and import the grocery to your grocery list</h3>
+                     <div  style="padding:10px;" class="row navbar-left">
+                        <div class="input-group col-md-3" id="search_div">
                            <input id='Search' type="Search" placeholder="Search here you recipe..." class="form-control" />
                            <div class="search-btn input-group-btn">
                               <button class="btn btn-info">

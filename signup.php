@@ -4,7 +4,7 @@
    <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1" name="viewport">
    <link href="img/family-logo.png" rel="icon">
-   <title>Homies - Homepage</title>
+   <title>Homies - signup</title>
    <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet"><!-- Latest compiled and minified CSS -->
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"><!-- jQuery library -->
 
@@ -24,6 +24,14 @@
    <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
    <link href="css/stylesheet.css" rel="stylesheet" type="text/css">
    <link href="css/signup.css" rel="stylesheet" type="text/css">
+   
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	
+	 <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+
+   
 </head><!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <body>
    <header>
@@ -32,51 +40,20 @@
             <div class="col-md-12">
                <nav class="navbar navbar-default" role="navigation">
                   <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                     <img id="logo-img" src="img/family-logo.png" width="50px"> <a class="navbar-brand" href="homepage.php">Homies</a>
-                  </div><!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                           <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="img/login-img.png" width="90px"> <b class="caret"></b></a>
-                           <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                              <li>
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <form accept-charset="UTF-8" action="login" class="form" id="login-nav" method="post" name="login-nav" role="form">
-                                          <div class="form-group">
-                                             <label class="sr-only" for="exampleInputEmail2">Email address</label> <input class="form-control" id="username" placeholder="Username" required="" type="text">
-                                          </div>
-                                          <div class="form-group">
-                                             <label class="sr-only" for="password">Password</label> <input class="form-control" id="password" placeholder="Password" required="" type="password">
-                                          </div>
-                                          <center>
-                                             <label><input style="width:initial" type="checkbox">Remember me</label>
-                                             <div class="form-group">
-                                                <button class="btn btn-success btn-block" type="submit">Sign in</button>
-                                             </div>
-                                          </center>
-                                       </form>
-                                    </div>
-                                 </div>
-                              </li>
-                           </ul>
-                        </li>
-                        <li>
-                           <a href="#" id="signup"><img id="signup-img" height="60px" src="img/signup.png"></a>
-                        </li>
-                     </ul>
-                  </div><!-- /.navbar-collapse -->
-               </nav>
+                 <div class="navbar-header">
+                    <a class="navbar-brand" href="index.php">Homies<span class="dot"></span></a>
+                  </div>
+                </nav>
             </div>
          </div>
       </div>
    </header>
-   <main>
+   <main style="background-color:#efefef">
       <div class="box">
 
         <center>
-        <h1>REGISTER</h1>
+		<br>
+        <h1 style="background-color: #f05768; color:white; padding:6px; width:70%; border-radius:4px;">REGISTER</h1>
         <hr>
       </center>
          <!-- multistep form -->
@@ -91,7 +68,7 @@
               <!-- fieldsets -->
               <fieldset>
                 <h1 class="fs-title">Create your account<h1>
-                <h6 id="invalid-email-alert" style="color:red; display:none;">Invalid Email address!</h6>
+                <h6 id="invalid-email-alert" style="color:red; display:none;">Invalid fields, Please fill all the required fields!</h6>
                 <input required type="text" name="username" placeholder="Username" />                
                 <input required type="email" name="email" placeholder="Email" />
                 <input required id="userPass" type="password" name="password" placeholder="Password" minlength="6" maxlength="12">
@@ -101,19 +78,31 @@
               </fieldset>
 
               <fieldset>
-                <h2 class="fs-title">Personal Details</h2>
-                <input type="text" name="fname" placeholder="First Name" />
-                <input type="text" name="lname" placeholder="Last Name" />
-                
-                <h3>Category:</h3>
-                <label>
-                  <img src="img/parent.png" alt="">
-                  <input type="radio" name="permission" value="1">Parent
-                </label>
-                <label>
-                  <img src="img/children.png" alt="">
-                  <input type="radio" name="permission" value="0">Child
-                </label>
+                <h2 class="fs-title">Personal Details:</h2>
+                <input required type="text" name="fname" placeholder="First Name" />
+                <input required type="text" name="lname" placeholder="Last Name" />
+                <div id="gender">
+					<h3>Gender:</h3>
+						<label>
+							<img src="http://cdn.onlinewebfonts.com/svg/img_264370.png">
+							<input checked type="radio" name='gender' value='male'> Male 
+						</label>
+						<label>
+							<img src="https://cdn.onlinewebfonts.com/svg/img_361220.png">
+							<input type="radio" name='gender' value='female'>Female 
+						</label>
+                </div>
+                <div id="category">
+	                <h3>Category:</h3>
+	                <label>
+	                  <img src="img/parent.png" alt="">
+	                  <input type="radio" name="permission" value="1">Parent
+	                </label>
+	                <label>
+	                  <img src="img/children.png" alt="">
+	                  <input type="radio" name="permission" value="0">Child
+	                </label>
+                </div>
                <h4>Date of Birth</h4>
 <select name="DOBDay">
   <option> - Day - </option>
@@ -233,7 +222,7 @@
     <option value="1950">1950</option>
   </select>
                 <input style="display:block;margin:auto" type="button" name="previous" class="previous action-button" value="Previous" />
-                <input type="submit" name="submit"  value="Submit" />
+                <input type="submit" style="background-color:#27ae60" name="submit"  value="Submit" />
 
 
               </fieldset>
@@ -241,7 +230,18 @@
       </div>
 
 
-
+<script>
+$(document).ready(function(){
+	$("#pay_bills tr input").css("width","100%");
+});
+</script>
+<br><br><br><br><br>
    </main>
+   <footer>
+     <center>
+        Homies 2018©<br>
+      Ilay Elazar | Noy Tsarfaty | Nadia Medavdovski
+     </center>
+   </footer>
 </body>
 </html>

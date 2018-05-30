@@ -520,3 +520,38 @@
 [16-May-2018 09:39:50 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/ilayel/public_html/homies/dev/homepage.php on line 233
 [16-May-2018 09:39:53 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/ilayel/public_html/homies/dev/homepage.php on line 233
 [16-May-2018 09:40:08 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/ilayel/public_html/homies/dev/homepage.php on line 268
+[20-May-2018 16:26:56 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/ilayel/public_html/homies/dev/myprofile.php on line 54
+[20-May-2018 16:41:29 UTC] PHP Parse error:  syntax error, unexpected '".png'>' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/myprofile.php on line 233
+[20-May-2018 16:41:55 UTC] PHP Parse error:  syntax error, unexpected '"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/myprofile.php on line 235
+[20-May-2018 16:42:05 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 230
+[20-May-2018 16:42:53 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 229
+[20-May-2018 16:43:36 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 216
+[20-May-2018 16:43:38 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 216
+[20-May-2018 16:43:59 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 216
+[20-May-2018 16:44:04 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/ilayel/public_html/homies/dev/myprofile.php on line 216
+[20-May-2018 17:03:12 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/ilayel/public_html/homies/dev/myprofile.php on line 60
+[20-May-2018 17:03:22 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/ilayel/public_html/homies/dev/myprofile.php on line 70
+[20-May-2018 18:28:42 UTC] PHP Parse error:  syntax error, unexpected 'chores_table' (T_STRING) in /home/ilayel/public_html/homies/dev/chores.php on line 444
+[22-May-2018 15:19:59 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ilayel/public_html/homies/dev/calendar.php on line 668
+[22-May-2018 15:24:54 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ilayel/public_html/homies/dev/calendar.php on line 665
+[22-May-2018 15:26:22 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ilayel/public_html/homies/dev/calendar.php on line 665
+[22-May-2018 19:46:08 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/signup-success.php on line 46
+[22-May-2018 19:47:17 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/signup-success.php on line 46
+[22-May-2018 20:24:13 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/ilayel/public_html/homies/dev/myprofile.php on line 266
+[22-May-2018 21:05:49 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/ilayel/public_html/homies/dev/creategroup.php on line 229
+[22-May-2018 21:06:45 UTC] PHP Parse error:  syntax error, unexpected ''font-size:20px; color:#f05768' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/creategroup.php on line 229
+[22-May-2018 21:06:48 UTC] PHP Parse error:  syntax error, unexpected ''font-size:20px; color:#f05768' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/creategroup.php on line 229
+[22-May-2018 21:07:40 UTC] PHP Parse error:  syntax error, unexpected ''font-size:20px; color:#f05768' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/creategroup.php on line 229
+[22-May-2018 21:33:23 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/ilayel/public_html/homies/dev/creategroup.php on line 178
+[22-May-2018 23:10:14 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/ilayel/public_html/homies/dev/gifts.php on line 534
+[23-May-2018 12:14:12 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 12:14:12 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 12:51:22 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 12:51:22 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 12:52:49 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 12:52:49 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[23-May-2018 13:44:01 UTC] PHP Parse error:  syntax error, unexpected 'glyphicon' (T_STRING), expecting ',' or ';' in /home/ilayel/public_html/homies/dev/gifts.php on line 88
+[23-May-2018 18:36:23 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/ilayel/public_html/homies/dev/homepage.php on line 268
+[26-May-2018 20:31:47 UTC] PHP Parse error:  syntax error, unexpected ' ', expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/ilayel/public_html/homies/dev/adminpanel.php on line 327
+[28-May-2018 13:41:58 UTC] PHP Warning:  session_start(): Cannot send session cookie - headers already sent by (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88
+[28-May-2018 13:41:58 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/ilayel/public_html/homies/dev/index.php:87) in /home/ilayel/public_html/homies/dev/index.php on line 88

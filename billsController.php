@@ -226,13 +226,16 @@ function getBillsHistoryWithFilters($bill_month,$bill_year,$bill_type){
 
 
   if( $cur_bill_month=="All" && $cur_bill_year!="All"){
-    $from_date=$cur_bill_year."-01-"."01";
+
+    $from_date= date("Y-m-d", strtotime($bill_year.'-01-01') );
+    $end_date= date("Y-m-t", strtotime($bill_year.'-12-01')); 
+
       $select_sql="SELECT * FROM `bills` WHERE `group_id` ='"  .  $familyid  .  "' AND b_status=1 ".$typestring." AND paid_date BETWEEN '". $from_date."' AND '".$end_date."' "; 
   }
 
     if( $cur_bill_month=="All" && $cur_bill_year=="All"){
     $from_date=date("Y-m-d", strtotime("This is the start of the linux") );
-      $select_sql="SELECT * FROM `bills` WHERE `group_id` ='"  .  $familyid  .  "' AND b_status=1 ".$typestring." AND paid_date BETWEEN '". $from_date."' AND '".$end_date."' "; 
+      $select_sql="SELECT * FROM `bills` WHERE `group_id` ='"  .  $familyid  .  "' AND b_status=1 ".$typestring; 
   }
 
 

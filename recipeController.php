@@ -40,11 +40,12 @@ function is_ajax() {
 }
 
 function findGroupID(){
+  session_start();
   $mysqli=new customMysqli;
   $conn=false;
   $conn=$mysqli->createConnection($conn);
   
-  $select_sql="SELECT familyid FROM `users` WHERE `username`='"  .  $_SESSION["user"]  .  "';";   
+  $select_sql="SELECT familyid FROM `users` WHERE `username`='".$_SESSION["user"]."';";   
   $familyid=$mysqli->executeSQL($conn,$select_sql);
 
 
