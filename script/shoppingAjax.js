@@ -27,17 +27,26 @@ function loadGroceryListFromDb(groupId){
 
         console.log("loadGroceryListFromDb is good");
         //console.log(data);
+        debugger;
+
+        if (typeof data != 'undefined' && data!="" )
+        {
 
         var groceryListArray=JSON.parse(data);
 
       for (i = 0; i < groceryListArray.length; i++){
         createGroceryListRow(groceryListArray[i]);
       }
-      
+      }
+      else{
+        console.log("no data to show");
+      }
     //  pages = pager1.getPages();
       //refreshPapers(1);
         //console.log(data);
     });
+
+
   }
 
 
@@ -51,10 +60,22 @@ function loadGroceryListFromDb(groupId){
         "requestType": "saveGroceryListToDb"
     },
     function(data, status){
+      var save_msg='<div class="alert alert-success alert-dismissable ">';
+      save_msg+='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+      save_msg+='Success! your shopping list is saved';
+      save_msg+='</div>';
+      
+      $('.saved_alert').html(save_msg);
+     $('.saved_alert').css("display","block");
 
-      //console.log("rez:"+data);
-  
+     
+      $( ".close" ).click(function() {
+              window.location.reload();
+      });
+
+
      });
+
     };
   
 

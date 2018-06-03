@@ -94,7 +94,9 @@
     /*overflow:hidden;
      border-radius: 35px;
      */
+    margin: auto;
 }
+
  .scoreboard tr>td{
      padding:5px !important;
 }
@@ -109,22 +111,22 @@
      padding:5px;
 }
 .scoreboard tr:nth-child(1){
-     background-color:#1bc1b7;
+     background-color:#1bc1b7 !important;
      font-weight:bold;
 }
  .scoreboard tr:nth-child(2){
-     background-color:#50d6cf;
+     background-color:#50d6cf !important;
 }
  .scoreboard tr:nth-child(3){
     /*background-color:rgba(224,186,116,0.7);
     */
-     background-color:#76e4db;
+     background-color:#76e4db !important;
 }
  .scoreboard tr:nth-child(4){
-     background-color:#aaefe6;
+     background-color:#aaefe6 !important;
 }
  .scoreboard tr:nth-child(5){
-     background-color:#c3fbf9;
+     background-color:#c3fbf9 !important;
 }
  .addChore table *{
      margin-top:10px !important;
@@ -181,6 +183,11 @@
      background-color: lightgray;
      margin-right:10px;
 }
+.add-chore-icon h4{
+    margin: 0;
+    padding: 0;
+}
+
  .chore-icon img{
      display: block;
      width:100%;
@@ -219,7 +226,7 @@
  .add-chore-icon{
      display: inline-block;
      height: 100%;
-     width: 18%;
+     width: 20%;
      vertical-align: top;
      background-color: lightgray;
      padding-bottom: 1.5%;
@@ -269,6 +276,7 @@
 
      #addChoreBtn {
          font-size: 92%;
+         float:right;
     }
     
      #chores_from_db {
@@ -329,7 +337,7 @@
         width:100% !important;
     }
     .tab-pane h3{
-        margin-top:155px;
+        margin-top:190px;
     }
     #newPresentButton{
         width:40%;

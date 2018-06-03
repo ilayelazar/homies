@@ -108,8 +108,8 @@ function scrollToID(id, speed){
 
 
 $('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
+  e.preventDefault();
+  $(this).tab('show');
 });
 
 

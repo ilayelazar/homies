@@ -3,18 +3,23 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
-$("label").click(function(){
-  $("label").css("background-color","white");
+$("#category label").click(function(){
+  $("#category label").css("background-color","white");
 
-  this.style.backgroundColor= 'green';
+  this.style.backgroundColor= 'gray';
+
+});
+$("#gender label").click(function(){
+  $("#gender label").css("background-color","white");
+
+  this.style.backgroundColor= 'gray';
 
 });
 
 
-
 $(".next").click(function(){
   if( $("input[name='email'").is(':invalid') ||
-    $("input[name='email'").val() == ""){
+    $("input[name='email'").val() == "" || document.getElementsByName("username")[0].value == ""){
     document.getElementById('invalid-email-alert').style.display="initial";
     }
     else{
@@ -35,7 +40,7 @@ $(".next").click(function(){
 $(".next").click(function(){
 if (
     $("input[name='email'").is(':invalid') ||
-    $("input[name='email'").val() == ""
+    $("input[name='email'").val() == "" || document.getElementsByName("username")[0].value == ""
     ){
         //invalid or blank email
 

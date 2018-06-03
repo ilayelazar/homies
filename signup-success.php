@@ -20,6 +20,8 @@ if ($conn->connect_error) {
 else{
   echo "<script>console.log('DB Connection succeded');</script>";
 }
+
+
 $username = $_POST["username"];
 $password = $_POST["password"];
 $fname = $_POST["fname"];
@@ -33,7 +35,19 @@ $dob = $_POST["birth-year"] . "-" .
 
 
 
-      $sql = "INSERT INTO `users`(`username`, `password`, `fname`, `lname`, `email`, `permission`, `familyid`, `dob`) VALUES (
+  	$sql_u = "SELECT * FROM users WHERE username='$username'";
+  	
+  	
+		$result = $conn->query($sql_u);
+
+		if ($result->num_rows > 0) {
+  	  echo "<script> alert('Sorry... Username  - ".$username." - already taken');window.location = 'signup.php'; 
+	  </script>"; 
+
+	  
+  	}
+	else{
+      $sql = "INSERT INTO `users`(`username`, `password`, `fname`, `lname`, `email`, `permission`, `familyid`, `dob` , `gender`) VALUES (
                   '" . $username . "',
                   '" . $password . "',
                   '" . $fname . "',
@@ -41,7 +55,8 @@ $dob = $_POST["birth-year"] . "-" .
                   '" . $email . "',
                   '" . $permission . "',
                   '" . $groupid . "',
-                  '" . $dob . "'        
+                  '" . $dob . "',
+                  '" . $_POST['gender'] . "'        
                   )";
 
       $conn->query($sql);  
@@ -52,6 +67,8 @@ $dob = $_POST["birth-year"] . "-" .
           $_SESSION["permission"] = $permission;
           $_SESSION["user"] = $username;
     ob_end_flush();
+	
+	}
 
 ?>
   </body>

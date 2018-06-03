@@ -86,45 +86,73 @@ h4{
 	margin:auto;
 
 }
+
+
+.flow{
+	background: url("https://i.pinimg.com/originals/e2/f9/c6/e2f9c6a4074578f2f18f6070de41cad2.png");
+	background-position: 105% 40%;
+	background-size: 30%;
+	background-repeat: no-repeat;
+	text-align: center;
+	height:250px;
+	padding: 50px 0;
 }
 
-@media only screen and (min-width: 768px) {
-    /* tablets and desktop */
-	footer,footer h6{
-		display: inline-block;
-		float: left;
-		text-align: center;
-	}
-	#box{
-		height:350px;
-	}
+.flow *{
+	line-height: 200%;
+	color:black;
+}
+.flow ul{
+	  list-style-position: inside;
+}
+@media only screen and (min-width: 769px) {
+	    /* tablets and desktop */
+    .flow:nth-last-child(1){
+			background:initial
+		}
+		footer,footer h6{
+			display: inline-block;
+			float: left;
+			text-align: center;
+		}
+		#box{
+			height:400px;
+		}
 
 }
-
-@media only screen and (max-width: 767px) {
-	/*smartphones*/
-header{
-	height:73px;
-	background-color: #333;
-	z-index: 1;
-	border-bottom:3px solid black;
-}
-main{
-	width:100%;
-	display: block;
-	margin:0;
-}
-#box{
-	margin:0 auto;
-}
-aside{
-	position: relative;
-	width:100%;
-	height:20%;
-	display: block;
-}
-#manage_your_family{
-margin-top:0;
-}
+@media only screen and (max-width: 768px) {
+			/*smartphones*/
+		.index-imgs p{
+			font-size: 80%;
+		}
+		.navbar-header h2 {
+			position: absolute;
+			top:40%;
+			left:30%;
+			font-size: 16px;
+		}
+		header{
+			height:73px;
+			background-color: #333;
+			z-index: 1;
+			border-bottom:3px solid black;
+		}
+		main{
+			width:100%;
+			display: block;
+			margin:0;
+		}
+		#box{
+			margin:0 auto;
+		}
+		aside{
+			position: relative;
+			width:100%;
+			height:20%;
+			display: block;
+		}
+		#manage_your_family{
+		margin-top:0;
+		}
 
 }

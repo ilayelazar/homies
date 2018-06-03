@@ -18,7 +18,7 @@ function saveAllOpenBills(new_bills_json){
 }
 
 
-function loadBillsFromDbAjax(){
+function loadBillsFromDbAjax(payTable1){
     var url='billsController.php';
     $.post(url,
     {
@@ -36,7 +36,7 @@ function loadBillsFromDbAjax(){
 
         console.log(data);
 
-        var rowsAmountFromDb= renderBills(data);
+        var rowsAmountFromDb= renderBills(data,payTable1);
 
         return  rowsAmountFromDb;  // return the number of rows
     });
@@ -54,20 +54,23 @@ function payBillAjax(row_id,row_type,data){
     },
     function(data, status){
 
-      
-        var row= $("#"+row_type+row_id).parent().parent();
-        $(row[0]["children"][5]).click();
-
+        var row= $("#"+row_type+row_id).parent().parent().parent();
         alert("bills was payed");
+
+        var name=row.find("#delete").attr('class');
+        console.log(name);
+        deleteMe2(name);
+
+        //$(row[0]["children"][5]["childNodes"][0]).click();
         console.log(data);
-        window.location = window.location.href;
+        
 
     });
 }
 
 
 
-function getBillsHistoryWithFiltersAjax(month,year,bill_type){
+function getBillsHistoryWithFiltersAjax(month,year,bill_type,tablePay){
     var url='billsController.php';
     $.post(url,
     {
@@ -90,7 +93,7 @@ function getBillsHistoryWithFiltersAjax(month,year,bill_type){
         console.log("The history is");
         console.log(data);
 
-        appendBillsHistoryRows(data);
+        appendBillsHistoryRows(data,tablePay);
 
         return  data;  // return the number of rows
     });

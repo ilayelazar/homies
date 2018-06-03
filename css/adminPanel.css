@@ -1,31 +1,27 @@
 .user-manage{
      border-width:3px;
      border-color:#D2B4DE;
-
      margin: auto;
-     width: 70%;
+     width: 100%;
      border-radius: 2%;
      padding:30px;
 }
 
-/*.user-manage button{
-	background-color: lightgreen;
-	border-radius: 20px;
-	padding: 0 15px 0 15px;
-	font-weight: bolder;
-	border:0;
-	display: inline-block;
-	vertical-align: middle;
-}*/
+
+.adminButtons{ 
+	font-size:15px;
+	border: 2px solid lightblue;
+	padding:2px;
+}
 
 .user-manage tr{
-	border-bottom:1px dotted gray;
+  border-bottom:1px dotted gray;
 }
 .user-manage input[type='button']{
-	background-color: red;
-	color:white;
-	font-size:75%;
-	border-radius: 10px;
+  background-color: red;
+  color:white;
+  font-size:75%;
+  border-radius: 10px;
 }
 
  #add_member_form form{
@@ -36,6 +32,32 @@ padding:5%;
  #username {
      margin-left:20px;
      font-weight:bold;
+}
+.homiesTables td img{
+  padding:5px; 
+  zoom:1.3;
+}
+input[name='currScore']{
+  margin:auto;
+  padding:0;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;  
+}
+.homiesTables button{
+  border:1px solid green;
+  /*background-color:white;*/ 
+  padding:3px; margin:3px;
+}
+/*.homiesTables button[id*="apply"]:hover{
+  background-color: lightgreen;
+}*/
+.homiesTables button:hover{
+  background-color: lightgreen;
+}
+
+.homiesTables input[value="Remove user"]:hover{
+  background-color: red;
 }
  #check_btn {
      margin-left:5px;
@@ -53,16 +75,22 @@ padding:5%;
      border-radius:2px;
      font-weight: bold;
 }
+#denyUser{
+	width:45px;
+	height:45px;
+}
 
  #removeUser{
-     width:50px;
-     height:50px;
-     margin-left:50px;
+    
+     height:35px;
+     /*margin-left:50px;
+	  width:35px;*/
+	border:1px solid red;
 }
- #editScore{
-     width:50px;
-     height:50px;
-     margin-left:50px;
+
+ #editScore, #approveUser{
+     width:45px;
+     height:45px;
 }
  .change_permission{
      padding: 30px;
@@ -81,21 +109,21 @@ padding:5%;
      cursor: pointer;
 }
 #permission label{
-	margin:0 2%;
-	font-size:17px;
-	font-weight:initial;
+  margin:0 2%;
+  font-size:17px;
+  font-weight:initial;
 }
 /*#pg2{
-	background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.75);
 }
 #pg2 table{
-	text-align: center;
-	padding: 25px;
-	border: 2px solid white;
-	margin: 5% 0;
+  text-align: center;
+  padding: 25px;
+  border: 2px solid white;
+  margin: 5% 0;
 }
 #pg2 table th{
-	text-align: right;
+  text-align: right;
 }
 
 .homiesTables tr{
@@ -113,16 +141,16 @@ padding:5%;
 }*/
 
 #pg2 .container{
-	width:100%;
+  width:100%;
 }
 #pg2 input[type="radio"]{
-margin:0 15px;	
+margin:0 15px;  
 transform: scale(1.5);
 }
 /*.box h1{
-	font-weight: bolder;
-	text-align: center;
-	text-decoration: underline;	
+  font-weight: bolder;
+  text-align: center;
+  text-decoration: underline; 
 }*/
 
 input[value="Save"]{
@@ -134,39 +162,63 @@ outline:0;
 font-weight: bold;
 transition: all .2s ease-in-out;
  }
-
+  .homiesTables .tableHeaders>th{
+    
+  }
 
 /* Responsive*/
 /*------------------------------------------ Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
  @media screen and (min-width: 768px){
-	 /* Desktop */
-	main .box{
-	width:75%;	
-	}
-	.panel-heading li{
-		font-size:24px;
-	}
-	 
+   /* Desktop */
+  input[name='currScore']{
+    width:100%;
+  }
+  main .box{
+  width:75%;  
+  }
+  .panel-heading li{
+    font-size:24px;
+  }
+   
 }
 
+ @media screen and (min-width: 480px) and (max-width: 768px) {
+    /*tablet*/
+  input[name='currScore']{
+    width:100%;
+  }
+}
  @media screen and (max-width: 480px) {
     /* smartphone */
-	main{
-		padding:0;
-	}
-	 nav .box{
-		 display:none;
-	 }
-	main .box{
-	width:100%;
-	border-radius:0;
-	}
-	.panel-heading{
-		padding:0;
-	}
-	.panel-heading li{
-	font-size:12px;
-	text-align:left;
-	vertical-align:middle;
-	}
+  main{
+    padding:0;
+  }
+   nav .box{
+     display:none;
+   }
+  main .box{
+  width:100%;
+  border-radius:0;
+  }
+  .panel-heading{
+    padding:0;
+  }
+  .panel-heading li{
+  font-size:12px;
+  text-align:left;
+  vertical-align:middle;
+  }
+  .box{
+    width:100%;
+  }
+  .homiesTables{
+    width:100%;
+  }
+
+  .homiesTables td{
+    font-size:14;
+  }
+  input[name='currScore']{
+    width:20vw;
+  }
  }

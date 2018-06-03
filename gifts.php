@@ -16,7 +16,7 @@
       <link href="https://fonts.googleapis.com/css?family=Mina:700" rel="stylesheet">
       <!--CSS-->
       <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-      <link rel="stylesheet" type="text/css" href="css/chores.css">
+      <link rel="stylesheet" type="text/css" href="css/gifts.css">
       <!--JS-->
       <script src="script/chores.js"></script>
       <script src="script/script.js"></script>
@@ -64,14 +64,14 @@
             <script> console.log('password match'); 
             $(document).ready(function(){
             $('.nav.navbar-nav').css('display','none');
-            document.getElementById('welcome-user').innerHTML ='<h1>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h1>';
+            document.getElementById('welcome-user').innerHTML ='<h3>Welcome, ".$_SESSION['user']."<form action=\'logout.php\' method=\'post\'><input type=\'submit\' value=\'Logout\'></form></h3>';
             });
             </script>
         ";       
         }  
 ?>
 <!-- /DIV for users that arn't logged in! hide everything - show msg -->       
-    <header>
+<header>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -79,25 +79,26 @@
                         <span style="float:left;color:white;font-size:35px;cursor:pointer" class="burger-btn">&#9776;</span>
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
-                            <!-- -->
                             <a class="navbar-brand" href="homepage.php">Homies<span class="dot"></span></a>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav" id="nav-ul">
-                                <li>
-                                    <a href="signup.php" id="signup"><img src="img/signup.png"></a>
-                                </li>
-                            </ul>
-                            <div id="welcome-user"></div>
-
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </nav>
-                </div>
+<div class="dropdown pull-right" style='margin-top:6px'>
+  <button style="height:50px;display:inline-block" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   <div id="welcome-user"></div> <span style="float:left;" class="caret"></span>
+  </button> <?php echo "<form style='vertical-align: top;display:inline-block' action='logout.php' method='post'><input style='margin-right:10px; border-radius:2px;' type='submit' value='Logout'>
+</button></form>";
+  ?>
+  <ul class="dropdown-menu">
+    <li><a href="myprofile.php"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" style='width:20px'>   My Profile</a></li>
+    <li><a href="adminpanel.php"><img src="https://i1.wp.com/lavaprotocols.com/wp-content/uploads/2014/09/google-apps-admin-panel-icon.png?ssl=1" width=20px alt="">   Admin Panel</a></li>
+  </ul>
+</div>
+                     <!-- /.navbar-collapse -->
+                  </nav>
+               </div>
             </div>
-        </div>
-    </header>
+         </div>
+      </header>
       <div id="mySidenav" class="sidenav">
          <span style="color:white;font-size:50px;cursor:pointer" class="burger-btn">
          </span>
@@ -106,22 +107,105 @@
          <a href="gifts.php">Gifts</a>
          <a href="shoppinglist.php">Shopping</a>
          <a href="calendar.php">Calendar</a> 
-    <a href="bills.php">Bills</a>      
+		 <a id="billsPage" href="bills.php">Bills</a>      
       </div>
-         <!--<nav>
-            <div class="box" style="height:50px">
-              <ul>
-                  <li class="col-lg-2"><a href="calendar.php">Calendar</a></li>
-                  <li class="col-lg-3"><a href="chores.php">Chores</a></li>
-                  <li class="col-lg-2"><a href="shoppinglist.php">Groceries</a></li>
-                  <li class="col-lg-3"><a href="gifts.php">Gifts</a></li>
-                  <li class="col-lg-2"><a href="bills.php">Bills</a></li>
-               </ul>
-            </div>
-         </nav> -->
-     
+
+
+<?php
+      //--------dblogin---------
+
+
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
+	
+	
+	if($row['permission'] == 0){
+      echo "<script>
+      $(document).ready(function(){
+        $('#billsPage').hide();
+      });
+      </script>";
+	}
+	
+	
+	if($row['permission'] == 1){
+      echo "<script>
+      $(document).ready(function(){
+        $('#pricing_gifts').hide();
+		
+      });
+      </script>
+	  
+	  ";
+	}
+
+?>
+
+<!--  PHP -->
+    <?php
+        session_start();
+        if(!isset($_SESSION['user'])){
+          header("Location: index.php");
+          exit;
+        }
+        else{
+            echo 
+            "
+            <script> console.log('password match'); 
+            $(document).ready(function(){
+            document.getElementById('welcome-user').innerHTML ='<h3><span>".$_SESSION['user']."</span></h3>';
+            });
+            </script>
+        ";       
+        }  
+      //  dblogin 
+    $servername = "zebra.mtacloud.co.il";
+    $username = "ilayel";
+    $password = "homies123";
+    $dbname = "ilayel_homies";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+    //get permission for user
+    $q_user = "SELECT * FROM users where username ='".$_SESSION['user']."'";
+    $result = $conn->query($q_user);
+    $row = $result->fetch_assoc();
+    $permission = $row["permission"];
+        if($permission == 0){    //if user is child - show points in dropdown
+        $score = $row['score'];
+            echo 
+        "
+        <script>
+        $(document).ready(function(){
+          $('.dropdown-menu li:nth-child(2)').html('<img src=\'img/coin.png\' width=35px>  ".$score."');
+          //alert(".$score.");
+        });
+        </script>
+        ";
+        }
+
+?>
+      
        
-     <!----Scoreboard------ -->
+   <!----Scoreboard------ -->
      
 <?php
                        session_start();
@@ -148,7 +232,7 @@
               $result = $conn->query($scoreboard);
 
               if ($result->num_rows > 0) {
-                 echo "<table class='homiesTables scoreboard' style='width:30%; text-align:center; font-size:17px;' title='Scoreboard'>
+                 echo "<table class='scoreboard' style='width:30%; text-align:center; font-size:17px;' title='Scoreboard'>
                                     <br>
                                     <thead>
                                         <tr class='SB_Headers'>
@@ -170,17 +254,18 @@
                  }
                  echo "</tbody></table>";
               } else {
-                   echo "<table class='homiesTables' style='width:50%; text-align:center; font-size:17px;'>
+                    echo "<table class='homiesTables scoreboard' style='width:30%; text-align:center; font-size:17px;' title='Scoreboard'>
                                     <br>
                                     <thead>
-                                     <tr id='tableHeaders'>
-                                          
-                                            <th>User name</th>
-                                            
-											<th>Score</th>
+                                        <tr class='SB_Headers'>
+                                        
+                                            <th><img src='img/chores/Child.png' title='user name'></th>                                        
+											<th><img src='img/chores/piggy-bank.png' title='user score'></th>
+                                                                  
                                         </tr>
                                     </thead>
-                </table>";
+                                    </table>
+									<center><h4 style='text-align:center; width:30%; padding:5px; border: solid #efefef 3px;'>There are not children in the	 group </h4></center>" ;
               }
               $q_permission="SELECT permission FROM users WHERE username='".$_SESSION['user']."'";
               $result = $conn->query($q_permission);
@@ -195,7 +280,6 @@
                 ";
               }
                 ?>
-              
   
      
        <script>
@@ -226,40 +310,7 @@
             
 
        </script>
-	   
-	   
-		
-		 <script>
-    function addPresent(){
-    var presentName= document.getElementsByName("presentName")[0].value;
-    var presentDescription= document.getElementsByName("presentDescription")[0].value;
-    var presentLink= document.getElementsByName("presentLink")[0].value;         
-    var ptype= $( 'input[name=ptype]:checked' ).val();
-	
-	if(!ptype){
-	alert('Please set an icon to your new present');
-}
-else{
-    if( Boolean(presentName && presentDescription && ptype)){
-        if(confirm("Add new present to wishlist?")){
-        $.post('addpresent.php',   // url
-            { presentName: presentName, presentDescription:presentDescription, presentLink:presentLink,ptype:ptype }, // data to be submit
-            function(response) {// success callback
-              // window.location = window.location.href;
-              alert("Successfully added new present! ");
-              $("body").load("#p1");
-            }
-        );
-      }
-    }
-      else{
-        alert("Please fill all fields. (Set name and description)");
-      }
-  }
-	}
-          </script>
-     
-     
+	     <div id="alert-msg"></div>
          <div class="box">
             <div class="row">
                <div class="hidden-xs voffset6"></div>
@@ -280,16 +331,14 @@ else{
                      <div class="tab-content">
                         <!--  ------- tab 1 ------- -->
                         <div class="tab-pane fade  in active " id="p1">
-                         <h1> Your pricing gifts: </h1> 
-
-        	   
-			   
-			   
+						
+					<div id="pricing_gifts">
+                         <h3> Your pricing gifts: </h3>
+		   
 			      <?php
 						   
 														   
- $q_presents = "SELECT presentid, p_name, p_description, p_username, p_score, 
- , score, type FROM presents inner join users on p_username=username WHERE p_status='0' and p_score >'0' and p_username='".$_SESSION['user']."' ";
+ $q_presents = "SELECT presentid, p_name, p_description, p_username, p_score, score, type FROM presents inner join users on p_username=username WHERE p_status='0' and p_score >'0' and p_username='".$_SESSION['user']."' ";
                 
                 $result = $conn->query($q_presents);
 							
@@ -299,8 +348,8 @@ else{
 									 while($row = $result->fetch_assoc()) {
 										 $newPresent="";
 										 $newPresent= $newPresent.
-                     "<br>
-<div class='newPresentTest'>
+                     "
+<div class='newPresentTest newChoreTest'>
     <div class='chore-icon'>
       <img src='img/presents/".$row['type'].".png'>
     </div>
@@ -313,12 +362,13 @@ else{
         </tr>
         <tr>
           <td style='color:#f05768'>Description:</td>
-          <td style='width:60%'>".$row['p_description']."</td>
-		  <td style='width:20%'><a href='".$row['p_link']."' tytle='".$row['p_link']."' target='_blank' style='display:inline; color:#f05768; background-color:#efefef; padding:8px 30px 8px 30px; font-weight:bold; margin-right:10%'>LINK</a><input type='button' value='BUY' onclick=\"buygift(".$row['presentid'].",".$row['p_score'].",'".$_SESSION['user']."',".$row['score'].");\" ></td>
+          <td style='width:40%'>".$row['p_description']."</td>
+		  <td><a href='".$row['p_link']."' tytle='".$row['p_link']."' target='_blank' style='display:inline; color:#f05768; background-color:#efefef; padding:8px 30px 8px 30px; font-weight:bold; margin-right:50%'>LINK</a></td>
+		   <td><input style='display:inline-block; margin-top:-15px; margin-left:3px;    padding: 6px 10px;' type='button' value='BUY' onclick=\"buygift(".$row['presentid'].",".$row['p_score'].",'".$_SESSION['user']."',".$row['score'].");\" ></td>
 		</tr>
 		   <tr>
           <td style='color:#f05768'>Price:</td>
-          <td style='width:60%'>".$row['p_score']."</td>
+          <td>".$row['p_score']."</td>
 		  
 		  </tr>
         <tr>";
@@ -337,7 +387,7 @@ else{
 										 }
 										 
 										 else{
-											 echo "<p class='empty_data'>Your gifts have not received a price from your parents yet.</p>";
+											 echo "<h4 style='text-align:center; padding:5px; border: solid white 3px;'>Your gifts have not received a price from your parents yet.<h4> ";
 										 }
 						   
 						   ?>
@@ -351,27 +401,72 @@ else{
              
                            <br>
                            <br>
+						   </div>
+						   
+						   <?php
+						   
+						         //--------dblogin---------
+
+
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
+						   if($row['permission'] == 1){
+							   echo "<h4 style='text-align:center; padding:5px; border: solid white 3px;'>As a parent, you don't have items to buy.</h4>";
+						   }
+						   ?>
                         </div>
                         <!--  end tab 1-->
             
                         <!--  ------- tab 2 ------- -->
                       <div class="tab-pane fade " id="p2">
                
-<!--start try-- -->	
+	
 
 	<?php
 														   
-				$permissions = "SELECT distinct permission FROM users WHERE username='".$_SESSION['user']."'";
-                $result = $conn->query($permissions);
-				$row = $result->fetch_assoc();
-				$u_per = $row['permission'];
+			      //--------dblogin---------
+
+
+$servername = "zebra.mtacloud.co.il";
+$username = "ilayel";
+$password = "homies123";
+$dbname = "ilayel_homies";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 	
+
+	$permissions = "select permission from users WHERE username ='".$_SESSION['user']."' ";
+	$user_permission = $conn->query($permissions);
+	$row = $user_permission->fetch_assoc();
+	$u_permission = $row['permission'];
 				
 	
-			 if($u_per=='1'){
+			 if($row['permission']==1){
                 echo "
                 <script>			
                 $(document).ready(function(){
-                  $(\"#add_present\").hide();
+                  $('#add_present').hide();
+              
+                  $('.u_wishlist').hide();
+                  $('#h3_u_wishlist').hide();
                 });
                 </script>
                 ";
@@ -381,7 +476,7 @@ else{
 	
 						   
 <div class='newChoreTest new-chore' id="add_present">
-        <form action="gifts.php" method="POST">
+
           <div class="add-chore-icon">
                 <div id="chorePicture">
                   <h4>Choose Icon:</h4>
@@ -418,44 +513,106 @@ else{
                </div>
 
           </div>
-    <div class='chore-info'>
+    <div class='new chore-info'>
       <table>
         <tr>
-          <td style='color:#f05768;width:20%'>Present name: </td>
-          <td style='width:50%'><input tabindex="1" required type="text" name='presentName'></td>
-          <td style='width:20%'></td>
+          <td style='color:#f05768;width:30%'>Present name: </td>
+          <td style='width:20%'><input tabindex="1" required type="text" name='presentName'></td>
+          <td style='width:10%'></td>
         </tr>
         <tr>
-          <td style='color:#f05768;width:20%'>Description</td>
-          <td style='width:50%'><input tabindex="2" required type="text" name='presentDescription'></td>
-          <td style='width:20%'><button tabindex="4" type="submit" id="addChoreBtn" onclick="addPresent();" value="Add Present">Add Present</button></td>
+          <td style='color:#f05768;width:30%'>Description</td>
+          <td><input tabindex="2" required type="text" name='presentDescription'></td>
         </tr>
-		
+        <tr>
+          <td style='color:#f05768;width:30%'>Link (optional):</td>
+          <td style='width:20%'><input tabindex="3" type="text" name='presentLink'></td>
+          <td style='width:27%'></td>
+          <td id='newPresentButton' style='text-align:right;width:20%'><button tabindex="4" type="submit" id="addChoreBtn" onclick="addPresent();" value="Add Present">Add Present</button></td>
 
-		
-		
-		
-        <tr>
-          <td style='color:#f05768;width:20%'>Link (optional):</td>
-          <td style='width:50%'><input tabindex="3" type="text" name='presentLink'></td>
-          <td style='width:20%'></td>
         </tr>
       </table>
    </div>
-      </form>
-	  
 	  <hr>
 </div>
-
-
-
-<h1> Sibilings wishlist: </h1> 
+ 
 
 
 						   <?php
 						   
 														   
-		$q_chores = "SELECT presentid, p_name, p_description, p_username, p_score,p_link,type,fname FROM presents INNER JOIN users ON p_username=username WHERE p_status='0' and familyid=(select familyid from users where username='".$_SESSION['user']."') order by presentid DESC";
+		$q_chores = "SELECT presentid, p_name, p_description, p_username, p_score,p_link,type,fname FROM presents INNER JOIN users ON p_username=username WHERE p_status='0' and familyid=(select familyid from users where username='".$_SESSION['user']."') and p_username='".$_SESSION['user']."'order by presentid DESC";
+                $result = $conn->query($q_chores);
+							
+								if ($result->num_rows > 0) {
+									 // output data of each row
+									 echo " <h3 id='h3_u_wishlist'> My wishlist: </h3>";
+									 while($row = $result->fetch_assoc()) {
+										 $newPresent="";
+										 $newPresent= $newPresent.
+                     "<div class='u_wishlist'>
+					
+<div class='newPresentTest newChoreTest'>
+    <div class='chore-icon'>
+      <img src='img/presents/".$row['type'].".png'>
+    </div>
+    <div class='chore-info'>
+      <table>
+        <tr>
+          <td style='color:#f05768;'>Title:</td>
+          <td style='width:30%'>".$row['p_name']."</td>
+          <td ><span style='color:#f05768'>Requested by: </span>".$row['p_username']."</td>
+        </tr>
+        <tr>
+          <td style='color:#f05768'>Description:</td>
+          <td style='width:40%'>".$row['p_description']."</td>
+		  <td><a href='".$row['p_link']."' title='".$row['p_link']."' target='_blank' style='display:inline-block; color:#2fa7e0; background-color:#efefef; padding:4px 10px 4px 10px; font-weight:bold; float:right'>LINK</a>		  
+		<td style='margin:4px;'> <input style='display:inline-block; background-color:#efefef; font-weight:bold;color:red' type='button' value='remove' onclick=\"deletegift(".$row['presentid'].");\" ></td>
+        </td>
+		</tr>
+		  
+        <tr>
+          <td> <span style='color:#f05768'>Price:</span> ";
+		    if($row['p_score']=='0')
+                         { $newPresent= $newPresent." - </td>";}
+                       else{
+                        $newPresent= $newPresent." ".$row['p_score']." </td>" ;
+                       }
+		  
+        $newPresent= $newPresent."  
+		
+        </tr>
+      </table>
+   </div>
+</div> 
+                 
+</div>                 
+
+                     ";
+      echo $newPresent;            
+											}
+								}
+		else{
+			 $newPresent="";
+				$newPresent= $newPresent.
+                     "<div class='u_wishlist'><h3> My wishlist: </h3>
+					 <h4 style='text-align:center; padding:5px; border: solid white 3px;'>You don't have gifts requests. Add above the gifts you wish for.<h4> </div>";
+					     echo $newPresent;
+					 
+			
+		}								 
+										 
+										 
+						   
+						   ?>
+	<br>					   
+	<hr>					   
+   <h3> Family members wishlist: </h3> 
+		
+<?php
+						   
+														   
+		$q_chores = "SELECT presentid, p_name, p_description, p_username, p_score,p_link,type,fname FROM presents INNER JOIN users ON p_username=username WHERE p_status='0' and familyid=(select familyid from users where username='".$_SESSION['user']."') and not p_username='".$_SESSION['user']."' order by presentid DESC";
                 $result = $conn->query($q_chores);
 							
 								if ($result->num_rows > 0) {
@@ -463,8 +620,8 @@ else{
 									 while($row = $result->fetch_assoc()) {
 										 $newPresent="";
 										 $newPresent= $newPresent.
-                     "<br>
-<div class='newPresentTest'>
+                     "
+<div class='newPresentTest newChoreTest'>
     <div class='chore-icon'>
       <img src='img/presents/".$row['type'].".png'>
     </div>
@@ -473,16 +630,16 @@ else{
         <tr>
           <td style='color:#f05768;'>Title:</td>
           <td style='width:65%'>".$row['p_name']."</td>
-          <td ><span style='color:#f05768'>Requested by: </span>".$row['fname']."</td>
-          
+          <td ><span style='color:#f05768'>Requested by: </span>".$row['p_username']."</td>
         </tr>
         <tr>
-          <td style='color:#f05768'>Description:</td>
-          <td style='width:60%'>".$row['p_description']."</td>
-		  <td style='width:20%'><a href='".$row['p_link']."' title='".$row['p_link']."' target='_blank' style='display:inline; color:#2fa7e0; background-color:#efefef; padding:8px 30px 8px 30px; font-weight:bold; margin-right:10%'>LINK</a></td>
-		</tr>
+          <td style='color:#f05768;'>Description:</td>
+          <td style='width:30%;'>".$row['p_description']."</td>
+		  <td style='width:20%'><a href='".$row['p_link']."' title='".$row['p_link']."' target='_blank' style='display:inline; color:#2fa7e0; background-color:#efefef; padding:4px 10px 4px 10px; font-weight:bold; margin-right:10%'>LINK</a>
 		  
-        <tr>
+		</td>
+		</tr>
+		<tr>
           <td style='color:#f05768'>Price: </td>";
 		    if($row['p_score']=='0')
                          { $newPresent= $newPresent."<td> - </td>";}
@@ -495,16 +652,16 @@ else{
       </table>
    </div>
 </div>                 
-
-                     ";
+ ";
       echo $newPresent;            
-											}
-										 
-										 
-										 }
-						   
-						   ?>
-						   
+			} 
+		 }
+		 
+		 else{
+			 echo "<h4 style='text-align:center; padding:5px; border: solid white 3px;'>Your family members didn't insert gifts requests yet. <h4>";
+		 }
+
+?>
 						   
                     
     
@@ -513,8 +670,7 @@ else{
 						   
 						   
 						   
-						   
-					<!-- End try-- -->	   
+			  
 						   
 						   
 						   
@@ -526,7 +682,7 @@ else{
                         <!--  ------- tab 3 ------- -->
                         <div class="tab-pane fade" id="p3">
 						
-						 <h1>Family memers purchase history:</h1>
+						 <h3>Family memers purchase history:</h3>
             <?php
          
               $g_history = "SELECT p_name, p_description, p_username, p_score,dop FROM presents inner join users on p_username=username WHERE p_status='1' and familyid=(select distinct familyid from users where username='".$_SESSION['user']."' ) order by dop DESC";
@@ -549,16 +705,17 @@ else{
                  }
                  echo "</tbody></table>";
               } else {
-                   echo "<table id='gifts_history'  class='homiesTables'>     
-                   <thead>
-                                 <tr id='tableHeaders'>
+                   echo "<table class='homiesTables' style='font-size:18px;'>     <thead>
+                                 <tr class='tableHeaders'>
                                     <th>User name </th>
                                     <th>Present</th>
                                     <th>Price</th>
                                     <th>Date of purchase</th>
                                  </tr>
                               </thead>
-                </table>";
+                </table>
+				
+				<h4 style='text-align:center; padding:5px; border: solid white 3px;'>No purchase history<h4>";
               }
             
             ?>
@@ -566,30 +723,7 @@ else{
             
             
             
-                           <!--<table id="gifts_history"  class="cell-border row-border hover order-column">
-                              <thead>
-                                 <tr id="tableHeaders">
-                                    <th>User name </th>
-                                    <th>Present</th>
-                                    <th>Price</th>
-                                    <th>Date of purchase</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td id="userName"> Shahr</td>
-                                    <td id="giftName"> Freedom </td>
-                                    <td id="giftPrice"> 700M </td>
-                                    <td id="giftDateOfPurchase"> Null </td>
-                                 </tr>
-                                 <tr>
-                                    <td id="userName"> Noy</td>
-                                    <td id="giftName"> Car </td>
-                                    <td id="giftPrice"> 1000 </td>
-                                    <td id="giftDateOfPurchase"> 14/4/2018 </td>
-                                 </tr>
-                              </tbody>
-                           </table>-->
+                    
                            <br>
                            <br>
                         </div>
@@ -625,45 +759,50 @@ else{
       <script>
 
          
-         
-         
-         /*function validateForm(){
-         var chname = document.forms["myChoreForm"]["chore_name"].value;
-            if (chname == "") 
-            {alert("Please insert chore name");
-            return false;}
-            
-         var chdescription = document.forms["myChoreForm"]["chore_description"].value;
-            if (chdescription == "") 
-            {alert("Please insert chore description");
-            return false;}
-         
-         var chschore = document.forms["myChoreForm"]["chore_score"].value;
-            if (chschore == "") 
-            {alert("Please insert chore schore");
-            return false;}
-         var prname = document.forms["myPresentForm"]["present_name"].value;
-            if (prname == "") 
-            {alert("Please insert present name");
-            return false;}
-         var prdescription = document.forms["myPresentForm"]["present_description"].value;
-          if (prdescription == "") 
-          {alert("Please insert present description");
-          return false;}    
-          
-         var prprice = document.forms["myPresentForm"]["present_price"].value;
-          if (prprice == "") 
-          {alert("Please insert price for present");
-          return false;}
-         
-         }*/
-         
-         
-         
-         
-         
-         
-         
-      </script>
+    function addPresent(){
+    var presentName= document.getElementsByName("presentName")[0].value;
+    var presentDescription= document.getElementsByName("presentDescription")[0].value;
+    var presentLink= document.getElementsByName("presentLink")[0].value;         
+    var ptype= $('input[name=ptype]:checked').val();
+  
+  if(ptype == null){
+  alert('Please set an icon to your new present');
+}
+else{
+    if( Boolean(presentName && presentDescription && ptype)){
+        if(confirm("Add new present to wishlist?")){
+        $.post('addpresent.php',   // url
+            { presentName: presentName, presentDescription:presentDescription, presentLink:presentLink,ptype:ptype }, // data to be submit
+            function(response) {// success callback
+              $("body").load('#p2'); 
+              alert("Successfully added new present! ");   
+          }
+        );
+      }
+    }
+      else{
+        alert("Please fill all fields. (Set name and description)");
+      }
+  }
+  } 
+  
+  
+  
+    function deletegift(pid){         
+               var pid = pid;
+               
+               if(confirm("Delete this gift?")){
+                $.post('deletegift.php',   // url
+                   { pid: pid}, // data to be submit
+                    function(data, status, jqXHR) {// success callback
+                      window.location=window.location.href;
+                     
+                      alert("Gift deleted successfully");
+                    
+                    }
+                );
+            }
+          }
+          </script>
    </body>
 </html>

@@ -3,6 +3,13 @@ $("login-btn").click(function(){
   $("li.dropdown").addClass("open");
 });
 
+ $(document).ready(function(){
+    $(".burger-btn").click(function(){
+        $(".burger-btn").toggleClass('flipped');
+    });
+  });
+
+
     $("#mySidenav").hide();
     $(".burger-btn").show();
 

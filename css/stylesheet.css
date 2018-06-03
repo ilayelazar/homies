@@ -1,5 +1,9 @@
 body{
-     background:#efefef;
+     background:white;
+}
+
+html{
+	background-color:#efefef;
 }
 
 *
@@ -15,18 +19,25 @@ body{
 	color:blue;
 }
 
+.functional_buttons{
+	padding:10px;
+}
+#welcome-user h3{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+    padding:0;
+    width:80px;
+ }
 
-
-.moduleHeader
-{
+.moduleHeader{
 	color: white;
-	margin-left:20px !important;
-	font-size:33px;
+	margin-left:8px !important;
+	font-size:38px;
 	font-weight:bold;
 	display:inline-block;
-	
 	float:left;
-	
 /* Header */    
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
@@ -58,7 +69,37 @@ header>.container>.row{
 #myTabs li{
 
 }
+.sidenav {
+    z-index:6;
+    display:none;
+    height: 100%;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color: darkgray;
+    overflow-x: hidden;
+    /*border-right:3px solid ;
+    border-top:3px solid;*/
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    margin:5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    
+}
 
+.sidenav a:hover {
+    color: #f05768;
+}
+.flipped{
+	transition: 0.5s ease-out;
+	color: #f05768 !important;	
+	transform: rotate(-90deg);
+}
 #dropdown-options li{
     padding-top:6px;
     text-align: center;
@@ -86,16 +127,30 @@ button{
 	font-weight: bold;
 	background-color: #efefef;
 	color: #4c4c54;
-	border: solid #efefef 6px;
+	border: solid #efefef 1px;
 }
 
 input[type=button]{
 	font-weight: bold;
 	background-color: #efefef;
 	color: #4c4c54;
+	border: solid #efefef 1px;
+}
+
+input[type=submit]{
+	font-weight: bold;
+	background-color: #efefef;
+	color: #4c4c54;
 	border: solid #efefef 6px;
 }
 
+.family_res{
+	color:#32bad4;
+	text-align:left;
+	margin-right:3px;
+	font-weight:400;
+	padding:5px;
+}
 
 
 .homiesTables{
@@ -104,20 +159,27 @@ input[type=button]{
 	margin:auto;
 	/*border: solid white;*/	
 }
-.homiesTables tr{
-  text-align: center;
-  border-bottom:1px solid black;
+.homiesTables tr{	 
+  font-size:20px !important;
+   text-align: center;
 }
 .homiesTables tr:nth-child(even){
   background-color: lightgray;
 }
+.homiesTables td{
+	padding: 0 5px;
+}
+.homiesTables tr:nth-child(even) td{
+  background-color: lightgray !important;
+}
+
 .homiesTables tr:hover{
-background-color: rgba(240, 87, 104, 0.3);
+background-color: rgba(240, 87, 104, 0.2);
 }
  .tableHeaders>th{	
-     font-size: 25px;
+     font-size: 23px;
      color:white;
-     background-color: #f05768;
+     background-color: rgba(240, 87, 104, 0.5);
 	 text-align:center;
 }
 
@@ -134,7 +196,7 @@ background-color: rgba(240, 87, 104, 0.3);
 	font-size:20px;
 	color: gray;
 	margin-left: 70px;
-	margin-top:30px;
+	margin-top:10px;
 }
 
 
@@ -192,7 +254,6 @@ background-color: rgba(240, 87, 104, 0.3);
      color:white;
      font-weight: bolder;
      font-size: 45px;
-    
      letter-spacing: 5px;
 }
 #profile{
@@ -213,11 +274,7 @@ background-color: rgba(240, 87, 104, 0.3);
      line-height: 30px;
 	 /*background-color:#f05768;*/
 }
- nav .box li{
-    cursor: pointer;
-     display:inline-block;
-     text-align: center;
-}
+
  nav .box li a{
     line-height: 40px;
      vertical-align: middle;
@@ -234,6 +291,7 @@ background-color: rgba(240, 87, 104, 0.3);
 
  main{
      min-height: 100%;
+	 background-color: #efefef;
      /*margin: 0 auto -50px;*/
      /*padding:0 50px 50px 50px;*/
 }
@@ -268,9 +326,6 @@ nav .box li{
     height:100%;
     border-radius: 10px;
 
-}
-nav .box li:hover{
-    background-color: orange;
 }
 nav .box{
     border-top:0;
@@ -389,13 +444,13 @@ hr{
     background-color: rgba(16,13,43,0.55);
 }
 
-#welcome-user h1{
+#welcome-user h3{
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
     margin:0;
     padding:0;
-    width:100px;
+    width:80px;
  }
  .dropdown  form{
     display: inline-block;
@@ -416,32 +471,7 @@ hr{
 /* Responsive*/
 /*-------- Responsive Grid Media Queries - 1280, 1024, 768, 480 1280-1024 - desktop (default grid) 1024-768 - tablet landscape 768-480 - tablet 480-less - phone landscape & smaller --------------------------------------------*/
  @media screen and (min-width: 1024px){
-.sidenav {
-    z-index:6;
-    display:none;
-    height: 100%;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    background-color: darkgray;
-    overflow-x: hidden;
-    /*border-right:3px solid ;
-    border-top:3px solid;*/
-}
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    margin:5px;
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-    
-}
 
-.sidenav a:hover {
-    color: #f05768;
-}
 #welcome-user{
     float:right;
 }
@@ -463,7 +493,6 @@ hr{
      .navbar-default .navbar-brand{
         font-size: 32px;
         letter-spacing: 0px;
-        width:35%;
     }
      .nav.navbar-nav{
          display:inline-block !important;
@@ -471,15 +500,20 @@ hr{
     }
     .dropdown{
         position: absolute;
-        top:0;
+        top:10px;
         left:40%;
+    }
+    .dropdown > *{
+        padding-top:8px;
+        padding-bottom: 8px;
     }
 }
  @media screen and (max-width: 480px) {
     /* smartphone */
      .dropdown{
-        left:70%;
+        left:50%;
         margin-top:0;
+        margin-left: -30px;
         font-size: 10px;
         padding:0;
      }
@@ -487,7 +521,7 @@ hr{
         font-size: 16px;
      } 
      .dropdown button{
-        padding:0;
+        padding:10px;
      }
      main{
          padding:0;
@@ -531,6 +565,21 @@ hr{
     font-size: 16px;
     background-color: lightgray;   
 }
+.moduleHeader{
+    display: inline-block;
+    margin-top: 0px;
+    font-size: 4vw;
+
+}
+.nav>li>a{
+    padding:0;
+    font-size: 13px;
+}
+.nav{
+    vertical-align: bottom;
+    display: inline-block;
+
+}
     .dropdown{
         position: absolute;
         top:0;
@@ -554,10 +603,11 @@ hr{
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-	margin:5px;
+	text-align: left;
+    padding: 8px 8px 8px 12px;
+	margin:3px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 24px;
     color: white;
     display: block;
     transition: 0.3s;
@@ -574,9 +624,9 @@ hr{
     padding: 16px;
 }
 
-@media screen and (max-height: 450px) {
-  #mySidenav{width:60%;}
-  .sidenav {padding-top: 15px;width:40%;}
+@media screen and (max-width: 450px) {
+  #mySidenav{width:45%; border-right:2px solid;}
+  .sidenav {width:40%;}
   .sidenav a {font-size: 18px;}
 }
 
@@ -593,18 +643,7 @@ hr{
   and (max-device-width: 767px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
-.sidenav {
-    z-index:6;
-    display:none;
-    height: 100%;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    background-color: darkgray;
-    overflow-x: hidden;
-    /*border-right:3px solid ;
-    border-top:3px solid;*/
-}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     margin:5px;

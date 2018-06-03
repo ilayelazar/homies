@@ -7,7 +7,32 @@ $(document).ready(function(){
   $("#create-family-btn").click(function(){
     $("#create-family-form").slideToggle();
     $("#join-family-form").slideUp();
+    $(".family-circle, #search-res").hide();
 });
+
+
+$("#finish-instructions").click(function(){
+if(document.getElementById("finish-instructions").checked == true){
+	$("#goto-hp").slideToggle();
+}
+else{
+	$("#goto-hp").slideUp();
+}
+});
+
+$("#goto-hp").click(function(){
+	$.post(
+		'toggleCalendar.php',
+		{
+			isPublic:1
+		},
+		function(){
+			alert('Welcome to homies!');
+			window.location='homepage.php';		
+		}
+		)	
+});
+
 
 
 });

@@ -19,13 +19,10 @@
 }
 
 function renderData(data){
-
-
+                  $('#gif').hide(); 
         $( ".result_container" ).empty(); // remove all prev search
 
-       
-
-        if (typeof data != 'undefined' && JSON.parse(data)["count"]!=0){
+               if (typeof data != 'undefined' && JSON.parse(data)["count"]!=0){
           $(".has_results").addClass("result_container");
            var obj= JSON.parse(data);
            var hits=obj["hits"];
@@ -61,7 +58,7 @@ function renderData(data){
         }
 
       $(".glyphicon-plus").on( 'click', function(){
-      console.log('click event');
+      if(confirm("do you want to add this recipe to shopping list?")==1){
       var json=$(this).parent().parent().parent().find('[id^=json_data_]')[0]['innerText'];
       saveRecipeIngredient(json);
       //need to check if sent all data correctly
@@ -76,6 +73,7 @@ function renderData(data){
       $('.customized_alert').html(ok_msg);
      $('.customized_alert').css("display","block");
      $(this).unbind( "click" );
+   }
      });
 
 
@@ -125,8 +123,9 @@ function renderData(data){
     /* plus col*/
 
     var col_1='<div class="circle-container col-md-1"><br><div class="circle-green">';
+    col_1= col_1+' <span class="glyphicon glyphicon-plus glyphicon-plus-custom1" data-toggle="tooltip" data-placement="top" title="Add to shopping list"> </span>';
+    col_1= col_1+ '<img class="cart" src="img/cart.png" alt="add_to">';
 
-    col_1= col_1+' <span class="glyphicon glyphicon-plus glyphicon-plus-custom1"> </span>';
 
     col_1= col_1+'</div></div>';
 
@@ -144,7 +143,7 @@ function renderData(data){
 
       /* info col*/
 
-     var col_3='<div class=" col-md-6">';
+     var col_3='<div class="col-md-6" id="info_col">';
 
      col_3=col_3+'<span> <b>Name:</b> </span><span> '+name+' </span><br><br>';
 
@@ -162,6 +161,7 @@ function renderData(data){
      col_4=col_4+'</div>';
 
 
+      /* see recipe col*/
 
     var col_5='<div class="see_recipe">';
 
@@ -211,8 +211,8 @@ function renderData(data){
                   '<td class="sorting_'+countNew+'"> <input id="sorting_'+countNew+'" type="text" name="item" value="'+parsedIng+'"> </td>'+
                   '<td class="amount_'+countNew+'"> <input id="amount_'+countNew+'" type="number" name="amount" value="'+rowData['amount']+'" steps="10" min="1"> </td>'+
                   '<td class="unit_'+countNew+'"> <select id="unit_'+countNew+'"  name="amount">'+
+                  '<option value="Unit"> Unit</option>'+                  
                   '<option value="Gram"> Gram</option>'+
-                  '<option value="Unit"> Unit</option>'+
                   '</select>'+
                   '</td>'+
                   '<td id="delete" class="delete_'+countNew+'" onClick="deleteMe(\'delete_'+countNew+' \')">  <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button> </td>'+
@@ -272,11 +272,8 @@ function renderData(data){
                                      'amount':input_array[j+1]["value"],
                                      'unit':select_array[row]["value"]
                                       };
-              console.log(allTableInfo);
               }
-            var data_to_save_encoded=JSON.stringify(allTableInfo);
-
-          
+            var data_to_save_encoded=JSON.stringify(allTableInfo);          
             var groupId="1"; 
             saveGroceryListToDb(data_to_save_encoded,groupId);
 
@@ -304,10 +301,9 @@ $(document).ready(function() {
 
      $('#gif').show();
 
-     searchRecipe(search_string);
+      searchRecipe(search_string);
 
-
-     
+ 
   });
 
 
@@ -342,7 +338,7 @@ $(document).ready(function() {
          var emptyrow=[];
          emptyrow['ingrediantname']="";
          emptyrow['amount']="1";
-          emptyrow['unit']=  "Gram";
+          emptyrow['unit']=  "Unit";
        //  emptyrow['unit']="";
          createGroceryListRow(emptyrow);
            // pages = pager1.getPages();
@@ -351,15 +347,10 @@ $(document).ready(function() {
 
 
    $('#saveAllRows').on('click', function (e) {
+if(confirm("do you want to save grocery list?")){      saveAllRows();
       saveAllRows();
-      var save_msg='<div class="alert alert-success alert-dismissable ">';
-      save_msg+='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-      save_msg+='Success! your shopping list is saved';
-      save_msg+='</div>';
-      
-      $('.saved_alert').html(save_msg);
-     $('.saved_alert').css("display","block");
-   });
 
+}
+    })
+ })//end of document ready
 
-} );

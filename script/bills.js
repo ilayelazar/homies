@@ -20,19 +20,29 @@
    
    function deleteMe(name) {
    
-       var row = $("." + name).parent();
-   
-       row.remove();
-   
-       var first_td_class = $("#pay_bills").find('td')[0]['className'];
-   
-       if (first_td_class == 'dataTables_empty') {
-   
-           $('.dataTables_empty').css('display', '');
-   
-       }
-   
+       var row = $("." + name).parent(); 
+
+
+       if(confirm("delete selected row")==1)
+       {
+
+       var table = $('#pay_bills').DataTable();
+       table.row(row ).remove();
+       table.draw();
+    
    }
+ }
+ function deleteMe2(name) {
+   
+       var row = $("." + name).parent();
+
+       var table = $('#pay_bills').DataTable();
+       table.row(row ).remove();
+       table.draw();
+    
+   
+ }
+
 
    function dateInShortDate(){
         var today = new Date();
@@ -124,8 +134,8 @@
       var flag=true;
       if (flag){
 
-            var input_array= $("#pay_bills tbody input");
-            var select_array= $("#pay_bills tbody select");
+            var input_array= $("#pay_bills input");
+            var select_array= $("#pay_bills select");
             var allBillsNewRows= {};
             var allBillsDbRows= {};
 
@@ -178,9 +188,9 @@
        }
    }
 
-    function loadBillsFromDb(){
+    function loadBillsFromDb(payTable){
 
-     var rowsAmount=loadBillsFromDbAjax();
+     var rowsAmount=loadBillsFromDbAjax(payTable);
 
      return rowsAmount;
     }
@@ -189,13 +199,12 @@
     function payMe(payID,recordType){
 
     var rowData= {};
-    var row= $("#"+recordType+payID).parent().parent();
+    var row= $("#"+recordType+payID).parent().parent().parent();
 
     var input_array= row.find("input");
     var select_array=row.find("select");
 
     if (recordType=="new_") {
-
 
                        var type=select_array[0]["value"];
 
@@ -222,11 +231,9 @@
 
     }
 
-    
 
 
-
-    function  renderBills(data){
+    function  renderBills(data,payTable){
 
       var k=0;
 
@@ -235,7 +242,8 @@
               for(k;k<data.length;k++ ){
                     var temp= [];
                     temp.push(data[k]);
-                    createNewRow(k,temp);
+                    createNewRow(k,temp,payTable);
+
               }
       }
       else{
@@ -250,7 +258,8 @@
            //prevent more clicking
            e.preventDefault(); // hide no data div
            data=[];
-           countNew=createNewRow(countNew,data);
+           countNew=createNewRow(countNew,data,payTable);
+           $( "#pay_bills tr:last" ).css({ backgroundColor: "LightGreen"});
            console.log(countNew);   // create new row
        });
 
@@ -261,18 +270,16 @@
 
 
 
-    function  createNewRow(countNew,dataArr){
+    function  createNewRow(countNew,dataArr,payTable){
   
           var record_type='new_';
           var currentDate=dateInShortDate();
-          var color="LightGreen";
           countNew++;
           var pay_id=countNew;
 
 
           if (typeof dataArr == 'undefined' || ( dataArr instanceof Array  && dataArr.length <= 0)) {
            
-               console.log("new row");
                 dataArr.push({
                           amount: 0,
                           b_status:"",
@@ -294,12 +301,12 @@
 
           }
 
-          $('.dataTables_empty').css('display', 'none');
+          //$('.dataTables_empty').css('display', 'none');
            var rows = document.getElementById('pay_bills').rows.length;
             //intialize tooltips
 
            
-          
+          /*
 
            var rowTB1 =
   
@@ -341,16 +348,65 @@
                '<td class="sorting_' + countNew + '" style="background-color: ' + color + ' !important"> <input id="sorting2_' + countNew + '"  class="datepicker  datepickerBills" name="date"> </td>' +
                //'<td class="sorting_' + countNew + '" style="background-color: ' + color + ' !important"> <input id="sorting2_' + countNew + '" type="date" name="date"> </td>' +
    
-               '<td class="comments_' + countNew + '" style="background-color: ' + color + ' !important"> <input id="comments_' + countNew + '" type="text" rows="1" cols="20" name="comments"></input> </td>' +  
+               '<td class="comments_' + countNew + '" style="background-color: ' + color + ' !important"> <input id="comments_' + countNew + '" type="text" rows="1" name="comments"></input> </td>' +  
    
                '<td id="delete" class="delete_' + countNew + '" onClick="deleteMe(\'delete_' + countNew + ' \')" style="background-color: ' + color + ' !important"> <button data-toggle="tooltip" data-placement="right" title="remove from bills" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove" style="font-family:Glyphicons Halflings !important"></i></button> </td>' +
                '<td id="pay" class="pay_' + countNew + '" style="background-color: ' + color + ' !important"> <button title="Mark as payed" id="'+ record_type + pay_id + '" type="button" class="btn pay_' + countNew + '" onClick="payMe(' + pay_id + ',\'' + record_type +'\' )" ><span class="glyphicon glyphicon-usd" style="font-family:Glyphicons Halflings !important"></span></button> </td>'
    
                '</tr>';
-   
+              */
    
 
-           $('#pay_bills').prepend(rowTB1);
+           //$('#pay_bills').prepend(rowTB1);
+
+
+            var td1='<div class="sorting_' + countNew + '" style="background-color: ' + ' !important"> <input id="sorting_' + countNew + '" class="datepicker  datepickerBills" name="date" disabled> </div>' ;
+
+            var td2='<div class="types' + countNew + '" style="background-color: ' + ' !important">' +
+   
+               ' <select name="type_payments" id="types_' + countNew +
+   
+               '" onchange="showfield(\'other_' + countNew + ' \',this.options[this.selectedIndex].value)">&gt;' +
+   
+               '<option value="Gas">Gas</option>' +
+   
+               '<option value="Electricity">Electricity</option>' +
+   
+               '<option value="Water Charges">Water Charges</option>' +
+   
+               '<option value="Municipal Taxes">Municipal Taxes</option>' +
+   
+               '<option value="Other">Other</option>' +
+   
+               '</select>' +
+   
+               '<div id="other_' + countNew + '" class"other_title" style="display: none;">' +
+   
+               '<input id="otherValue_' + countNew + '"   type="text" name="additional_option">' +
+   
+               '</div>' +
+   
+               '</div>';
+
+
+            var td3='<div class="sum_' + countNew + '" style="background-color: '  + ' !important"> <input type="number" id="sum_' + countNew + '" name="sum" value="10" step="10" min="10"> </div>';
+            var td4='<div class="sorting_' + countNew + '" style="background-color: '  + ' !important"> <input id="sorting2_' + countNew + '"  class="datepicker  datepickerBills" name="date"> </div>';
+            var td5='<div class="comments_' + countNew + '" style="background-color: '  + ' !important"> <input id="comments_' + countNew + '" type="text" rows="1" name="comments"></input> </div>';
+            var td6='<div id="delete" class="delete_' + countNew + '" onClick="deleteMe(\'delete_' + countNew + ' \')" style="background-color: '  + ' !important"> <button data-toggle="tooltip" data-placement="right" title="remove from bills" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove" style="font-family:Glyphicons Halflings !important"></i></button> </div>';
+            var td7='<div id="pay" class="pay_' + countNew + '" style="background-color: '  + ' !important"> <button title="Mark as payed" id="'+ record_type + pay_id + '" type="button" class="btn pay_' + countNew + '" onClick="payMe(' + pay_id + ',\'' + record_type +'\' )" ><span class="glyphicon glyphicon-usd" style="font-family:Glyphicons Halflings !important"></span></button> </div>';
+
+
+            
+            
+            payTable.row.add([td1,td2,td3,td4,td5,td6,td7]);
+
+
+
+            payTable.draw() ;
+
+
+
+
            pages = pager1.getPages();
            refreshPapers(1);
            $("#sorting_"+countNew).val(dataArr[0]['date_added']);
@@ -384,7 +440,6 @@
            {
             $(this).val(dateInShortDate());
            }
-        
 });
 
 
@@ -393,7 +448,7 @@
 
 
 
-    function appendBillsHistoryRows(data){
+    function appendBillsHistoryRows(data,table){
 
       $("#report_body").html("");
 
@@ -401,27 +456,13 @@
        var k=0;
        if ( Array.isArray(data) ){
 
+              table.clear() ;
+
               for(k;k<data.length;k++ ){
-
-                    
-                    /***************************************/
-                         var temp_row= "";
-                         temp_row= "<tr>";
-                         temp_row += " <td>"+data[k]["paid_date"]+"</td>";//data[k] is a specific row in a database
-                         temp_row += "<td>"+data[k]["type"]+"</td>";
-                         temp_row += " <td>"+data[k]["amount"]+"</td>";
-                         temp_row += " <td>"+data[k]["due_date"]+"</td>";
-                         temp_row += "</tr>";
-
-                         $("#report_body").append(temp_row);
-                          
-                          //$('#pay_report').prepend(temp_row);
-                          //pages = pager1.getPages();
-                          //refreshPapers(1);
-
-
-                    /***************************************/
+                         table.row.add([data[k]["paid_date"],data[k]["type"],data[k]["amount"],data[k]["due_date"]]);
               }
+
+                  table.draw() ;
       }
       else{
         console.log("fail if ");
@@ -434,13 +475,13 @@
     }
 
 
-     function getBillsHistoryFilters(){
+     function getBillsHistoryFilters(tablePay){
 
       var bill_his_month=   $( "#bill_his_month" ).val();
       var bill_his_year=   $( "#bill_his_year" ).val();
       var bill_his_type=   $( "#bill_his_type" ).val();
 
-      getBillsHistoryWithFiltersAjax(bill_his_month,bill_his_year,bill_his_type);
+      getBillsHistoryWithFiltersAjax(bill_his_month,bill_his_year,bill_his_type,tablePay);
 
       
 
@@ -449,23 +490,21 @@
 
    $(document).ready(function() {
 
-      appendBillsHistoryRows("");
-      getBillsHistoryFilters();
-
        var countNew=0;
-       loadBillsFromDb();
+       
+
 
        //initalize 2 data tables
-       $('#pay_bills').DataTable({
+       var payBillsTable=$('#pay_bills').DataTable({
            "order": [],
            "targets": 'no-sort',
             "bSort": false,
-            "responsive": false,
            "columnDefs": [{
-               "targets": 'no-sort',
-
+               "targets": 'no-sort'
            }]
        });
+
+       loadBillsFromDb(payBillsTable);
   
        //add search function+ add second data table
       /* $('#pay_report tfoot th').each(function() {
@@ -476,16 +515,26 @@
    
    
        // DataTable
-       var table = $('#pay_report').DataTable({}
-       );
-   
-  
+       var tablePay = $('#pay_report').DataTable({
+         // "processing": true,
+        //  "serverSide": true,
+         // "ajax": "../dev/billsController.php"
+          dom: 'B<"clear">lfrtip',
+        buttons: [ 'copy', 'csv', 'excel' ]
 
+       });
+
+
+
+      getBillsHistoryFilters(tablePay);
       //***********************************************************************
 
        $('#saveAllBills').on('click', function() {
+         if (confirm("Do you want to save all this bills ? ")==1){
+                  saveAllBills();
+                  window.location.reload(true);
 
-        saveAllBills();
+         }
        });
        //add new row
    
@@ -493,23 +542,30 @@
 
        $('#search_bills').on('click', function() {
 
-        getBillsHistoryFilters();
+        getBillsHistoryFilters(tablePay);
        });
 
 
    //export to excel
-       $("#export").click(function() {
+       $("#export").click(function(tablePay) {
+
+    
+
+
+        if(confirm("Are you sure you want to download excel?")==1)
+        {
+
+          //$(tablePay.table().body()).
        $("#pay_report").table2excel({
-		filename: "Homies_bills_report", // Here, you can assign exported file name
-		fileext: ".xls"
-       });
-   
+          filename: "Homies_bills_report",
+         name: "Worksheet Name",  
+     });
+        }
    });
 
       
 
-
-   });
+})
 // end of document.ready
 
    
